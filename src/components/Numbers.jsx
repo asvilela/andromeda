@@ -1,8 +1,8 @@
 const STATS = [
-  { value: '6',      unit: 'torres', label: 'Baixa densidade' },
-  { value: '45.000', unit: 'm²',     label: 'Área total do terreno' },
-  { value: '20.000', unit: 'm²',     label: 'Área verde preservada' },
-  { value: 'Jan',    unit: '2026',   label: 'Previsão de entrega' },
+  { value: '36',    unit: 'pav.',     label: 'Torre residencial única' },
+  { value: '288',   unit: 'unid.',    label: 'Apartamentos exclusivos' },
+  { value: '7.620', unit: 'm²',      label: 'Área total do terreno' },
+  { value: '+20',   unit: 'espaços', label: 'Lazer e convivência' },
 ]
 
 export default function Numbers() {

@@ -68,19 +68,20 @@ export default function Projeto() {
               className="font-serif font-light text-cream leading-[1.2] max-w-[20ch]"
               style={{ fontSize: 'clamp(2rem, 3.5vw, 3.2rem)' }}
             >
-              A arte de conectar arquitetura, sofisticação e <em className="not-italic text-gold-lt">lifestyle</em>
+              A <em className="not-italic text-gold-lt">arquitetura</em> que eleva o padrão de Alphaville
             </h2>
             <div className="w-[60px] h-px mt-6" style={{ background: 'linear-gradient(to right, #c9a84c, transparent)' }} />
           </div>
 
           <p className="reveal reveal-delay-1 text-[.95rem] leading-[1.85] text-cream/65 mb-6">
-            O Andrômeda Home nasce da convergência entre arquitetura contemporânea de alto padrão
-            e o privilégio de viver em contato com a natureza. Localizado no Quadrilátero MPD,
-            em Alphaville, o empreendimento oferece fluidez, exclusividade e bem-estar em cada detalhe.
+            O Andrômeda Home é uma torre residencial única de 36 pavimentos no endereço
+            mais valorizado da região — Av. Andrômeda, em Alphaville. Projetado pelo escritório
+            MCAA Arquitetos, com paisagismo de Takeda Design e interiores assinados por Paula Aveiro.
           </p>
           <p className="reveal reveal-delay-2 text-[.95rem] leading-[1.85] text-cream/65 mb-6">
-            Com apenas 6 torres distribuídas em 45.000&nbsp;m², o projeto garante baixíssima densidade
-            populacional e uma experiência genuína de resort privativo.
+            Sofisticação em cada detalhe: dos elevadores semi-privativos ao acabamento
+            em mármore e granito, das bancadas com água quente ao piso do terraço nivelado
+            — detalhes que dispensam reformas no dia da entrega das chaves.
           </p>
 
           <div className="reveal reveal-delay-3 grid grid-cols-2 gap-4 mt-10 pt-10 border-t border-border">

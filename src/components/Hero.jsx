@@ -68,15 +68,15 @@ export default function Hero() {
           className="font-serif text-cream font-light leading-[1.05] mb-7 max-w-[14ch] animate-[fade-up_.9s_.5s_both]"
           style={{ fontSize: 'clamp(2.8rem, 6.5vw, 6rem)' }}
         >
-          Onde a <em className="not-italic text-gold-lt">natureza</em> encontra a excelência
+          Sua vida merece uma nova <em className="not-italic text-gold-lt">altitude</em>
         </h1>
         <p
           className="text-cream/55 leading-[1.75] mb-11 max-w-[42ch] animate-[fade-up_.8s_.75s_both]"
           style={{ fontSize: 'clamp(.85rem, 1.4vw, 1rem)' }}
         >
-          Uma experiência resort no coração de Alphaville. Apartamentos de 2 e 3 suítes
-          com arquitetura de alto padrão, 20.000&nbsp;m² de área verde preservada e
-          infraestrutura completa para o seu melhor estilo de vida.
+          Torre única com 36 pavimentos no coração de Alphaville.
+          Apartamentos de 90m² e 123m² com arquitetura assinada,
+          lazer resort e vista permanente.
         </p>
         <div className="flex gap-5 flex-wrap animate-[fade-up_.8s_.95s_both]">
           <a
@@ -93,7 +93,7 @@ export default function Hero() {
             href="#tipologias"
             className="inline-flex items-center gap-3 px-9 py-4 font-label text-[.7rem] tracking-[.2em] uppercase no-underline border border-cream/25 text-cream hover:border-gold hover:text-gold transition-all duration-250"
           >
-            Ver plantas
+            Ver plantas e disponibilidade
           </a>
         </div>
       </div>

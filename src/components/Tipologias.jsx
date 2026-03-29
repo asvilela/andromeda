@@ -7,12 +7,12 @@ const TIPOS = [
     title: 'Apartamento 2 Suítes',
     area: '90',
     features: [
-      '2 suítes com armários planejados',
-      'Sala de estar integrada',
-      'Varanda gourmet',
-      '2 vagas de garagem',
-      'Depósito privativo',
-      'Acabamento alto padrão',
+      '2 suítes com amplo caixilho e persiana de enrolar',
+      'Suíte master com closet e bancada em granito',
+      'Terraço gourmet com previsão para churrasqueira',
+      '2 vagas cobertas determinadas',
+      'Depósito privativo incluso',
+      'Previsão para ar-condicionado em dormitórios e sala',
     ],
     wppMsg: 'Quero%20saber%20mais%20sobre%20o%20apartamento%20de%2090m%C2%B2',
     Floor: Floor90,
@@ -23,12 +23,14 @@ const TIPOS = [
     title: 'Apartamento 3 Suítes',
     area: '123',
     features: [
-      'Suíte master com closet e banheiro privativo',
-      '2 suítes adicionais com armários',
-      'Varanda gourmet ampliada',
-      '2 vagas de garagem cobertas',
-      'Depósito privativo',
-      'Home office integrado',
+      '3 suítes com amplo caixilho e persiana de enrolar',
+      'Suíte master com closet, 2 cubas e bancada em granito',
+      'Elevadores semi-privativos exclusivos',
+      'Lavabo com bancada em mármore',
+      'Terraço gourmet com previsão para churrasqueira',
+      '2 vagas cobertas determinadas',
+      'Depósito privativo no andar',
+      'Previsão para ar-condicionado em todos os ambientes',
     ],
     wppMsg: 'Quero%20saber%20mais%20sobre%20o%20apartamento%20de%20123m%C2%B2',
     Floor: Floor123,
@@ -101,7 +103,7 @@ export default function Tipologias() {
               style={{ background: 'linear-gradient(135deg, #c9a84c 0%, #e8cc7e 100%)', color: '#0a0a10' }}
               target="_blank" rel="noopener"
             >
-              Solicitar informações
+              Solicitar informações da planta de {tipo.area}m²
             </a>
           </div>
         </div>

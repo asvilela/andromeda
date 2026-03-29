@@ -1,9 +1,12 @@
 const DISTANCES = [
-  { place: 'Shopping Iguatemi Alphaville', time: '5',  unit: 'min' },
-  { place: 'Shopping Tamboré',              time: '8',  unit: 'min' },
-  { place: 'Rodovia Castelo Branco',         time: '10', unit: 'min' },
-  { place: 'Escolas internacionais',         time: '5',  unit: 'min' },
-  { place: 'Hospitais e clínicas',           time: '7',  unit: 'min' },
+  { place: 'Alpha Square Mall',               time: '2',  unit: 'min' },
+  { place: 'Shopping Flamingo',               time: '5',  unit: 'min' },
+  { place: 'Shopping Iguatemi Alphaville',     time: '7',  unit: 'min' },
+  { place: 'Shopping Tamboré',                time: '7',  unit: 'min' },
+  { place: 'Hospital Albert Einstein',         time: '7',  unit: 'min' },
+  { place: 'Escola Internacional Alphaville',  time: '5',  unit: 'min' },
+  { place: 'FGV Alphaville',                  time: '7',  unit: 'min' },
+  { place: 'Delboni Auriemo',                 time: '6',  unit: 'min' },
 ]
 
 export default function Localizacao() {
@@ -24,8 +27,9 @@ export default function Localizacao() {
             <div className="w-[60px] h-px mt-6" style={{ background: 'linear-gradient(to right, #c9a84c, transparent)' }} />
           </div>
           <p className="reveal text-[.9rem] text-muted leading-[1.7] mb-10">
-            Estrategicamente posicionado no Quadrilátero MPD, o Andrômeda Home oferece
-            acesso privilegiado à melhor infraestrutura da região.
+            Na Av. Andrômeda, você está no endereço mais completo da região.
+            Shoppings, hospitais, escolas internacionais e restaurantes premiados
+            — tudo ao alcance sem abrir mão da sua tranquilidade.
           </p>
           <ul className="list-none" aria-label="Distâncias e tempos até pontos de interesse">
             {DISTANCES.map(({ place, time, unit }, i) => (
@@ -77,7 +81,7 @@ export default function Localizacao() {
           >
             <p className="text-[.82rem] text-muted leading-[1.6]">
               <strong className="text-cream font-normal">Andrômeda Home</strong><br />
-              Av. Andrômeda, 328 · Alphaville<br />
+              Av. Andrômeda, 310 · Alphaville<br />
               Barueri · São Paulo
             </p>
           </address>

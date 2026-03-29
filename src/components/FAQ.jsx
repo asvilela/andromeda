@@ -2,24 +2,36 @@ import { useState } from 'react'
 
 const ITEMS = [
   {
-    q: 'Qual é a previsão de entrega do empreendimento?',
-    a: 'A previsão de entrega do Andrômeda Home é janeiro de 2026. O acompanhamento da obra é disponibilizado periodicamente para os compradores, garantindo total transparência em cada etapa da construção.',
+    q: 'Qual o método construtivo do Andrômeda Home?',
+    a: 'Estrutura convencional com pilares e vigas de concreto armado. Alvenaria de vedação nas paredes externas, entre unidades e áreas comuns. Paredes internas em Drywall — sistema que oferece fácil manutenção, resistência, conforto térmico e acústico superior.',
+  },
+  {
+    q: 'Os apartamentos vêm com previsão para ar-condicionado?',
+    a: 'Sim. Todas as unidades são entregues com infraestrutura completa (carga elétrica e dreno) para ar-condicionado em todos os dormitórios e sala de estar. Nas unidades de 123m², o terraço gourmet também recebe a previsão.',
   },
   {
     q: 'Como funciona a segurança do condomínio?',
-    a: 'O empreendimento conta com portaria 24 horas, câmeras de monitoramento em toda a área comum, acesso por reconhecimento facial e segurança perimetral. A localização em Alphaville também agrega o benefício da segurança do condomínio-bairro.',
+    a: 'O empreendimento conta com guarita blindada (porta, caixilho e alvenaria), câmeras de segurança perimetral e em áreas comuns, pulmão de segurança para pedestres e veículos, clausura de acesso para veículos e acessos de serviço separados.',
+  },
+  {
+    q: 'A piscina é aquecida?',
+    a: 'A piscina adulto (raia de 25m x 3,60m) e a piscina infantil (5,50m x 3,60m) são entregues com previsão para climatização, permitindo que o condomínio instale o sistema de aquecimento.',
+  },
+  {
+    q: 'É possível instalar churrasqueira no apartamento?',
+    a: 'Sim. Todas as unidades possuem previsão para bancada no terraço gourmet e previsão para futura instalação de churrasqueira a carvão.',
+  },
+  {
+    q: 'As vagas de garagem são determinadas?',
+    a: 'Sim. Todas as vagas são determinadas (não sorteadas), cobertas e distribuídas em 3 subsolos. O empreendimento conta com vagas P, M e G, além de 13 vagas de visitantes e 32 vagas de moto.',
   },
   {
     q: 'Quais são as condições de pagamento?',
-    a: 'Trabalhamos com diferentes modalidades de financiamento, incluindo FGTS e financiamento bancário. Para obter a tabela completa com preços e condições personalizadas, entre em contato com nossos consultores — as informações são disponibilizadas mediante cadastro.',
-  },
-  {
-    q: 'As unidades já vêm com acabamento completo?',
-    a: 'Sim. Todas as unidades são entregues com acabamento de alto padrão, incluindo piso porcelanato, forro de gesso, armários embutidos nas suítes e área de serviço equipada.',
+    a: 'Trabalhamos com diferentes modalidades de financiamento, incluindo financiamento bancário direto. Entre em contato com nossos consultores para receber a tabela completa com preços e condições personalizadas.',
   },
   {
     q: 'O empreendimento aceita pets?',
-    a: 'Sim. O Andrômeda Home é pet-friendly e conta com uma área dedicada exclusivamente para animais de estimação (Pet Place), com espaço de banho, recreação e convivência.',
+    a: 'Sim. O Andrômeda Home é pet-friendly e conta com Pet Place no lazer elevado e Pet Care com banho no subsolo.',
   },
 ]
 

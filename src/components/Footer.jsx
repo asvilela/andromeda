@@ -31,7 +31,7 @@ export default function Footer() {
         </nav>
 
         <p className="w-full text-center text-[.78rem] text-muted mt-6 pt-6 border-t border-border">
-          © 2026 Andrômeda Home · Av. Andrômeda, 328 — Alphaville, Barueri, SP · (11)&nbsp;4200-1307
+          © 2026 Andrômeda Home · Av. Andrômeda, 310 — Alphaville, Barueri, SP · (11)&nbsp;2149-0015
         </p>
       </div>
     </footer>
