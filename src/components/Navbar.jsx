@@ -3,11 +3,11 @@ import { useState, useEffect } from 'react'
 const WPP_URL = 'https://wa.me/551121490015'
 
 const NAV_LINKS = [
-  ['#projeto',      'O Projeto'],
-  ['#amenidades',   'Amenidades'],
-  ['#tipologias',   'Planta'],
-  ['#localizacao',  'Localização'],
-  ['#faq',          'FAQ'],
+  ['#projeto', 'O Projeto'],
+  ['#amenidades', 'Amenidades'],
+  ['#tipologias', 'Planta'],
+  ['#localizacao', 'Localização'],
+  ['#faq', 'FAQ'],
 ]
 
 export default function Navbar() {
@@ -33,7 +33,6 @@ export default function Navbar() {
       >
         <a href="#hero" className="flex flex-col gap-0.5 no-underline" aria-label="Andrômeda Home">
           <span className="font-serif text-cream text-[1.35rem] tracking-[.04em]">Andrômeda Home</span>
-          <span className="font-label text-gold text-[.58rem] tracking-[.3em] uppercase">Alphaville · Barueri</span>
         </a>
 
         <ul className="hidden lg:flex gap-10 list-none">
@@ -49,13 +48,6 @@ export default function Navbar() {
           ))}
         </ul>
 
-        <a
-          href={WPP_URL}
-          target="_blank" rel="noopener"
-          className="hidden lg:inline-block font-label text-[.68rem] tracking-[.2em] uppercase px-[1.6rem] py-[.65rem] border border-gold text-gold no-underline hover:bg-gold hover:text-bg transition-all duration-250"
-        >
-          Falar com consultor
-        </a>
 
         <button
           className="lg:hidden flex flex-col gap-[5px] bg-transparent border-0 p-1 cursor-pointer"

@@ -63,7 +63,7 @@ const ALL_VARIANTS = TIPOS.flatMap((t) =>
   t.variants.map((v) => ({ ...v, tipoLabel: t.label, tipoTitle: t.title, tipoArea: t.area }))
 )
 
-export default function Tipologias() {
+export default function Tipologias({ onOpenPopup }) {
   const [active, setActive] = useState('90')
   const tipo = TIPOS.find((t) => t.id === active)
   const [activeVariant, setActiveVariant] = useState(tipo.variants[0].id)
@@ -239,14 +239,18 @@ export default function Tipologias() {
                 </li>
               ))}
             </ul>
-            <a
-              href={`https://wa.me/551121490015?text=${tipo.wppMsg}`}
-              className="inline-flex items-center gap-3 px-9 py-4 font-label text-[.7rem] tracking-[.2em] uppercase no-underline transition-all duration-250 hover:opacity-85 hover:-translate-y-0.5"
+            <button
+              onClick={() => onOpenPopup({
+                type: 'plantas',
+                title: 'Receba a Tabela de Valores Atualizada',
+                subtitle: 'Atendimento personalizado e envio imediato via WhatsApp.',
+                initialInterest: `${tipo.area} m²`
+              })}
+              className="inline-flex items-center gap-3 px-9 py-4 font-label text-[.7rem] tracking-[.2em] uppercase no-underline transition-all duration-250 hover:opacity-85 hover:-translate-y-0.5 border-0 cursor-pointer"
               style={{ background: 'linear-gradient(135deg, #c9a84c 0%, #e8cc7e 100%)', color: '#0a0a10' }}
-              target="_blank" rel="noopener"
             >
               Receber tabela de preços — {tipo.area}m²
-            </a>
+            </button>
           </div>
         </div>
       </div>
