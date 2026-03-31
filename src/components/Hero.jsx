@@ -1,27 +1,36 @@
+import facadeImg from '../assets/apartamento-alphaville-andromeda-by-mpd-fachada.webp'
+
 const WPP_MSG = encodeURIComponent('Olá! Tenho interesse no Andrômeda Home.')
 
 export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative flex items-end h-[100svh] min-h-[600px] overflow-hidden"
+      className="relative flex items-end h-[100svh] min-h-[600px] overflow-hidden bg-bg"
       aria-label="Apresentação do empreendimento"
     >
-      {/* Background */}
-      <div
-        className="absolute inset-0"
-        style={{
-          background: `
-            radial-gradient(ellipse 80% 60% at 60% 40%, rgba(30,35,70,.45) 0%, transparent 70%),
-            radial-gradient(ellipse 50% 80% at 20% 60%, rgba(10,20,50,.6) 0%, transparent 60%),
-            linear-gradient(160deg, #090915 0%, #0d1228 30%, #141830 55%, #0a0a14 100%)
-          `,
-        }}
-      />
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src={facadeImg}
+          alt="Andrômeda Home Fachada"
+          className="w-full h-full object-cover opacity-60"
+        />
+        {/* Overlays for depth and readability */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: `
+              linear-gradient(to bottom, rgba(8,8,16,.4) 0%, rgba(8,8,16,.8) 70%, #080810 100%),
+              radial-gradient(circle at 70% 30%, rgba(201,168,76,.1), transparent 50%)
+            `,
+          }}
+        />
+      </div>
 
       {/* Stars */}
       <div
-        className="absolute inset-0"
+        className="absolute inset-0 z-1"
         aria-hidden="true"
         style={{
           backgroundImage: `
@@ -42,11 +51,11 @@ export default function Hero() {
       {/* Orbs */}
       <div
         aria-hidden="true"
-        className="absolute rounded-full blur-[90px] opacity-[.18] animate-[pulse-orb_8s_ease-in-out_infinite]"
+        className="absolute rounded-full blur-[90px] opacity-[.12] animate-[pulse-orb_8s_ease-in-out_infinite] z-1"
         style={{
-          width: 600, height: 600,
-          top: -100, right: '10%',
-          background: 'radial-gradient(circle, #c9a84c 0%, #1a2060 100%)',
+          width: 500, height: 500,
+          top: '5%', right: '5%',
+          background: 'radial-gradient(circle, #c9a84c 0%, transparent 70%)',
         }}
       />
       <div

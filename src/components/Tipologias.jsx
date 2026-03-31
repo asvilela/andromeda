@@ -1,10 +1,15 @@
-import { useState } from 'react'
+import { useState, useEffect, useCallback } from 'react'
+
+import planta90_1suite from '../assets/apartamento-alphaville-andromeda-by-mpd-planta90m-1-suite.webp'
+import planta90_2suites from '../assets/apartamento-alphaville-andromeda-by-mpd-planta90m-2-suites.webp'
+import planta123_2suites from '../assets/apartamento-alphaville-andromeda-by-mpd-planta123m-2-suites.webp'
+import planta123_3suites from '../assets/apartamento-alphaville-andromeda-by-mpd-planta123m-3-suites.webp'
 
 const TIPOS = [
   {
     id: '90',
-    label: '90 m² · 2 Suítes',
-    title: 'Apartamento 2 Suítes',
+    label: '90 m²',
+    title: 'Apartamento 90 m²',
     area: '90',
     features: [
       '2 suítes com amplo caixilho e persiana de enrolar',
@@ -15,12 +20,15 @@ const TIPOS = [
       'Previsão para ar-condicionado em dormitórios e sala',
     ],
     wppMsg: 'Quero%20saber%20mais%20sobre%20o%20apartamento%20de%2090m%C2%B2',
-    Floor: Floor90,
+    variants: [
+      { id: '90-1', label: '1 Suíte', image: planta90_1suite, alt: 'Planta do apartamento de 90m² com 1 suíte' },
+      { id: '90-2', label: '2 Suítes', image: planta90_2suites, alt: 'Planta do apartamento de 90m² com 2 suítes' },
+    ],
   },
   {
     id: '123',
-    label: '123 m² · 3 Suítes',
-    title: 'Apartamento 3 Suítes',
+    label: '123 m²',
+    title: 'Apartamento 123 m²',
     area: '123',
     features: [
       '3 suítes com amplo caixilho e persiana de enrolar',
@@ -33,13 +41,75 @@ const TIPOS = [
       'Previsão para ar-condicionado em todos os ambientes',
     ],
     wppMsg: 'Quero%20saber%20mais%20sobre%20o%20apartamento%20de%20123m%C2%B2',
-    Floor: Floor123,
+    variants: [
+      { id: '123-2', label: '2 Suítes', image: planta123_2suites, alt: 'Planta do apartamento de 123m² com 2 suítes' },
+      { id: '123-3', label: '3 Suítes', image: planta123_3suites, alt: 'Planta do apartamento de 123m² com 3 suítes' },
+    ],
   },
 ]
+
+// Flat list of all variants for lightbox navigation
+const ALL_VARIANTS = TIPOS.flatMap((t) =>
+  t.variants.map((v) => ({ ...v, tipoLabel: t.label, tipoTitle: t.title, tipoArea: t.area }))
+)
 
 export default function Tipologias() {
   const [active, setActive] = useState('90')
   const tipo = TIPOS.find((t) => t.id === active)
+  const [activeVariant, setActiveVariant] = useState(tipo.variants[0].id)
+  const [lightboxIdx, setLightboxIdx] = useState(-1) // -1 = closed
+  const [touchStart, setTouchStart] = useState(null)
+
+  const variant = tipo.variants.find((v) => v.id === activeVariant) || tipo.variants[0]
+  const lightboxOpen = lightboxIdx >= 0
+  const lightboxItem = lightboxOpen ? ALL_VARIANTS[lightboxIdx] : null
+
+  const closeLightbox = useCallback(() => setLightboxIdx(-1), [])
+
+  const goNext = useCallback(() => {
+    setLightboxIdx((i) => (i + 1) % ALL_VARIANTS.length)
+  }, [])
+
+  const goPrev = useCallback(() => {
+    setLightboxIdx((i) => (i - 1 + ALL_VARIANTS.length) % ALL_VARIANTS.length)
+  }, [])
+
+  const openLightbox = useCallback(() => {
+    const idx = ALL_VARIANTS.findIndex((v) => v.id === activeVariant)
+    setLightboxIdx(idx >= 0 ? idx : 0)
+  }, [activeVariant])
+
+  useEffect(() => {
+    if (!lightboxOpen) return
+    const onKey = (e) => {
+      if (e.key === 'Escape') closeLightbox()
+      else if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); goNext() }
+      else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); goPrev() }
+    }
+    document.addEventListener('keydown', onKey)
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.removeEventListener('keydown', onKey)
+      document.body.style.overflow = ''
+    }
+  }, [lightboxOpen, closeLightbox, goNext, goPrev])
+
+  const handleTipoChange = (id) => {
+    setActive(id)
+    const newTipo = TIPOS.find((t) => t.id === id)
+    setActiveVariant(newTipo.variants[0].id)
+  }
+
+  // Touch handlers for swipe
+  const onTouchStart = (e) => setTouchStart(e.touches[0].clientX)
+  const onTouchEnd = (e) => {
+    if (touchStart === null) return
+    const diff = touchStart - e.changedTouches[0].clientX
+    if (Math.abs(diff) > 50) {
+      diff > 0 ? goNext() : goPrev()
+    }
+    setTouchStart(null)
+  }
 
   return (
     <section id="tipologias" className="bg-bg py-32 px-[8vw]" aria-labelledby="tipologias-title">
@@ -70,7 +140,7 @@ export default function Tipologias() {
               role="tab"
               aria-selected={active === t.id}
               aria-controls={`panel-${t.id}`}
-              onClick={() => setActive(t.id)}
+              onClick={() => handleTipoChange(t.id)}
             >
               {t.label}
             </button>
@@ -79,9 +149,50 @@ export default function Tipologias() {
 
         {/* Panel */}
         <div id={`panel-${tipo.id}`} className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center" role="tabpanel">
-          <div className="aspect-square bg-bg3 border border-border flex items-center justify-center overflow-hidden">
-            <tipo.Floor />
+          <div className="flex flex-col gap-4">
+            {/* Variant sub-tabs */}
+            <div className="flex gap-2" role="tablist" aria-label="Variações de planta">
+              {tipo.variants.map((v) => (
+                <button
+                  key={v.id}
+                  className={[
+                    'px-5 py-2 font-label text-[.62rem] tracking-[.18em] uppercase border bg-transparent transition-all duration-200 cursor-pointer',
+                    activeVariant === v.id
+                      ? 'text-gold border-gold'
+                      : 'text-muted border-border hover:text-cream hover:border-cream/30',
+                  ].join(' ')}
+                  role="tab"
+                  aria-selected={activeVariant === v.id}
+                  onClick={() => setActiveVariant(v.id)}
+                >
+                  {v.label}
+                </button>
+              ))}
+            </div>
+
+            {/* Plant image */}
+            <div
+              className="bg-bg3 border border-border flex items-center justify-center overflow-hidden p-4 cursor-zoom-in group relative"
+              onClick={openLightbox}
+              role="button"
+              tabIndex={0}
+              aria-label="Ampliar planta"
+              onKeyDown={(e) => e.key === 'Enter' && openLightbox()}
+            >
+              <img
+                src={variant.image}
+                alt={variant.alt}
+                className="w-full h-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]"
+                loading="lazy"
+              />
+              {/* Zoom hint */}
+              <span className="absolute bottom-3 right-3 flex items-center gap-1.5 px-3 py-1.5 bg-black/60 backdrop-blur-sm text-cream/70 text-[.6rem] font-label tracking-[.15em] uppercase rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                Ampliar
+              </span>
+            </div>
           </div>
+
           <div>
             <h3 className="font-serif text-cream mb-4" style={{ fontSize: 'clamp(2rem, 3.5vw, 3rem)' }}>
               {tipo.title}
@@ -108,44 +219,84 @@ export default function Tipologias() {
           </div>
         </div>
       </div>
+
+      {/* Lightbox */}
+      {lightboxOpen && lightboxItem && (
+        <div
+          className="fixed inset-0 z-[9999] flex items-center justify-center animate-[fadeIn_.2s_ease]"
+          style={{ background: 'rgba(5,5,10,0.92)', backdropFilter: 'blur(12px)' }}
+          onClick={closeLightbox}
+          onTouchStart={onTouchStart}
+          onTouchEnd={onTouchEnd}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Planta ampliada"
+        >
+          {/* Close button */}
+          <button
+            className="absolute top-6 right-6 w-10 h-10 flex items-center justify-center bg-transparent border border-cream/20 text-cream/70 hover:text-cream hover:border-cream/50 transition-all duration-200 cursor-pointer z-10"
+            onClick={closeLightbox}
+            aria-label="Fechar"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+
+          {/* Prev arrow */}
+          <button
+            className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center bg-black/40 border border-cream/15 text-cream/60 hover:text-cream hover:border-cream/40 hover:bg-black/60 transition-all duration-200 cursor-pointer z-10 backdrop-blur-sm"
+            onClick={(e) => { e.stopPropagation(); goPrev() }}
+            aria-label="Planta anterior"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+
+          {/* Next arrow */}
+          <button
+            className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center bg-black/40 border border-cream/15 text-cream/60 hover:text-cream hover:border-cream/40 hover:bg-black/60 transition-all duration-200 cursor-pointer z-10 backdrop-blur-sm"
+            onClick={(e) => { e.stopPropagation(); goNext() }}
+            aria-label="Próxima planta"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+
+          {/* Image + Caption */}
+          <div className="flex flex-col items-center gap-6 px-16 sm:px-24 max-w-full" onClick={(e) => e.stopPropagation()}>
+            <img
+              key={lightboxItem.id}
+              src={lightboxItem.image}
+              alt={lightboxItem.alt}
+              className="max-w-full max-h-[75vh] object-contain animate-[scaleIn_.25s_ease]"
+            />
+
+            {/* Caption */}
+            <div className="flex flex-col items-center gap-2 text-center">
+              <p className="font-serif text-cream text-lg sm:text-xl">
+                {lightboxItem.tipoTitle} <span className="text-gold">· {lightboxItem.label}</span>
+              </p>
+              <span className="font-label text-[.6rem] tracking-[.2em] uppercase text-muted">
+                {lightboxIdx + 1} / {ALL_VARIANTS.length}
+              </span>
+            </div>
+
+            {/* Dots */}
+            <div className="flex gap-2">
+              {ALL_VARIANTS.map((v, i) => (
+                <button
+                  key={v.id}
+                  className={[
+                    'w-2 h-2 rounded-full border-none transition-all duration-200 cursor-pointer',
+                    i === lightboxIdx
+                      ? 'bg-gold scale-125'
+                      : 'bg-cream/20 hover:bg-cream/40',
+                  ].join(' ')}
+                  onClick={() => setLightboxIdx(i)}
+                  aria-label={`Ver ${v.tipoLabel} — ${v.label}`}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
     </section>
-  )
-}
-
-function Floor90() {
-  return (
-    <svg width="80%" height="80%" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-label="Planta do apartamento de 90m²">
-      <rect x="15" y="15" width="170" height="170" fill="none" stroke="#c9a84c" strokeWidth="2.5" />
-      <rect x="15" y="85" width="80" height="100" fill="rgba(201,168,76,0.04)" stroke="rgba(201,168,76,0.3)" strokeWidth="1" />
-      <text x="55" y="140" fill="rgba(201,168,76,0.6)" fontSize="7" textAnchor="middle" fontFamily="Marcellus,serif" letterSpacing="1">SALA</text>
-      <rect x="95" y="115" width="90" height="70" fill="rgba(201,168,76,0.04)" stroke="rgba(201,168,76,0.3)" strokeWidth="1" />
-      <text x="140" y="153" fill="rgba(201,168,76,0.6)" fontSize="7" textAnchor="middle" fontFamily="Marcellus,serif" letterSpacing="1">COZINHA</text>
-      <rect x="95" y="15" width="90" height="60" fill="rgba(201,168,76,0.04)" stroke="rgba(201,168,76,0.3)" strokeWidth="1" />
-      <text x="140" y="48" fill="rgba(201,168,76,0.6)" fontSize="7" textAnchor="middle" fontFamily="Marcellus,serif" letterSpacing="1">SUÍTE 1</text>
-      <rect x="15" y="15" width="80" height="70" fill="rgba(201,168,76,0.04)" stroke="rgba(201,168,76,0.3)" strokeWidth="1" />
-      <text x="55" y="53" fill="rgba(201,168,76,0.6)" fontSize="7" textAnchor="middle" fontFamily="Marcellus,serif" letterSpacing="1">SUÍTE 2</text>
-      <rect x="95" y="75" width="90" height="40" fill="rgba(201,168,76,0.02)" stroke="rgba(201,168,76,0.2)" strokeWidth="1" strokeDasharray="3,2" />
-      <text x="140" y="98" fill="rgba(201,168,76,0.4)" fontSize="6" textAnchor="middle" fontFamily="Marcellus,serif" letterSpacing="1">VARANDA</text>
-    </svg>
-  )
-}
-
-function Floor123() {
-  return (
-    <svg width="80%" height="80%" viewBox="0 0 200 220" xmlns="http://www.w3.org/2000/svg" aria-label="Planta do apartamento de 123m²">
-      <rect x="15" y="15" width="170" height="190" fill="none" stroke="#c9a84c" strokeWidth="2.5" />
-      <rect x="15" y="100" width="90" height="105" fill="rgba(201,168,76,0.04)" stroke="rgba(201,168,76,0.3)" strokeWidth="1" />
-      <text x="60" y="156" fill="rgba(201,168,76,0.6)" fontSize="7" textAnchor="middle" fontFamily="Marcellus,serif" letterSpacing="1">SALA</text>
-      <rect x="105" y="130" width="80" height="75" fill="rgba(201,168,76,0.04)" stroke="rgba(201,168,76,0.3)" strokeWidth="1" />
-      <text x="145" y="170" fill="rgba(201,168,76,0.6)" fontSize="7" textAnchor="middle" fontFamily="Marcellus,serif" letterSpacing="1">COZINHA</text>
-      <rect x="105" y="15" width="80" height="70" fill="rgba(201,168,76,0.06)" stroke="rgba(201,168,76,0.4)" strokeWidth="1.2" />
-      <text x="145" y="50" fill="rgba(201,168,76,0.7)" fontSize="7" textAnchor="middle" fontFamily="Marcellus,serif" letterSpacing="1">MASTER</text>
-      <rect x="15" y="15" width="90" height="45" fill="rgba(201,168,76,0.04)" stroke="rgba(201,168,76,0.3)" strokeWidth="1" />
-      <text x="60" y="40" fill="rgba(201,168,76,0.6)" fontSize="7" textAnchor="middle" fontFamily="Marcellus,serif" letterSpacing="1">SUÍTE 2</text>
-      <rect x="15" y="60" width="90" height="40" fill="rgba(201,168,76,0.04)" stroke="rgba(201,168,76,0.3)" strokeWidth="1" />
-      <text x="60" y="82" fill="rgba(201,168,76,0.6)" fontSize="7" textAnchor="middle" fontFamily="Marcellus,serif" letterSpacing="1">SUÍTE 3</text>
-      <rect x="105" y="85" width="80" height="45" fill="rgba(201,168,76,0.02)" stroke="rgba(201,168,76,0.2)" strokeWidth="1" strokeDasharray="3,2" />
-      <text x="145" y="111" fill="rgba(201,168,76,0.4)" fontSize="6" textAnchor="middle" fontFamily="Marcellus,serif" letterSpacing="1">VARANDA</text>
-    </svg>
   )
 }
