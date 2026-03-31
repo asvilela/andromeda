@@ -12,7 +12,7 @@ export default function Contato() {
       return
     }
     const msg = encodeURIComponent(
-      `Olá! Me chamo ${form.nome} e tenho interesse no Andrômeda Home. Meu WhatsApp é ${form.whatsapp}.`
+      `Olá! Me chamo ${form.nome} e tenho interesse no Andrômeda by MPD. Meu WhatsApp é ${form.whatsapp}.`
     )
     window.open(`https://wa.me/551121490015?text=${msg}`, '_blank', 'noopener')
   }
@@ -38,13 +38,14 @@ export default function Contato() {
             className="font-serif font-light text-cream leading-[1.2] mb-6"
             style={{ fontSize: 'clamp(2rem, 3.5vw, 3rem)' }}
           >
-            Reserve sua unidade com <em className="not-italic text-gold-lt">condições exclusivas</em>
+            Receba a tabela de preços e <em className="not-italic text-gold-lt">disponibilidade</em>
           </h2>
           <p className="text-[.9rem] leading-[1.8] text-muted mb-10">
-            As 288 unidades do Andrômeda Home representam a última oportunidade
-            de morar em uma torre residencial premium na Av. Andrômeda, em Alphaville.
-            Nossos consultores estão prontos para apresentar plantas, disponibilidade
-            e condições de pagamento personalizadas.
+            O Andrômeda by MPD é a última torre de alto padrão da Av. Andrômeda.
+            São 288 unidades — 90m² e 123m² — todas com depósito privativo,
+            2 vagas determinadas e entrega sem necessidade de reforma.
+            Fale com um consultor e receba plantas, disponibilidade e condições
+            de financiamento sem compromisso.
           </p>
           <a
             href="https://wa.me/551121490015?text=Olá!%20Tenho%20interesse%20no%20Andrômeda%20Home%20e%20gostaria%20de%20mais%20informações."
@@ -91,7 +92,7 @@ export default function Contato() {
             className="mt-2 py-4 px-8 font-label text-[.7rem] tracking-[.2em] uppercase border-0 cursor-pointer transition-all duration-200 hover:opacity-85 hover:-translate-y-0.5"
             style={{ background: 'linear-gradient(135deg, #c9a84c 0%, #e8cc7e 100%)', color: '#0a0a10' }}
           >
-            Receber proposta personalizada
+            Receber tabela de preços
           </button>
           <p className="text-[.72rem] text-muted leading-[1.6]">
             Ao enviar, você concorda com nossa política de privacidade. Seus dados são protegidos

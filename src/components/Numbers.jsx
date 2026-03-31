@@ -1,8 +1,8 @@
 const STATS = [
-  { value: '36',    unit: 'pav.',     label: 'Torre residencial única' },
-  { value: '288',   unit: 'unid.',    label: 'Apartamentos exclusivos' },
-  { value: '7.620', unit: 'm²',      label: 'Área total do terreno' },
-  { value: '+20',   unit: 'espaços', label: 'Lazer e convivência' },
+  { value: '36',    unit: 'pav.',     label: 'Torre única em Alphaville' },
+  { value: '288',   unit: 'unid.',    label: 'De 90 m² e 123 m²' },
+  { value: '23',    unit: 'espaços',  label: 'De lazer no 2º pavimento' },
+  { value: '7.620', unit: 'm²',      label: 'De terreno exclusivo' },
 ]
 
 export default function Numbers() {

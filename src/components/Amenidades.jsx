@@ -1,89 +1,281 @@
-const AMENIDADES = [
-  {
-    name: 'Piscina Adulto Raia 25m',
-    desc: 'Piscina semiolímpica com previsão para climatização. Raia de 25m e piscina infantil com 30cm de profundidade — segura para os pequenos.',
-    icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M3 12c0-2.4 2.1-4.3 4.5-4 .9-2.3 3-4 5.5-4 3.3 0 6 2.7 6 6 1.7.3 3 1.8 3 3.5C22 15.4 20.4 17 18.5 17H5.5C3.6 17 2 15.4 2 13.5c0-1.7 1.3-3.1 3-3.5" /></svg>,
-  },
-  {
-    name: 'Fitness & Wellness',
-    desc: 'Fitness indoor e outdoor com equipamentos individuais e duais. Sauna, sala de descanso, massagem e espaço beauty completam o circuito.',
-    icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="12" cy="12" r="3" /><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83" /></svg>,
-  },
-  {
-    name: 'Beach Tennis & Quadra Recreativa',
-    desc: 'Quadra oficial de beach tennis e quadra recreativa para esportes coletivos. Lazer ativo a qualquer hora do dia.',
-    icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="3" y="3" width="18" height="18" rx="2" /><path d="M12 8v8M8 12h8" /></svg>,
-  },
-  {
-    name: 'Gourmet, Sport Bar & Churrasqueiras',
-    desc: 'Espaço gourmet, sport bar e churrasqueiras ao ar livre — três ambientes para reunir amigos e família com sofisticação.',
-    icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" /></svg>,
-  },
-  {
-    name: 'Coworking & Sala de Reunião',
-    desc: 'Coworking profissional com sala de reunião privativa e web garden. Trabalhe com produtividade sem enfrentar o trânsito.',
-    icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" /><polyline points="9 22 9 12 15 12 15 22" /></svg>,
-  },
-  {
-    name: 'Pet Place & Espaços Kids',
-    desc: 'Pet place, pet care com banho no subsolo, brinquedoteca, playground kids e playground baby — cada membro da família tem o seu espaço.',
-    icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" /></svg>,
-  },
+import { useState, useEffect, useCallback } from 'react'
+
+import piscinaImg    from '../assets/apartamento-alphaville-andromeda-by-mpd-piscina-descoberta.webp'
+import fitnessImg    from '../assets/apartamento-alphaville-andromeda-by-mpd-fitness.webp'
+import saunaImg      from '../assets/apartamento-alphaville-andromeda-by-mpd-sauna.webp'
+import coworkingImg  from '../assets/apartamento-alphaville-andromeda-by-mpd-coworking.webp'
+import gourmetImg    from '../assets/apartamento-alphaville-andromeda-by-mpd-espaco-gourmet.webp'
+import quadraBtImg   from '../assets/apartamento-alphaville-andromeda-by-mpd-quadra-bt.webp'
+import salaoImg      from '../assets/apartamento-alphaville-andromeda-by-mpd-salao-festas.webp'
+import petImg        from '../assets/apartamento-alphaville-andromeda-by-mpd-espaco-pet.webp'
+import brinqImg      from '../assets/apartamento-alphaville-andromeda-by-mpd-brinquedoteca.webp'
+import pickleballImg from '../assets/apartamento-alphaville-andromeda-by-mpd-pickleball.webp'
+
+const MAIN_ITEMS = [
+  { img: piscinaImg,   alt: 'Piscina adulto raia 25m', label: 'Piscina Raia 25m',        desc: 'Semiolímpica com previsão para climatização' },
+  { img: fitnessImg,   alt: 'Fitness indoor',           label: 'Fitness Indoor & Externo', desc: 'Aparelhos individuais e duais, sauna e espaço beauty' },
+  { img: saunaImg,     alt: 'Sauna e área de descanso', label: 'Sauna & Descanso',         desc: 'Sauna, sala de massagem e área de relaxamento' },
+  { img: coworkingImg, alt: 'Coworking',                label: 'Coworking Profissional',   desc: 'Sala de reunião privativa, web garden e lounge' },
+  { img: gourmetImg,   alt: 'Espaço gourmet',           label: 'Gourmet & Sport Bar',      desc: 'Espaço gourmet, sport bar e churrasqueiras ao ar livre' },
 ]
 
+const STRIP_ITEMS = [
+  { img: quadraBtImg,   alt: 'Quadra de beach tennis', label: 'Beach Tennis' },
+  { img: salaoImg,      alt: 'Salão de festas',        label: 'Salão de Festas' },
+  { img: petImg,        alt: 'Pet place',              label: 'Pet Place & Pet Care' },
+  { img: brinqImg,      alt: 'Brinquedoteca',          label: 'Brinquedoteca' },
+  { img: pickleballImg, alt: 'Pickleball',             label: 'Pickleball' },
+]
+
+const ALL_ITEMS = [...MAIN_ITEMS, ...STRIP_ITEMS]
+
+function PhotoCard({ img, alt, label, desc, onClick, className = '', style = {} }) {
+  return (
+    <div
+      className={`relative overflow-hidden group cursor-zoom-in ${className}`}
+      style={style}
+      onClick={onClick}
+      role="button"
+      tabIndex={0}
+      aria-label={`Ampliar imagem: ${label}`}
+      onKeyDown={(e) => e.key === 'Enter' && onClick?.()}
+    >
+      <img
+        src={img}
+        alt={alt}
+        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.06]"
+        loading="lazy"
+      />
+      {/* Permanent bottom gradient */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{ background: 'linear-gradient(to top, rgba(5,5,12,.8) 0%, rgba(5,5,12,.15) 45%, transparent 100%)' }}
+        aria-hidden="true"
+      />
+      {/* Hover dark tint */}
+      <div
+        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-400 pointer-events-none"
+        style={{ background: 'rgba(5,5,12,.35)' }}
+        aria-hidden="true"
+      />
+      {/* Label */}
+      <div className="absolute bottom-0 left-0 right-0 px-4 pb-4 pt-2 translate-y-1 group-hover:translate-y-0 transition-transform duration-300">
+        <p className="font-label text-cream text-[.68rem] tracking-[.18em] uppercase leading-tight drop-shadow-md">
+          {label}
+        </p>
+        {desc && (
+          <p className="font-sans text-cream/55 text-[.62rem] leading-snug mt-[3px] max-h-0 overflow-hidden group-hover:max-h-[2rem] transition-all duration-300 delay-75">
+            {desc}
+          </p>
+        )}
+      </div>
+      {/* Zoom icon hint */}
+      <span
+        className="absolute top-3 right-3 flex items-center gap-1 px-2 py-1 bg-black/60 backdrop-blur-sm text-cream/70 text-[.55rem] font-label tracking-[.12em] uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+        aria-hidden="true"
+      >
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          <line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/>
+        </svg>
+        Ampliar
+      </span>
+    </div>
+  )
+}
+
 export default function Amenidades() {
+  const GAP = '3px'
+  const [lightboxIdx, setLightboxIdx] = useState(-1)
+  const [touchStart, setTouchStart] = useState(null)
+  const lightboxOpen = lightboxIdx >= 0
+
+  const closeLightbox = useCallback(() => setLightboxIdx(-1), [])
+  const goNext = useCallback(() => setLightboxIdx((i) => (i + 1) % ALL_ITEMS.length), [])
+  const goPrev = useCallback(() => setLightboxIdx((i) => (i - 1 + ALL_ITEMS.length) % ALL_ITEMS.length), [])
+
+  useEffect(() => {
+    if (!lightboxOpen) return
+    const onKey = (e) => {
+      if (e.key === 'Escape') closeLightbox()
+      else if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); goNext() }
+      else if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   { e.preventDefault(); goPrev() }
+    }
+    document.addEventListener('keydown', onKey)
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.removeEventListener('keydown', onKey)
+      document.body.style.overflow = ''
+    }
+  }, [lightboxOpen, closeLightbox, goNext, goPrev])
+
+  const onTouchStart = (e) => setTouchStart(e.touches[0].clientX)
+  const onTouchEnd   = (e) => {
+    if (touchStart === null) return
+    const diff = touchStart - e.changedTouches[0].clientX
+    if (Math.abs(diff) > 50) diff > 0 ? goNext() : goPrev()
+    setTouchStart(null)
+  }
+
+  const item = lightboxOpen ? ALL_ITEMS[lightboxIdx] : null
+
   return (
     <section id="amenidades" className="bg-bg2 py-32 px-[8vw]" aria-labelledby="amenidades-title">
       <div className="max-w-[1200px] mx-auto">
-        {/* Top */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-20 items-end">
+
+        {/* Section header */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-16 items-end">
           <div>
-            <div className="mb-16 reveal">
+            <div className="mb-12 reveal">
               <span className="block font-label text-gold text-[.7rem] tracking-[.25em] uppercase mb-4">Estilo de vida</span>
               <h2
                 id="amenidades-title"
                 className="font-serif font-light text-cream leading-[1.2] max-w-[20ch]"
                 style={{ fontSize: 'clamp(2rem, 3.5vw, 3.2rem)' }}
               >
-                Mais de 20 <em className="not-italic text-gold-lt">experiências</em> sem sair de casa
+                23 espaços de lazer. Todos no <em className="not-italic text-gold-lt">2º pavimento</em>
               </h2>
               <div className="w-[60px] h-px mt-6" style={{ background: 'linear-gradient(to right, #c9a84c, transparent)' }} />
             </div>
             <p className="reveal reveal-delay-1 text-[.95rem] leading-[1.85] text-cream/60">
-              Do lazer elevado no 2° pavimento ao pet care no subsolo,
-              cada espaço foi projetado para que o seu dia a dia tenha
-              a qualidade de um resort cinco estrelas.
+              Piscina semiolímpica raia 25m, beauty salon, sport bar com mesa de poker,
+              coworking com sala de reunião privativa, beach tennis, pickleball,
+              churrasqueiras, brinquedoteca e Pet Care. No subsolo: bicicletário,
+              car wash e mini mercado previstos. Tudo a 30 segundos do seu elevador.
             </p>
           </div>
           <p
             className="reveal reveal-delay-2 font-serif text-gold-lt leading-[1.4] lg:text-right"
             style={{ fontSize: 'clamp(1.4rem, 2.5vw, 2rem)', fontStyle: 'italic' }}
           >
-            "No Andrômeda, o extraordinário é o seu cotidiano."
+            "No Andrômeda, o que era luxo passou a ser rotina."
           </p>
         </div>
 
-        {/* Grid */}
-        <div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px border border-border"
-          style={{ background: 'rgba(201,168,76,.18)' }}
-          role="list"
-        >
-          {AMENIDADES.map(({ name, desc, icon }, i) => (
-            <article
-              key={name}
-              className={`reveal reveal-delay-${(i % 3) + 1} bg-bg2 p-10 flex flex-col gap-4 transition-colors duration-250 hover:bg-bg3`}
-              role="listitem"
-            >
-              <div className="w-[42px] h-[42px] border border-border flex items-center justify-center text-gold" aria-hidden="true">
-                {icon}
-              </div>
-              <h3 className="font-serif text-cream text-[1.1rem]">{name}</h3>
-              <p className="text-[.82rem] leading-[1.65] text-muted">{desc}</p>
-            </article>
-          ))}
+        {/* ── Editorial photo grid ── */}
+        <div className="reveal reveal-delay-1">
+
+          {/* Desktop: pool (tall, 2 rows) + 2×2 grid */}
+          <div
+            className="hidden lg:grid"
+            style={{ gridTemplateColumns: '1.35fr 1fr 1fr', gridTemplateRows: '290px 290px', gap: GAP }}
+            role="list"
+            aria-label="Espaços de lazer e convivência"
+          >
+            <PhotoCard {...MAIN_ITEMS[0]} onClick={() => setLightboxIdx(0)} style={{ gridRow: '1 / 3' }} />
+            <PhotoCard {...MAIN_ITEMS[1]} onClick={() => setLightboxIdx(1)} />
+            <PhotoCard {...MAIN_ITEMS[2]} onClick={() => setLightboxIdx(2)} />
+            <PhotoCard {...MAIN_ITEMS[3]} onClick={() => setLightboxIdx(3)} />
+            <PhotoCard {...MAIN_ITEMS[4]} onClick={() => setLightboxIdx(4)} />
+          </div>
+
+          {/* Mobile: 2-col grid */}
+          <div
+            className="grid lg:hidden"
+            style={{ gridTemplateColumns: '1fr 1fr', gridAutoRows: '185px', gap: GAP }}
+            role="list"
+            aria-label="Espaços de lazer e convivência"
+          >
+            <PhotoCard {...MAIN_ITEMS[0]} onClick={() => setLightboxIdx(0)} style={{ gridColumn: '1 / 3', height: '240px' }} />
+            <PhotoCard {...MAIN_ITEMS[1]} onClick={() => setLightboxIdx(1)} />
+            <PhotoCard {...MAIN_ITEMS[2]} onClick={() => setLightboxIdx(2)} />
+            <PhotoCard {...MAIN_ITEMS[3]} onClick={() => setLightboxIdx(3)} />
+            <PhotoCard {...MAIN_ITEMS[4]} onClick={() => setLightboxIdx(4)} />
+          </div>
+
+          {/* Bottom strip — 5 items */}
+          <div
+            className="grid grid-cols-3 lg:grid-cols-5"
+            style={{ gap: GAP, marginTop: GAP, gridAutoRows: '165px' }}
+            role="list"
+          >
+            {STRIP_ITEMS.map((item, i) => (
+              <PhotoCard key={item.label} {...item} onClick={() => setLightboxIdx(MAIN_ITEMS.length + i)} />
+            ))}
+          </div>
+
         </div>
       </div>
+
+      {/* ── Lightbox ── */}
+      {lightboxOpen && item && (
+        <div
+          className="fixed inset-0 z-[9999] flex items-center justify-center animate-[fadeIn_.2s_ease]"
+          style={{ background: 'rgba(5,5,10,0.94)', backdropFilter: 'blur(14px)' }}
+          onClick={closeLightbox}
+          onTouchStart={onTouchStart}
+          onTouchEnd={onTouchEnd}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Imagem ampliada"
+        >
+          {/* Close */}
+          <button
+            className="absolute top-6 right-6 w-10 h-10 flex items-center justify-center bg-transparent border border-cream/20 text-cream/70 hover:text-cream hover:border-cream/50 transition-all duration-200 cursor-pointer z-10"
+            onClick={closeLightbox}
+            aria-label="Fechar"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+          </button>
+
+          {/* Prev */}
+          <button
+            className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center bg-black/40 border border-cream/15 text-cream/60 hover:text-cream hover:border-cream/40 hover:bg-black/60 transition-all duration-200 cursor-pointer z-10 backdrop-blur-sm"
+            onClick={(e) => { e.stopPropagation(); goPrev() }}
+            aria-label="Imagem anterior"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+
+          {/* Next */}
+          <button
+            className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center bg-black/40 border border-cream/15 text-cream/60 hover:text-cream hover:border-cream/40 hover:bg-black/60 transition-all duration-200 cursor-pointer z-10 backdrop-blur-sm"
+            onClick={(e) => { e.stopPropagation(); goNext() }}
+            aria-label="Próxima imagem"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+
+          {/* Image + caption */}
+          <div
+            className="flex flex-col items-center gap-5 px-16 sm:px-24 max-w-full"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img
+              key={lightboxIdx}
+              src={item.img}
+              alt={item.alt}
+              className="max-w-full max-h-[74vh] object-contain animate-[scaleIn_.25s_ease]"
+            />
+            <div className="flex flex-col items-center gap-2 text-center">
+              <p className="font-serif text-cream text-lg sm:text-xl">{item.label}</p>
+              {item.desc && (
+                <p className="font-sans text-muted text-[.8rem]">{item.desc}</p>
+              )}
+              <span className="font-label text-[.58rem] tracking-[.2em] uppercase text-muted/60 mt-1">
+                {lightboxIdx + 1} / {ALL_ITEMS.length}
+              </span>
+            </div>
+
+            {/* Dots */}
+            <div className="flex gap-2">
+              {ALL_ITEMS.map((_, i) => (
+                <button
+                  key={i}
+                  className={[
+                    'w-[7px] h-[7px] rounded-full border-none transition-all duration-200 cursor-pointer',
+                    i === lightboxIdx ? 'bg-gold scale-125' : 'bg-cream/20 hover:bg-cream/40',
+                  ].join(' ')}
+                  onClick={() => setLightboxIdx(i)}
+                  aria-label={`Ver ${ALL_ITEMS[i].label}`}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   )
 }

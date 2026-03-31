@@ -1,6 +1,6 @@
 import facadeImg from '../assets/apartamento-alphaville-andromeda-by-mpd-fachada.webp'
 
-const WPP_MSG = encodeURIComponent('Olá! Tenho interesse no Andrômeda Home.')
+const WPP_MSG = encodeURIComponent('Olá! Tenho interesse no Andrômeda by MPD e gostaria de receber a tabela de preços.')
 
 export default function Hero() {
   return (
@@ -71,21 +71,22 @@ export default function Hero() {
       {/* Content */}
       <div className="relative z-10 px-[8vw] pb-[8vh] max-w-[1400px] w-full">
         <p className="font-label text-gold text-[.7rem] tracking-[.35em] uppercase mb-6 animate-[fade-up_.8s_.3s_both]">
-          Alphaville · Barueri · São Paulo
+          Andrômeda by MPD · Alphaville · Barueri
         </p>
         <h1
           className="font-serif text-cream font-light leading-[1.05] mb-7 max-w-[14ch] animate-[fade-up_.9s_.5s_both]"
           style={{ fontSize: 'clamp(2.8rem, 6.5vw, 6rem)' }}
         >
-          Sua vida merece uma nova <em className="not-italic text-gold-lt">altitude</em>
+          O último grande endereço da Av. <em className="not-italic text-gold-lt">Andrômeda</em>
         </h1>
         <p
           className="text-cream/55 leading-[1.75] mb-11 max-w-[42ch] animate-[fade-up_.8s_.75s_both]"
           style={{ fontSize: 'clamp(.85rem, 1.4vw, 1rem)' }}
         >
-          Torre única com 36 pavimentos no coração de Alphaville.
-          Apartamentos de 90m² e 123m² com arquitetura assinada,
-          lazer resort e vista permanente.
+          Torre única de 36 pavimentos com 23 espaços de lazer no 2º pavimento —
+          piscina raia 25m, beauty salon, sport bar e car wash. Apartamentos de
+          90m² e 123m² entregues sem reforma, com vagas determinadas e depósito
+          privativo em todos os andares.
         </p>
         <div className="flex gap-5 flex-wrap animate-[fade-up_.8s_.95s_both]">
           <a
@@ -102,7 +103,7 @@ export default function Hero() {
             href="#tipologias"
             className="inline-flex items-center gap-3 px-9 py-4 font-label text-[.7rem] tracking-[.2em] uppercase no-underline border border-cream/25 text-cream hover:border-gold hover:text-gold transition-all duration-250"
           >
-            Ver plantas e disponibilidade
+            Ver plantas e preços
           </a>
         </div>
       </div>

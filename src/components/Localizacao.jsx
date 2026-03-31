@@ -1,12 +1,14 @@
 const DISTANCES = [
   { place: 'Alpha Square Mall',               time: '2',  unit: 'min' },
+  { place: 'Pão de Açúcar · St Marche',       time: '5',  unit: 'min' },
   { place: 'Shopping Flamingo',               time: '5',  unit: 'min' },
-  { place: 'Shopping Iguatemi Alphaville',     time: '7',  unit: 'min' },
-  { place: 'Shopping Tamboré',                time: '7',  unit: 'min' },
-  { place: 'Hospital Albert Einstein',         time: '7',  unit: 'min' },
-  { place: 'Escola Internacional Alphaville',  time: '5',  unit: 'min' },
-  { place: 'FGV Alphaville',                  time: '7',  unit: 'min' },
+  { place: 'Escola Internacional Alphaville', time: '5',  unit: 'min' },
   { place: 'Delboni Auriemo',                 time: '6',  unit: 'min' },
+  { place: 'Shopping Iguatemi Alphaville',    time: '7',  unit: 'min' },
+  { place: 'Hospital Albert Einstein',        time: '7',  unit: 'min' },
+  { place: 'FGV Alphaville',                  time: '7',  unit: 'min' },
+  { place: 'Shopping Tamboré',                time: '7',  unit: 'min' },
+  { place: 'Maple Bear',                      time: '10', unit: 'min' },
 ]
 
 export default function Localizacao() {
@@ -22,14 +24,15 @@ export default function Localizacao() {
               className="font-serif font-light text-cream leading-[1.2] max-w-[20ch]"
               style={{ fontSize: 'clamp(2rem, 3.5vw, 3.2rem)' }}
             >
-              O melhor de Alphaville a <em className="not-italic text-gold-lt">poucos minutos</em>
+              Tudo que importa está a menos de <em className="not-italic text-gold-lt">10 minutos</em>
             </h2>
             <div className="w-[60px] h-px mt-6" style={{ background: 'linear-gradient(to right, #c9a84c, transparent)' }} />
           </div>
           <p className="reveal text-[.9rem] text-muted leading-[1.7] mb-10">
-            Na Av. Andrômeda, você está no endereço mais completo da região.
-            Shoppings, hospitais, escolas internacionais e restaurantes premiados
-            — tudo ao alcance sem abrir mão da sua tranquilidade.
+            Albert Einstein a 7 minutos, Iguatemi Alphaville a 7 minutos, Escola
+            Internacional a 5 minutos, Pão de Açúcar a 5 minutos e o Alpha Square
+            Mall a 2 minutos da porta. Tudo que Alphaville oferece — sem percorrer
+            mais de 10 minutos do endereço mais valorizado da região.
           </p>
           <ul className="list-none" aria-label="Distâncias e tempos até pontos de interesse">
             {DISTANCES.map(({ place, time, unit }, i) => (
@@ -47,37 +50,25 @@ export default function Localizacao() {
           </ul>
         </div>
 
-        {/* Map */}
+        {/* Google Maps */}
         <div
           className="reveal reveal-delay-2 relative aspect-[4/5] bg-bg3 border border-border overflow-hidden"
-          aria-label="Mapa ilustrativo da localização"
+          aria-label="Localização no Google Maps"
         >
-          <div
-            className="absolute inset-0"
-            aria-hidden="true"
-            style={{ background: 'linear-gradient(135deg, #0a1020 0%, #0e1830 60%, #080f20 100%)' }}
-          />
-          <div
-            className="absolute inset-0"
-            aria-hidden="true"
+          <iframe
+            title="Localização Andrômeda Home no Google Maps"
+            src="https://maps.google.com/maps?q=Av.+Andr%C3%B4meda,+310,+Alphaville,+Barueri,+SP&output=embed&z=16&hl=pt-BR"
+            className="absolute inset-0 w-full h-full border-0"
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
             style={{
-              background: `
-                repeating-linear-gradient(0deg, transparent, transparent 29px, rgba(201,168,76,.05) 30px),
-                repeating-linear-gradient(90deg, transparent, transparent 29px, rgba(201,168,76,.05) 30px)
-              `,
+              filter: 'invert(90%) hue-rotate(180deg) brightness(0.85) saturate(0.85)',
             }}
           />
-          {/* Pin */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" aria-hidden="true">
-            <div
-              className="w-[14px] h-[14px] bg-gold rounded-full animate-[pin-pulse_2s_infinite]"
-              style={{ boxShadow: '0 0 0 6px rgba(201,168,76,.2), 0 0 0 12px rgba(201,168,76,.08)' }}
-            />
-          </div>
-          {/* Address */}
+          {/* Address card */}
           <address
-            className="absolute bottom-8 left-8 right-8 border border-border p-5 not-italic backdrop-blur-[10px]"
-            style={{ background: 'rgba(8,8,16,.8)' }}
+            className="absolute bottom-8 left-8 right-8 border border-border p-5 not-italic backdrop-blur-[10px] pointer-events-none"
+            style={{ background: 'rgba(8,8,16,.85)' }}
           >
             <p className="text-[.82rem] text-muted leading-[1.6]">
               <strong className="text-cream font-normal">Andrômeda Home</strong><br />

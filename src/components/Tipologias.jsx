@@ -1,5 +1,9 @@
 import { useState, useEffect, useCallback } from 'react'
 
+import living78Img   from '../assets/apartamento-alphaville-andromeda-by-mpd-living-78.webp'
+import living120Img  from '../assets/apartamento-alphaville-andromeda-by-mpd-living-120.webp'
+import suite120Img   from '../assets/apartamento-alphaville-andromeda-by-mpd-suite-120.webp'
+
 import planta90_1suite from '../assets/apartamento-alphaville-andromeda-by-mpd-planta90m-1-suite.webp'
 import planta90_2suites from '../assets/apartamento-alphaville-andromeda-by-mpd-planta90m-2-suites.webp'
 import planta123_2suites from '../assets/apartamento-alphaville-andromeda-by-mpd-planta123m-2-suites.webp'
@@ -12,14 +16,17 @@ const TIPOS = [
     title: 'Apartamento 90 m²',
     area: '90',
     features: [
-      '2 suítes com amplo caixilho e persiana de enrolar',
+      'Caixilhos ampliados com persiana de enrolar nos dormitórios',
       'Suíte master com closet e bancada em granito',
-      'Terraço gourmet com previsão para churrasqueira',
-      '2 vagas cobertas determinadas',
-      'Depósito privativo incluso',
-      'Previsão para ar-condicionado em dormitórios e sala',
+      'Terraço gourmet com previsão para churrasqueira à carvão',
+      'Água quente na cozinha e em todos os banheiros',
+      'Piso do terraço nivelado — sem desnível na entrega',
+      '2 vagas cobertas determinadas (não sorteadas)',
+      'Depósito privativo incluso no andar',
+      'Infraestrutura completa para ar-condicionado',
     ],
-    wppMsg: 'Quero%20saber%20mais%20sobre%20o%20apartamento%20de%2090m%C2%B2',
+    wppMsg: 'Quero%20receber%20a%20tabela%20de%20pre%C3%A7os%20do%20apartamento%20de%2090m%C2%B2',
+    livingImg: living78Img,
     variants: [
       { id: '90-1', label: '1 Suíte', image: planta90_1suite, alt: 'Planta do apartamento de 90m² com 1 suíte' },
       { id: '90-2', label: '2 Suítes', image: planta90_2suites, alt: 'Planta do apartamento de 90m² com 2 suítes' },
@@ -31,16 +38,19 @@ const TIPOS = [
     title: 'Apartamento 123 m²',
     area: '123',
     features: [
-      '3 suítes com amplo caixilho e persiana de enrolar',
+      'Caixilhos ampliados com persiana de enrolar nos dormitórios',
       'Suíte master com closet, 2 cubas e bancada em granito',
-      'Elevadores semi-privativos exclusivos',
+      'Elevadores semi-privativos exclusivos para as unidades 123m²',
       'Lavabo com bancada em mármore',
-      'Terraço gourmet com previsão para churrasqueira',
-      '2 vagas cobertas determinadas',
+      'Terraço gourmet com previsão para churrasqueira à carvão',
+      'Água quente na cozinha e em todos os banheiros',
+      'Piso do terraço nivelado — sem desnível na entrega',
+      '2 vagas cobertas determinadas (não sorteadas)',
       'Depósito privativo no andar',
-      'Previsão para ar-condicionado em todos os ambientes',
+      'Infraestrutura de ar-condicionado em todos os ambientes, incluindo terraço',
     ],
-    wppMsg: 'Quero%20saber%20mais%20sobre%20o%20apartamento%20de%20123m%C2%B2',
+    wppMsg: 'Quero%20receber%20a%20tabela%20de%20pre%C3%A7os%20do%20apartamento%20de%20123m%C2%B2',
+    livingImg: living120Img,
     variants: [
       { id: '123-2', label: '2 Suítes', image: planta123_2suites, alt: 'Planta do apartamento de 123m² com 2 suítes' },
       { id: '123-3', label: '3 Suítes', image: planta123_3suites, alt: 'Planta do apartamento de 123m² com 3 suítes' },
@@ -121,7 +131,7 @@ export default function Tipologias() {
             className="font-serif font-light text-cream leading-[1.2] max-w-[20ch]"
             style={{ fontSize: 'clamp(2rem, 3.5vw, 3.2rem)' }}
           >
-            Encontre o espaço <em className="not-italic text-gold-lt">ideal</em> para a sua família
+            Dois tamanhos. Quatro opções de <em className="not-italic text-gold-lt">planta</em>.
           </h2>
           <div className="w-[60px] h-px mt-6" style={{ background: 'linear-gradient(to right, #c9a84c, transparent)' }} />
         </div>
@@ -170,6 +180,25 @@ export default function Tipologias() {
               ))}
             </div>
 
+            {/* Living room image */}
+            {tipo.livingImg && (
+              <div className="relative overflow-hidden border border-border" style={{ height: '200px' }}>
+                <img
+                  src={tipo.livingImg}
+                  alt={`Perspectiva do interior — ${tipo.title}`}
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
+                <div
+                  className="absolute inset-0 pointer-events-none"
+                  style={{ background: 'linear-gradient(to top, rgba(5,5,12,.7) 0%, transparent 55%)' }}
+                />
+                <span className="absolute bottom-3 left-4 font-label text-cream/80 text-[.58rem] tracking-[.2em] uppercase">
+                  Perspectiva do interior
+                </span>
+              </div>
+            )}
+
             {/* Plant image */}
             <div
               className="bg-bg3 border border-border flex items-center justify-center overflow-hidden p-4 cursor-zoom-in group relative"
@@ -214,7 +243,7 @@ export default function Tipologias() {
               style={{ background: 'linear-gradient(135deg, #c9a84c 0%, #e8cc7e 100%)', color: '#0a0a10' }}
               target="_blank" rel="noopener"
             >
-              Solicitar informações da planta de {tipo.area}m²
+              Receber tabela de preços — {tipo.area}m²
             </a>
           </div>
         </div>
