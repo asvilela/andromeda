@@ -16,7 +16,7 @@ export default function Numbers() {
         {STATS.map(({ value, unit, label }, i) => (
           <div
             key={label}
-            className={`reveal reveal-delay-${i} text-center py-6 px-4 ${i < 3 ? 'lg:border-r border-border' : ''}`}
+            className={`reveal reveal-delay-${i + 1} text-center py-6 px-4 ${i < 3 ? 'lg:border-r border-border' : ''}`}
           >
             <div className="font-serif text-gold leading-none mb-1" style={{ fontSize: 'clamp(2rem, 4vw, 3rem)' }}>
               {value}{' '}

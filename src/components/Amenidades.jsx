@@ -45,6 +45,7 @@ function PhotoCard({ img, alt, label, desc, onClick, className = '', style = {} 
         alt={alt}
         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.06]"
         loading="lazy"
+        decoding="async"
       />
       {/* Permanent bottom gradient */}
       <div
@@ -248,6 +249,7 @@ export default function Amenidades() {
               src={item.img}
               alt={item.alt}
               className="max-w-full max-h-[74vh] object-contain animate-[scaleIn_.25s_ease]"
+              decoding="async"
             />
             <div className="flex flex-col items-center gap-2 text-center">
               <p className="font-serif text-cream text-lg sm:text-xl">{item.label}</p>

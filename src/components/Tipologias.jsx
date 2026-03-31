@@ -188,6 +188,7 @@ export default function Tipologias() {
                   alt={`Perspectiva do interior — ${tipo.title}`}
                   className="w-full h-full object-cover"
                   loading="lazy"
+                  decoding="async"
                 />
                 <div
                   className="absolute inset-0 pointer-events-none"
@@ -213,6 +214,7 @@ export default function Tipologias() {
                 alt={variant.alt}
                 className="w-full h-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]"
                 loading="lazy"
+                decoding="async"
               />
               {/* Zoom hint */}
               <span className="absolute bottom-3 right-3 flex items-center gap-1.5 px-3 py-1.5 bg-black/60 backdrop-blur-sm text-cream/70 text-[.6rem] font-label tracking-[.15em] uppercase rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
@@ -295,6 +297,7 @@ export default function Tipologias() {
               src={lightboxItem.image}
               alt={lightboxItem.alt}
               className="max-w-full max-h-[75vh] object-contain animate-[scaleIn_.25s_ease]"
+              decoding="async"
             />
 
             {/* Caption */}

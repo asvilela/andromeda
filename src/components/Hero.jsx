@@ -15,6 +15,9 @@ export default function Hero() {
           src={facadeImg}
           alt="Andrômeda Home Fachada"
           className="w-full h-full object-cover opacity-60"
+          fetchpriority="high"
+          loading="eager"
+          decoding="async"
         />
         {/* Overlays for depth and readability */}
         <div

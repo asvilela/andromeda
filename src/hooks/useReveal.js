@@ -11,11 +11,23 @@ export function useReveal() {
           }
         })
       },
-      { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+      { threshold: 0.05, rootMargin: '0px' }
     )
 
-    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el))
+    const observeNew = () => {
+      document.querySelectorAll('.reveal:not(.visible)').forEach((el) => {
+        observer.observe(el)
+      })
+    }
 
-    return () => observer.disconnect()
+    observeNew()
+
+    const mutationObserver = new MutationObserver(observeNew)
+    mutationObserver.observe(document.body, { childList: true, subtree: true })
+
+    return () => {
+      observer.disconnect()
+      mutationObserver.disconnect()
+    }
   }, [])
 }

@@ -32,6 +32,8 @@ export default function Projeto() {
             src={facadeNightImg}
             alt="Fachada noturna do Andrômeda Home"
             className="absolute inset-0 w-full h-full object-cover"
+            loading="lazy"
+            decoding="async"
           />
           {/* Gradient overlay for readability */}
           <div
@@ -57,6 +59,8 @@ export default function Projeto() {
               src={lobbyImg}
               alt="Lobby"
               className="w-full h-[78px] object-cover"
+              loading="lazy"
+              decoding="async"
             />
             <div
               className="py-[6px] px-3 font-label text-[.5rem] tracking-[.15em] text-muted uppercase"
