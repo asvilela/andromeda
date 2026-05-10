@@ -54,7 +54,7 @@ export default function LeadPopup({ config, onClose }: { config: PopupConfig | n
 
     let notes = ''
     if (type === 'plantas') {
-      notes = `Olá, Sou *${formData.fullName}*. Tenho interesse em receber a tabela de preços do apartamento de *${formData.interest}* do *Andromeda By MPD*.`
+      notes = `Olá, Sou *${formData.fullName}*. Tenho interesse em fazer uma simulação do apartamento de *${formData.interest}* do *Andromeda By MPD*.`
     } else {
       notes = `Olá, Sou *${formData.fullName}*. Vim pelo site do *Andromeda by MPD* e tenho interesse em *${formData.interest}*. Pode me enviar as informações atualizadas?`
     }

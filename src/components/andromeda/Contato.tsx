@@ -26,7 +26,7 @@ export default function Contato({ onOpenPopup }: { onOpenPopup: () => void }) {
     setLoading(true)
 
     let metragemText = form.interesse === '90' ? '90 m²' : form.interesse === '123' ? '123 m²' : 'especial'
-    let notes = `Olá, Sou *${form.nome}*. Tenho interesse em receber a tabela de preços do apartamento de *${metragemText}* do *Andromeda By MPD*.`
+    let notes = `Olá, Sou *${form.nome}*. Tenho interesse em fazer uma simulação do apartamento de *${metragemText}* do *Andromeda By MPD*.`
     
     if (form.interesse === 'catalogo') notes = `Olá, Sou *${form.nome}*. Tenho interesse em *baixar o catálogo* do *Andromeda By MPD*.`
     if (form.interesse === 'visita') notes = `Olá, Sou *${form.nome}*. Tenho interesse em *agendar uma visita* ao *Andromeda By MPD*.`
@@ -72,7 +72,7 @@ export default function Contato({ onOpenPopup }: { onOpenPopup: () => void }) {
             className="font-serif font-normal text-cream leading-[1.1] mb-7"
             style={{ fontSize: 'clamp(2.4rem, 4vw, 3.4rem)' }}
           >
-            Receba a tabela de preços e <em className="not-italic text-gold-dk">disponibilidade</em>
+            Simule valores e <em className="not-italic text-gold-dk">condições de pagamento</em>
           </h2>
           <p className="text-[1rem] leading-[1.85] text-text-2 mb-10">
             O Andrômeda by MPD é a última torre de alto padrão da Av. Andrômeda.
@@ -114,7 +114,7 @@ export default function Contato({ onOpenPopup }: { onOpenPopup: () => void }) {
             noValidate
           >
             <div className="mb-2">
-              <span className="font-label text-gold-dk text-[.6rem] tracking-[.25em] uppercase">Tabela de preços</span>
+              <span className="font-label text-gold-dk text-[.6rem] tracking-[.25em] uppercase">Simulação de valores</span>
               <h3 className="font-serif text-cream text-[1.6rem] mt-1 leading-tight">Solicite seu atendimento</h3>
             </div>
             <div className="flex flex-col gap-2">
@@ -144,7 +144,7 @@ export default function Contato({ onOpenPopup }: { onOpenPopup: () => void }) {
               disabled={loading}
               className="mt-3 py-[1.1rem] px-8 font-label text-[.72rem] tracking-[.2em] uppercase border-0 cursor-pointer transition-all duration-200 hover:-translate-y-0.5 disabled:opacity-50 disabled:translate-y-0 rounded-xl bg-gold hover:bg-gold-dk text-white shadow-cta hover:shadow-cta-hover"
             >
-              {loading ? 'Processando...' : 'Receber tabela de preços'}
+              {loading ? 'Processando...' : 'Simular valores e condições'}
             </button>
             <p className="text-[.75rem] text-text-2/80 leading-[1.6]">
               Ao enviar, você concorda com nossa política de privacidade. Seus dados são protegidos

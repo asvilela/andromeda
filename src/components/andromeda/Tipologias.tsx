@@ -231,7 +231,7 @@ export default function Tipologias({ onOpenPopup }: { onOpenPopup: (config: Popu
               })}
               className="inline-flex items-center gap-3 px-9 py-[1.05rem] font-label text-[.72rem] tracking-[.2em] uppercase no-underline transition-all hover:-translate-y-0.5 border-0 cursor-pointer rounded-xl bg-gold hover:bg-gold-dk text-white shadow-cta hover:shadow-cta-hover"
             >
-              Receber tabela de preços — {tipo.area}m²
+              Simular valores e condições — {tipo.area}m²
             </button>
           </div>
         </div>
