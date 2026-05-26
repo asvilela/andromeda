@@ -1,0 +1,228 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-05-26T00:00:00Z",
+  "title": "Design System: Andrômeda Home",
+  "extensions": {
+    "colorMeta": {
+      "gold": {
+        "role": "primary",
+        "displayName": "Gold",
+        "canonical": "oklch(68% 0.10 75)",
+        "tonalRamp": [
+          "oklch(20% 0.04 75)",
+          "oklch(30% 0.06 75)",
+          "oklch(42% 0.08 75)",
+          "oklch(55% 0.10 75)",
+          "oklch(68% 0.10 75)",
+          "oklch(78% 0.08 75)",
+          "oklch(88% 0.05 75)",
+          "oklch(95% 0.02 75)"
+        ]
+      },
+      "gold-light": {
+        "role": "primary",
+        "displayName": "Gold Claro",
+        "canonical": "oklch(82% 0.06 75)",
+        "tonalRamp": []
+      },
+      "gold-deep": {
+        "role": "primary",
+        "displayName": "Gold Profundo",
+        "canonical": "oklch(58% 0.10 75)",
+        "tonalRamp": []
+      },
+      "warm-linen": {
+        "role": "neutral",
+        "displayName": "Warm Linen",
+        "canonical": "oklch(97% 0.008 75)",
+        "tonalRamp": [
+          "oklch(20% 0.005 75)",
+          "oklch(35% 0.005 75)",
+          "oklch(50% 0.006 75)",
+          "oklch(65% 0.007 75)",
+          "oklch(78% 0.008 75)",
+          "oklch(88% 0.008 75)",
+          "oklch(93% 0.008 75)",
+          "oklch(97% 0.008 75)"
+        ]
+      },
+      "sand-mist": {
+        "role": "neutral",
+        "displayName": "Sand Mist",
+        "canonical": "oklch(94% 0.01 75)",
+        "tonalRamp": []
+      },
+      "charcoal": {
+        "role": "neutral",
+        "displayName": "Charcoal",
+        "canonical": "oklch(15% 0.005 75)",
+        "tonalRamp": [
+          "oklch(15% 0.005 75)",
+          "oklch(25% 0.005 75)",
+          "oklch(35% 0.006 75)",
+          "oklch(45% 0.006 75)",
+          "oklch(55% 0.007 75)",
+          "oklch(65% 0.007 75)",
+          "oklch(78% 0.008 75)",
+          "oklch(90% 0.008 75)"
+        ]
+      },
+      "umber": {
+        "role": "neutral",
+        "displayName": "Umber",
+        "canonical": "oklch(45% 0.06 55)",
+        "tonalRamp": []
+      },
+      "muted-clay": {
+        "role": "neutral",
+        "displayName": "Argila Suave",
+        "canonical": "oklch(52% 0.03 55)",
+        "tonalRamp": []
+      },
+      "whatsapp": {
+        "role": "accent",
+        "displayName": "WhatsApp Green",
+        "canonical": "oklch(75% 0.18 155)",
+        "tonalRamp": []
+      },
+      "whatsapp-deep": {
+        "role": "accent",
+        "displayName": "WhatsApp Deep",
+        "canonical": "oklch(58% 0.10 170)",
+        "tonalRamp": []
+      }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero h1 exclusivamente. Máximo 18ch." },
+      "headline": { "displayName": "Headline", "purpose": "Títulos de seção h2. Máximo 22ch." },
+      "title": { "displayName": "Title", "purpose": "Subtítulos e CTA banners." },
+      "body": { "displayName": "Body", "purpose": "Parágrafos e descrições. Máximo 54ch." },
+      "label": { "displayName": "Label", "purpose": "Kickers, nav, botões, form labels. Sempre uppercase." }
+    },
+    "shadows": [
+      { "name": "card", "value": "0 1px 3px rgba(0,0,0,0.04), 0 6px 24px rgba(0,0,0,0.06)", "purpose": "Formulários e cards em repouso." },
+      { "name": "card-hover", "value": "0 8px 16px rgba(0,0,0,0.08), 0 24px 48px rgba(0,0,0,0.1)", "purpose": "Elevação ao hover." },
+      { "name": "cta-gold", "value": "0 8px 32px rgba(184,146,90,0.35)", "purpose": "Botões primários em repouso." },
+      { "name": "cta-gold-hover", "value": "0 14px 40px rgba(150,116,62,0.45)", "purpose": "Botões primários ao hover." },
+      { "name": "whatsapp-glow", "value": "0 4px 24px rgba(37,211,102,0.3)", "purpose": "FAB do WhatsApp." }
+    ],
+    "motion": [
+      { "name": "reveal", "value": "opacity 0.8s, transform 0.8s", "purpose": "Scroll reveal: translateY(40px) → 0, opacity 0 → 1." },
+      { "name": "reveal-stagger", "value": "100ms increments (delay-1 to delay-5)", "purpose": "Stagger entre elementos revelados na mesma seção." },
+      { "name": "fade-up", "value": "translateY(24px) → 0, opacity 0 → 1, 0.8-0.9s", "purpose": "Entrada inicial do hero (inline animation)." },
+      { "name": "wpp-pulse", "value": "scale(1) → scale(2.2), opacity 0.6 → 0, 2.5s infinite", "purpose": "Ripple do FAB WhatsApp." },
+      { "name": "ease-standard", "value": "ease-out (200-300ms)", "purpose": "Transições de cor, sombra e transform em botões e links." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "xl", "value": "1280px" },
+      { "name": "2xl", "value": "1400px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "CTA principal: simulação de unidades, contato. Sombra dourada, presença sem agressividade.",
+      "html": "<button class=\"ds-btn-primary\">Simular minha unidade ideal</button>",
+      "css": ".ds-btn-primary { background: #B8925A; color: #FFFDF9; padding: 1.2rem 3rem; font-family: 'Outfit', system-ui, sans-serif; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; border: none; border-radius: 16px; box-shadow: 0 8px 32px rgba(184,146,90,0.35); cursor: pointer; transition: background 0.2s, transform 0.2s, box-shadow 0.3s; } .ds-btn-primary:hover { background: #96743E; transform: translateY(-2px); box-shadow: 0 14px 40px rgba(150,116,62,0.45); } .ds-btn-primary:focus-visible { outline: 2px solid #B8925A; outline-offset: 3px; }"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "CTA secundário sobre fundos escuros (hero, CTA banner). Borda sutil, fundo transparente.",
+      "html": "<button class=\"ds-btn-ghost\">Ver plantas disponíveis</button>",
+      "css": ".ds-btn-ghost { background: transparent; color: #F7F4EF; padding: 1.2rem 3rem; font-family: 'Outfit', system-ui, sans-serif; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; border: 1px solid rgba(255,255,255,0.3); border-radius: 16px; cursor: pointer; transition: background 0.2s, border-color 0.2s; } .ds-btn-ghost:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.6); } .ds-btn-ghost:focus-visible { outline: 2px solid #D8C3A5; outline-offset: 3px; }"
+    },
+    {
+      "name": "Nav CTA Button",
+      "kind": "button",
+      "refersTo": "button-nav-cta",
+      "description": "Botão compacto da navbar (scrolled). Charcoal sólido, presença contida.",
+      "html": "<button class=\"ds-btn-nav\">Receber simulação</button>",
+      "css": ".ds-btn-nav { background: #171717; color: #F7F4EF; padding: 0.625rem 1.5rem; font-family: 'Outfit', system-ui, sans-serif; font-size: 0.65rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; border: 1px solid #171717; border-radius: 8px; cursor: pointer; transition: background 0.2s; } .ds-btn-nav:hover { background: rgba(23,23,23,0.9); } .ds-btn-nav:focus-visible { outline: 2px solid #B8925A; outline-offset: 3px; }"
+    },
+    {
+      "name": "Text Input",
+      "kind": "input",
+      "refersTo": "input-default",
+      "description": "Campo de formulário padrão. Fundo sand-mist, borda hairline, focus ring dourado.",
+      "html": "<input class=\"ds-input\" type=\"text\" placeholder=\"Seu nome…\" />",
+      "css": ".ds-input { background: #EFEBE4; color: #171717; border: 1px solid rgba(23,23,23,0.06); padding: 1.05rem 1.25rem; font-family: 'Outfit', system-ui, sans-serif; font-size: 1rem; font-weight: 300; border-radius: 16px; width: 100%; outline: none; transition: border-color 0.2s, box-shadow 0.2s; } .ds-input::placeholder { color: rgba(90,70,50,0.5); } .ds-input:focus { border-color: #B8925A; box-shadow: 0 0 0 2px rgba(184,146,90,0.2); }"
+    },
+    {
+      "name": "Section Header",
+      "kind": "custom",
+      "refersTo": "section-header",
+      "description": "Cabeçalho de seção com kicker, heading serif e gold-line. Ritmo visual recorrente.",
+      "html": "<div class=\"ds-section-header\"><span class=\"ds-kicker\">O Empreendimento</span><h2 class=\"ds-heading\">Arquitetura que inspira</h2><div class=\"ds-gold-line\"></div></div>",
+      "css": ".ds-section-header { margin-bottom: 3.5rem; } .ds-kicker { display: block; color: #96743E; font-family: 'Outfit', system-ui, sans-serif; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; margin-bottom: 1.25rem; } .ds-heading { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 400; color: #171717; font-size: clamp(2.8rem, 5vw, 4rem); line-height: 1.06; max-width: 22ch; margin: 0; } .ds-gold-line { width: 80px; height: 1px; margin-top: 1.75rem; background: linear-gradient(to right, #B8925A, transparent); }"
+    },
+    {
+      "name": "Navigation Link",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Link de navegação desktop. Label uppercase, hover gold.",
+      "html": "<a class=\"ds-nav-link\" href=\"#\">O Projeto</a>",
+      "css": ".ds-nav-link { color: #5A4632; font-family: 'Outfit', system-ui, sans-serif; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; text-decoration: none; transition: color 0.2s; } .ds-nav-link:hover { color: #96743E; } .ds-nav-link:focus-visible { outline: 2px solid #B8925A; outline-offset: 3px; border-radius: 2px; }"
+    },
+    {
+      "name": "Form Card",
+      "kind": "card",
+      "refersTo": "card-form",
+      "description": "Container de formulário. Fundo off-white, sombra card-hover, cantos generosos.",
+      "html": "<div class=\"ds-card-form\"><span class=\"ds-kicker\">Simulação personalizada</span><h3 class=\"ds-card-title\">Encontre a melhor unidade</h3></div>",
+      "css": ".ds-card-form { background: #FFFDF9; padding: 2rem 3rem; border-radius: 24px; border: 1px solid rgba(23,23,23,0.04); box-shadow: 0 8px 16px rgba(0,0,0,0.08), 0 24px 48px rgba(0,0,0,0.1); } .ds-card-form .ds-kicker { display: block; color: #96743E; font-family: 'Outfit', system-ui, sans-serif; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; margin-bottom: 0.5rem; } .ds-card-title { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 400; color: #171717; font-size: 1.9rem; line-height: 1.15; margin: 0; }"
+    },
+    {
+      "name": "WhatsApp FAB",
+      "kind": "button",
+      "refersTo": "whatsapp-fab",
+      "description": "Botão flutuante WhatsApp com pulse animation. Fixed bottom-right.",
+      "html": "<button class=\"ds-wpp-fab\"><svg width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"currentColor\"><path d=\"M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z\"/><path d=\"M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a8 8 0 01-4.243-1.212L4 20l1.212-3.757A8 8 0 1112 20z\"/></svg></button>",
+      "css": ".ds-wpp-fab { position: fixed; bottom: 2.5rem; right: 2.5rem; z-index: 200; width: 60px; height: 60px; background: #25D366; color: #fff; border-radius: 50%; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; box-shadow: 0 4px 24px rgba(37,211,102,0.3); transition: transform 0.2s; } .ds-wpp-fab:hover { transform: scale(1.05); } .ds-wpp-fab:focus-visible { outline: 2px solid #25D366; outline-offset: 4px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "A Morada Alphaville",
+    "overview": "Sofisticação enraizada: o conforto de um lar com acabamento de resort. Calor humano em cada detalhe, natureza e urbanidade em equilíbrio. O sistema visual traduz a experiência de visitar o empreendimento: tons terrosos que aquecem, tipografia serif que respira autoridade sem rigidez, e espaço generoso entre elementos que transmite a mesma amplitude das plantas do Andrômeda.\n\nO site rejeita a estética de landing page imobiliária genérica: sem carrosséis infinitos, sem selos empilhados, sem CTAs agressivos, sem stock photos frias. Rejeita igualmente a frieza corporativa e a linguagem \"startup tech\" com gradientes neon. Este é um lar, não um produto financeiro.\n\nA paleta é Committed: o gold permeia 20-30% das superfícies como fio condutor, dos CTAs às linhas decorativas, sem dominar. Os neutros são sempre quentes (nunca cinza puro). O ritmo vertical varia; seções respiram com padding assimétrico.",
+    "keyCharacteristics": [
+      "Tipografia serif generosa (Cormorant Garamond) para headings, sans-serif leve (Outfit 300) para corpo",
+      "Gold (#B8925A) como cor de identidade, usado com disciplina",
+      "Fundos warm-linen (#F7F4EF) e sand-mist (#EFEBE4) alternados; seções escuras em charcoal (#171717) para contraste narrativo",
+      "Scroll reveal com translate-up sutil (40px, 0.8s), staggered por elemento",
+      "Componentes discretos e refinados: a ação é clara mas nunca grita"
+    ],
+    "rules": [
+      { "name": "The Warm Neutral Rule", "body": "Nenhum cinza puro (#888, #ccc, #f5f5f5) é permitido no sistema. Todo neutro carrega subtom warm (bege, areia, terracota). Se parece \"frio\", está errado.", "section": "colors" },
+      { "name": "The Gold Discipline Rule", "body": "Gold é a cor de identidade, não a cor dominante. Usado em CTAs, linhas, kickers e micro-detalhes. Nunca como background de seção inteira, nunca como cor de texto corrido.", "section": "colors" },
+      { "name": "The Uppercase Discipline Rule", "body": "Uppercase é reservado exclusivamente para labels (kickers, navegação, botões, form labels). Nunca para headings, nunca para parágrafos. Sempre acompanhado de tracking generoso (0.18em+).", "section": "typography" },
+      { "name": "The Serif Heading Rule", "body": "Todo heading (h1-h4) usa Cormorant Garamond. Sem exceções. A serif é a voz arquitetônica do empreendimento.", "section": "typography" },
+      { "name": "The Flat-By-Default Rule", "body": "Superfícies são flat em repouso. Sombras são resposta a estado (hover, focus) ou indicam elementos flutuantes (navbar scrolled, FAB, modais). Se uma sombra não tem justificativa funcional, remova-a.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do usar warm-linen (#F7F4EF) como background padrão. Nunca branco puro (#fff) como fundo de página.",
+      "Do manter headings em Cormorant Garamond, corpo em Outfit 300. A hierarquia depende desse contraste.",
+      "Do usar a gold-line (80px, gradient to transparent) como separador de seção. É assinatura visual.",
+      "Do respeitar o max-width de headings (18-22ch) para criar quebras naturais e leitura confortável.",
+      "Do usar scroll reveal (translateY 40px, 0.8s) com stagger (100ms) para entradas de seção.",
+      "Do alternar seções claras (warm-linen / white) e escuras (charcoal) para criar ritmo narrativo.",
+      "Do manter labels e kickers em uppercase com tracking generoso (0.18em+)."
+    ],
+    "donts": [
+      "Don't usar cinza puro em nenhum contexto. Todo neutro é warm-tinted.",
+      "Don't usar gold como background de seção inteira ou como cor de texto corrido.",
+      "Don't usar landing pages imobiliárias genéricas como referência: sem carrosséis infinitos, sem selos/badges empilhados.",
+      "Don't adotar estética \"startup tech\" com gradientes neon, dark mode como default, ou linguagem disruptiva.",
+      "Don't usar CTAs agressivos (\"COMPRE AGORA\", urgência artificial, countdown timers).",
+      "Don't usar stock photos genéricas. Toda imagem é render do empreendimento ou fotografia real.",
+      "Don't usar bounce, elastic, ou spring easing. Apenas ease-out exponencial.",
+      "Don't animar propriedades de layout CSS (width, height, top, left). Apenas transform e opacity.",
+      "Don't usar #000 ou #fff. Charcoal (#171717) e warm-linen (#F7F4EF) são os extremos."
+    ]
+  }
+}
