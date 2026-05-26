@@ -48,25 +48,26 @@ export default {
           foreground: "hsl(var(--card-foreground))",
         },
         // Premium real estate palette
-        bg: "#ffffff",
-        bg2: "#f7f7f7",
-        bg3: "#ffffff",
+        bg: "#F7F4EF",
+        bg2: "#EFEBE4",
+        bg3: "#FFFDF9",
         gold: {
-          DEFAULT: "#c6a46c",
-          lt: "#d4b988",
-          dk: "#a88550",
+          DEFAULT: "#B8925A",
+          lt: "#D8C3A5",
+          dk: "#96743E",
         },
-        cream: "#1a1a1a",
-        "text-2": "#6b6b6b",
+        cream: "#171717",
+        "text-2": "#5A4632",
+        charcoal: "#171717",
         wpp: {
           DEFAULT: "#25D366",
           dk: "#128C7E",
         },
       },
       fontFamily: {
-        serif: ["Instrument Serif", "Georgia", "serif"],
-        sans: ["Inter", "system-ui", "sans-serif"],
-        label: ["Space Grotesk", "sans-serif"],
+        serif: ["Cormorant Garamond", "Georgia", "serif"],
+        sans: ["Outfit", "system-ui", "sans-serif"],
+        label: ["Outfit", "system-ui", "sans-serif"],
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -74,10 +75,10 @@ export default {
         sm: "calc(var(--radius) - 4px)",
       },
       boxShadow: {
-        card: "0 1px 2px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.04)",
-        "card-hover": "0 4px 12px rgba(0,0,0,0.06), 0 16px 40px rgba(0,0,0,0.08)",
-        cta: "0 8px 24px rgba(198,164,108,0.32)",
-        "cta-hover": "0 12px 32px rgba(168,133,80,0.4)",
+        card: "0 1px 3px rgba(0,0,0,0.04), 0 6px 24px rgba(0,0,0,0.06)",
+        "card-hover": "0 8px 16px rgba(0,0,0,0.08), 0 24px 48px rgba(0,0,0,0.1)",
+        cta: "0 8px 32px rgba(184,146,90,0.35)",
+        "cta-hover": "0 14px 40px rgba(150,116,62,0.45)",
       },
       keyframes: {
         "accordion-down": {

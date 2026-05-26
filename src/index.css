@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Outfit:wght@300;400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -37,23 +37,23 @@
     --radius: 0.75rem;
 
     /* Premium real estate palette */
-    --color-bg: #ffffff;
-    --color-bg2: #f7f7f7;
-    --color-bg3: #ffffff;
-    --color-gold: #c6a46c;
-    --color-gold-lt: #d4b988;
-    --color-gold-dk: #a88550;
-    --color-cream: #1a1a1a;
-    --color-text-2: #6b6b6b;
-    --color-muted: #6b6b6b;
-    --color-border-custom: rgba(0,0,0,0.06);
+    --color-bg: #F7F4EF;
+    --color-bg2: #EFEBE4;
+    --color-bg3: #FFFDF9;
+    --color-gold: #B8925A;
+    --color-gold-lt: #D8C3A5;
+    --color-gold-dk: #96743E;
+    --color-cream: #171717;
+    --color-text-2: #5A4632;
+    --color-muted: #7A6B5D;
+    --color-border-custom: rgba(0,0,0,0.08);
     --color-wpp: #25D366;
     --color-wpp-dk: #128C7E;
 
     /* Premium shadows */
-    --shadow-card: 0 1px 2px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.04);
-    --shadow-card-hover: 0 4px 12px rgba(0,0,0,0.06), 0 16px 40px rgba(0,0,0,0.08);
-    --shadow-cta: 0 8px 24px rgba(198,164,108,0.32);
+    --shadow-card: 0 1px 3px rgba(0,0,0,0.04), 0 6px 24px rgba(0,0,0,0.06);
+    --shadow-card-hover: 0 8px 16px rgba(0,0,0,0.08), 0 24px 48px rgba(0,0,0,0.1);
+    --shadow-cta: 0 8px 32px rgba(184,146,90,0.35);
   }
 }
 
@@ -70,8 +70,8 @@
   body {
     background: var(--color-bg);
     color: var(--color-cream);
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    font-weight: 400;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 300;
     font-feature-settings: 'cv11', 'ss01', 'ss03';
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
@@ -79,17 +79,37 @@
   }
 
   h1, h2, h3, h4 {
-    font-family: 'Instrument Serif', Georgia, serif;
+    font-family: 'Cormorant Garamond', Georgia, serif;
     font-weight: 400;
     line-height: 1.1;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.02em;
   }
 
   /* Scrollbar */
   ::-webkit-scrollbar { width: 4px; }
-  ::-webkit-scrollbar-track { background: #f5f5f5; }
-  ::-webkit-scrollbar-thumb { background: #c4a86c; border-radius: 2px; }
+  ::-webkit-scrollbar-track { background: #FAF8F5; }
+  ::-webkit-scrollbar-thumb { background: #B8925A; border-radius: 2px; }
 }
+
+/* Hide scrollbar for horizontal scroll containers */
+.scrollbar-none::-webkit-scrollbar { display: none; }
+.scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Section dark */
+.section-dark {
+  background: #171717;
+  color: #F7F4EF;
+}
+.section-dark .text-cream { color: #F7F4EF; }
+.section-dark .text-text-2 { color: rgba(247,244,239,0.6); }
+
+/* Gold line utility */
+.gold-line {
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(to right, #B8925A, transparent);
+}
+
 
 /* Scroll reveal */
 .reveal {
@@ -137,4 +157,35 @@
 @keyframes scaleIn {
   from { opacity: 0; transform: scale(.96); }
   to   { opacity: 1; transform: scale(1); }
+}
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* iOS Safari: prevent input zoom */
+@media (max-width: 768px) {
+  input, select, textarea { font-size: 16px !important; }
+}
+
+/* Safe area insets for notched devices */
+@supports (padding: env(safe-area-inset-bottom)) {
+  .fixed.bottom-6, .fixed.bottom-10 {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+/* Accessibility: respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal { opacity: 1; transform: none; transition: none; }
 }
