@@ -1,49 +1,34 @@
 import { useState } from 'react'
-
-const ITEMS = [
-  { q: 'As vagas de garagem são sorteadas ou determinadas?', a: 'Determinadas — não há sorteio. Todas as 288 unidades possuem 2 vagas cobertas alocadas desde a aquisição, distribuídas nos 3 subsolos. O empreendimento conta ainda com 13 vagas de visitantes e 32 vagas de moto.' },
-  { q: 'O que está incluído em cada apartamento na entrega?', a: 'Todos os apartamentos são entregues com: depósito privativo no andar, 2 vagas determinadas, caixilhos ampliados com persiana de enrolar, bancadas em granito (e mármore no lavabo das unidades de 123m²), água quente na cozinha e em todos os banheiros, piso do terraço nivelado e infraestrutura completa (carga e dreno) para ar-condicionado.' },
-  { q: 'Os apartamentos vêm com ar-condicionado instalado?', a: 'A infraestrutura (carga elétrica e dreno) para instalação de ar-condicionado é entregue em todos os dormitórios e sala de estar. Nas unidades de 123m², o terraço gourmet também recebe a previsão. Os equipamentos e a rede frigorígena ficam a cargo do proprietário.' },
-  { q: 'Como funciona a segurança do condomínio?', a: 'O empreendimento conta com guarita blindada (porta, caixilho e alvenaria), sala de segurança, câmeras de segurança perimetral e em todas as áreas comuns, pulmão de segurança para pedestres e veículos e acessos de serviço independentes do acesso social.' },
-  { q: 'A piscina tem aquecimento?', a: 'A piscina adulto (raia 25m x 3,60m) e a piscina infantil são entregues com previsão para climatização, permitindo que o condomínio instale o sistema de aquecimento após a entrega.' },
-  { q: 'É possível instalar churrasqueira no terraço?', a: 'Sim. Todas as unidades possuem terraço gourmet com previsão para bancada e para futura instalação de churrasqueira à carvão.' },
-  { q: 'Qual o método construtivo do Andrômeda?', a: 'Estrutura convencional com pilares e vigas de concreto armado. Alvenaria de vedação nas paredes externas, entre unidades e áreas comuns. Paredes internas em drywall, com tratamento acústico nas lajes para maior conforto entre andares.' },
-  { q: 'Quais são as condições de pagamento?', a: 'O Andrômeda by MPD opera com diferentes modalidades, incluindo financiamento bancário direto. Fale com um de nossos consultores para receber a tabela de preços atualizada e condições de pagamento personalizadas para o seu perfil.' },
-  { q: 'O empreendimento é pet-friendly?', a: 'Sim. O Andrômeda conta com Pet Place no 2º pavimento (lazer elevado) e Pet Care com serviço de banho no subsolo — ambos projetados para garantir conforto ao seu animal e praticidade para você.' },
-]
+import { FAQ_ITEMS } from '@/lib/constants'
+import SectionHeader from './SectionHeader'
 
 export default function FAQ() {
   const [open, setOpen] = useState<number | null>(null)
 
   return (
-    <section id="faq" className="bg-white py-32 lg:py-40 px-[8vw]" aria-labelledby="faq-title">
-      <div className="max-w-[820px] mx-auto">
-        <div className="mb-16 reveal">
-          <span className="block font-label text-gold-dk text-[.72rem] tracking-[.25em] uppercase mb-5">Dúvidas Frequentes</span>
-          <h2
-            id="faq-title"
-            className="font-serif font-normal text-cream leading-[1.1] max-w-[20ch]"
-            style={{ fontSize: 'clamp(2.4rem, 4vw, 3.6rem)' }}
-          >
-            Perguntas <em className="not-italic text-gold-dk">frequentes</em>
-          </h2>
-          <div className="w-[60px] h-px mt-6" style={{ background: 'linear-gradient(to right, #c6a46c, transparent)' }} />
-        </div>
+    <section id="faq" className="bg-bg2 py-20 sm:py-28 px-[8vw]" aria-labelledby="faq-title">
+      <div className="max-w-[900px] mx-auto">
+        <SectionHeader
+          label="Dúvidas Frequentes"
+          id="faq-title"
+        >
+          Perguntas <em className="not-italic text-gold-dk">frequentes</em>
+        </SectionHeader>
 
-        {ITEMS.map((item, i) => {
+        {FAQ_ITEMS.map((item, i) => {
           const isOpen = open === i
           return (
-            <div key={i} className={`reveal reveal-delay-${i % 3} border-b border-black/[.06]`}>
+            <div key={i} className={`reveal reveal-delay-${i % 3} border-b border-charcoal/[.06]`}>
               <button
-                className="w-full bg-transparent border-0 py-7 flex justify-between items-center cursor-pointer text-left gap-8"
+                className="w-full bg-transparent border-0 py-8 flex justify-between items-center cursor-pointer text-left gap-6"
                 onClick={() => setOpen(isOpen ? null : i)}
                 aria-expanded={isOpen}
               >
-                <span className="font-serif text-cream text-[1.15rem] font-normal">{item.q}</span>
+                <span className="font-serif text-cream text-[1.25rem] sm:text-[1.35rem] font-normal leading-snug">{item.q}</span>
                 <div
                   className={[
-                    'w-8 h-8 rounded-full border flex items-center justify-center text-[.95rem] shrink-0 transition-all duration-300',
-                    isOpen ? 'rotate-45 bg-gold border-gold text-white' : 'border-black/[.12] text-gold-dk',
+                    'w-10 h-10 sm:w-9 sm:h-9 rounded-full border flex items-center justify-center text-[1rem] shrink-0 transition-colors transition-transform duration-300',
+                    isOpen ? 'rotate-45 bg-gold border-gold text-white' : 'border-charcoal/[.12] text-gold-dk',
                   ].join(' ')}
                   aria-hidden="true"
                 >
@@ -51,14 +36,25 @@ export default function FAQ() {
                 </div>
               </button>
               <div
-                className="overflow-hidden transition-all duration-[400ms] ease-in-out"
-                style={{ maxHeight: isOpen ? '320px' : '0' }}
+                className="grid overflow-hidden transition-[grid-template-rows] duration-[400ms] ease-in-out"
+                style={{ gridTemplateRows: isOpen ? '1fr' : '0fr' }}
               >
-                <p className="text-[.95rem] leading-[1.85] text-text-2 pb-7">{item.a}</p>
+                <div className="min-h-0 overflow-hidden">
+                  <p className="text-[1rem] leading-[1.9] text-text-2 pb-7">{item.a}</p>
+                </div>
               </div>
             </div>
           )
         })}
+
+        <div className="reveal mt-14 text-center">
+          <a
+            href="#unidades"
+            className="inline-flex items-center gap-3 px-10 py-[1.15rem] font-label text-[.78rem] tracking-[.18em] uppercase no-underline transition-colors transition-transform transition-shadow duration-200 hover:-translate-y-0.5 border-0 cursor-pointer rounded-xl bg-gold hover:bg-gold-dk text-white shadow-cta hover:shadow-cta-hover"
+          >
+            Simular valores e disponibilidade
+          </a>
+        </div>
       </div>
     </section>
   )

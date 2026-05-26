@@ -4,54 +4,78 @@ import Navbar from '@/components/andromeda/Navbar'
 import Hero from '@/components/andromeda/Hero'
 import Numbers from '@/components/andromeda/Numbers'
 import WhatsAppFloat from '@/components/andromeda/WhatsAppFloat'
+import WhatsAppModal from '@/components/andromeda/WhatsAppModal'
+import BookModal from '@/components/andromeda/BookModal'
+import UnitFinder from '@/components/andromeda/UnitFinder'
 
+const ValueComparison = lazy(() => import('@/components/andromeda/ValueComparison'))
+const VideoSection = lazy(() => import('@/components/andromeda/VideoSection'))
 const Projeto = lazy(() => import('@/components/andromeda/Projeto'))
-const Amenidades = lazy(() => import('@/components/andromeda/Amenidades'))
 const Tipologias = lazy(() => import('@/components/andromeda/Tipologias'))
+const Amenidades = lazy(() => import('@/components/andromeda/Amenidades'))
+const CtaBanner = lazy(() => import('@/components/andromeda/CtaBanner'))
 const Localizacao = lazy(() => import('@/components/andromeda/Localizacao'))
+const IncorporadoraSection = lazy(() => import('@/components/andromeda/IncorporadoraSection'))
 const FAQ = lazy(() => import('@/components/andromeda/FAQ'))
 const Contato = lazy(() => import('@/components/andromeda/Contato'))
 const Footer = lazy(() => import('@/components/andromeda/Footer'))
-const LeadPopup = lazy(() => import('@/components/andromeda/LeadPopup'))
-
-interface PopupConfig {
-  type: string
-  title?: string
-  subtitle?: string
-  buttonText?: string
-  initialInterest?: string
-}
 
 const Index = () => {
   useReveal()
-  const [popupConfig, setPopupConfig] = useState<PopupConfig | null>(null)
 
-  const openPopup = (config: PopupConfig = { type: 'general' }) => setPopupConfig(config)
-  const closePopup = () => setPopupConfig(null)
+  const [waModalOpen, setWaModalOpen] = useState(false)
+  const [bookModalOpen, setBookModalOpen] = useState(false)
+  const [unitFinderOpen, setUnitFinderOpen] = useState(false)
+
+  const handleGlobalClick = (e: React.MouseEvent) => {
+    const target = e.target as HTMLElement
+    const anchor = target.closest('a')
+    if (!anchor) return
+    const href = anchor.getAttribute('href') ?? ''
+    if (href === '#unidades') {
+      e.preventDefault()
+      setUnitFinderOpen(true)
+    }
+    if (href === '#book') {
+      e.preventDefault()
+      setBookModalOpen(true)
+    }
+    if (href.includes('wa.me') || anchor.hasAttribute('data-wa-modal')) {
+      e.preventDefault()
+      setWaModalOpen(true)
+    }
+  }
 
   return (
-    <>
-      <Navbar />
+    // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
+    <div onClick={handleGlobalClick}>
+      <Navbar onOpenWaModal={() => setWaModalOpen(true)} />
       <main>
-        <Hero onOpenPopup={() => openPopup({ type: 'general' })} />
+        <Hero />
         <Numbers />
         <Suspense fallback={null}>
+          <ValueComparison />
+          <VideoSection />
           <Projeto />
+          <Tipologias />
           <Amenidades />
-          <Tipologias onOpenPopup={openPopup} />
+          <CtaBanner />
           <Localizacao />
+          <IncorporadoraSection />
           <FAQ />
-          <Contato onOpenPopup={() => openPopup({ type: 'general' })} />
+          <Contato />
         </Suspense>
       </main>
       <Suspense fallback={null}>
         <Footer />
       </Suspense>
-      <WhatsAppFloat onOpenPopup={() => openPopup({ type: 'general' })} />
-      <Suspense fallback={null}>
-        <LeadPopup config={popupConfig} onClose={closePopup} />
-      </Suspense>
-    </>
+
+      <WhatsAppFloat onOpen={() => setWaModalOpen(true)} />
+
+      <WhatsAppModal open={waModalOpen} onClose={() => setWaModalOpen(false)} />
+      <BookModal open={bookModalOpen} onClose={() => setBookModalOpen(false)} onOpenUnitFinder={() => setUnitFinderOpen(true)} />
+      <UnitFinder open={unitFinderOpen} onClose={() => setUnitFinderOpen(false)} />
+    </div>
   )
 }
 
