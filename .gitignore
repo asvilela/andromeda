@@ -28,3 +28,4 @@ dist-ssr
 
 # PDF documents (unless needed)
 *.pdf
+!public/book-andromeda.pdf

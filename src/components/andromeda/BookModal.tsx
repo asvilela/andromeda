@@ -75,8 +75,8 @@ export default function BookModal({ open, onClose, onOpenUnitFinder }: Props) {
   const handleDownload = () => {
     gtmEvent('book_download', { click_source: 'book_modal' })
     const link = document.createElement('a')
-    link.href = '/Book-Andromeda.pdf' // TODO: nome real do PDF
-    link.download = 'Book-Andromeda.pdf'
+    link.href = '/book-andromeda.pdf'
+    link.download = 'book-andromeda.pdf'
     link.click()
   }
 
