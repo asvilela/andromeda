@@ -37,7 +37,7 @@ function VideoCard({ videoId, title, thumbnail, type, featured }: VideoCardProps
     <div className={`relative rounded-2xl overflow-hidden shadow-card-hover bg-cream ${featured ? 'aspect-[16/9]' : 'aspect-video'}`}>
       {playing ? (
         <iframe
-          src={`https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`}
+          src={`https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&origin=${window.location.origin}`}
           title={title}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
