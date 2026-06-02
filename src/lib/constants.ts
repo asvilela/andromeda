@@ -304,5 +304,5 @@ export const VIDEO = {
 }
 
 export const VIDEOS: { youtubeId: string; title: string; thumbnail?: string; type?: string }[] = [
-  { youtubeId: '', title: 'Tour pelo empreendimento', type: 'tour' }, // TODO: ID do segundo vídeo
+  { youtubeId: '21VTH8SNZiY', title: 'Tour pelo decorado', type: 'tour' },
 ]
