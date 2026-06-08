@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { handlePhoneMask } from '@/utils/masks'
 import { createLead } from '@/lib/api'
+import { useTrackingParams } from '@/hooks/useTrackingParams'
 import { gtmEvent } from '@/lib/gtm'
 import { PROJECT } from '@/lib/constants'
 
@@ -15,6 +16,7 @@ export default function BookModal({ open, onClose, onOpenUnitFinder }: Props) {
   const [loading, setLoading] = useState(false)
   const [status, setStatus] = useState<'form' | 'success'>('form')
   const [error, setError] = useState(false)
+  const tracking = useTrackingParams()
 
   useEffect(() => {
     if (open) {
@@ -62,7 +64,7 @@ export default function BookModal({ open, onClose, onOpenUnitFinder }: Props) {
     const notes = `Solicitou download do book completo do ${PROJECT.productName}.`
 
     try {
-      await createLead({ fullName: form.fullName, phoneMobile: form.phoneMobile, notes })
+      await createLead({ fullName: form.fullName, phoneMobile: form.phoneMobile, notes }, tracking)
       gtmEvent('lead_form_submit', { form_location: 'book_modal' })
       setStatus('success')
     } catch {
@@ -148,7 +150,7 @@ export default function BookModal({ open, onClose, onOpenUnitFinder }: Props) {
                   </div>
                 )}
                 <div>
-                  <label htmlFor="book-fullName" className="font-sans font-medium text-[.72rem] tracking-[.18em] uppercase text-text-2 mb-2 block">Nome completo</label>
+                  <label htmlFor="book-fullName" className="font-sans font-medium text-[.82rem] text-text-2 mb-2 block">Nome completo</label>
                   <input
                     id="book-fullName"
                     required
@@ -162,7 +164,7 @@ export default function BookModal({ open, onClose, onOpenUnitFinder }: Props) {
                   />
                 </div>
                 <div>
-                  <label htmlFor="book-phoneMobile" className="font-sans font-medium text-[.72rem] tracking-[.18em] uppercase text-text-2 mb-2 block">WhatsApp</label>
+                  <label htmlFor="book-phoneMobile" className="font-sans font-medium text-[.82rem] text-text-2 mb-2 block">WhatsApp</label>
                   <input
                     id="book-phoneMobile"
                     required

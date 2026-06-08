@@ -54,15 +54,15 @@ export default function Hero() {
           <a
             href="#unidades"
             className="inline-flex items-center gap-3 px-8 py-4 sm:px-12 sm:py-5 font-label text-[.78rem] sm:text-[.85rem] tracking-[.18em] uppercase no-underline transition-colors transition-transform transition-shadow duration-300 hover:-translate-y-0.5 border-0 cursor-pointer rounded-xl bg-gold hover:bg-gold-dk text-white shadow-cta hover:shadow-cta-hover"
-            aria-label="Simular minha unidade ideal"
+            aria-label="Descobrir minha unidade ideal"
           >
-            Simular minha unidade ideal
+            Descobrir minha unidade ideal
           </a>
           <a
-            href="#tipologias"
+            href="#visita"
             className="inline-flex items-center gap-3 px-8 py-4 sm:px-12 sm:py-5 font-label text-[.78rem] sm:text-[.85rem] tracking-[.18em] uppercase no-underline border border-white/30 text-white hover:bg-white/10 hover:border-white/60 hover:-translate-y-0.5 transition-colors transition-transform duration-200 rounded-xl backdrop-blur-sm"
           >
-            Ver plantas disponíveis
+            Agendar visita
           </a>
         </div>
       </div>

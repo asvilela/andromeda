@@ -28,7 +28,7 @@ export default function CustomSelect({ options, value, onChange, placeholder = '
 
   return (
     <div ref={ref} className="relative">
-      {label && <label className="block font-sans font-medium text-[.72rem] tracking-[.15em] uppercase text-text-2 mb-2.5">{label}</label>}
+      {label && <label className="block font-sans font-medium text-[.82rem] text-text-2 mb-2.5">{label}</label>}
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}

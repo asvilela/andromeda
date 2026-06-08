@@ -1,4 +1,4 @@
-import { VIDEO, VIDEOS } from '@/lib/constants'
+import { VIDEO, VIDEOS, PROJECT } from '@/lib/constants'
 
 interface VideoCardProps {
   videoId: string
@@ -52,6 +52,24 @@ export default function VideoSection() {
           </div>
         </div>
 
+        {/* Book CTA block */}
+        <div className="reveal mt-12 bg-white/[.04] border border-white/10 rounded-2xl p-8 sm:p-10 text-center">
+          <h3
+            className="font-serif text-white font-normal leading-tight mb-4"
+            style={{ fontSize: 'clamp(1.4rem, 3vw, 1.8rem)' }}
+          >
+            Conheça todos os detalhes do {PROJECT.name}
+          </h3>
+          <p className="text-white/60 text-[.92rem] leading-relaxed max-w-[48ch] mx-auto mb-6">
+            Baixe o book completo com plantas, perspectivas, diferenciais e localização do empreendimento.
+          </p>
+          <a
+            href="#book"
+            className="inline-flex items-center gap-3 px-8 py-4 font-label text-[.78rem] tracking-[.18em] uppercase no-underline border border-gold/40 text-gold-lt hover:bg-gold/10 hover:border-gold/60 transition-colors duration-200 rounded-xl"
+          >
+            Baixar book completo
+          </a>
+        </div>
       </div>
     </section>
   )

@@ -8,6 +8,35 @@ export default function FAQ() {
   return (
     <section id="faq" className="bg-bg2 py-20 sm:py-28 px-[8vw]" aria-labelledby="faq-title">
       <div className="max-w-[900px] mx-auto">
+        {/* Book CTA — "Ainda avaliando?" */}
+        <div className="reveal bg-charcoal rounded-2xl p-8 sm:p-10 text-center relative overflow-hidden mb-16">
+          <div
+            className="absolute inset-0 opacity-[0.06]"
+            style={{
+              backgroundImage: 'radial-gradient(circle at 30% 50%, white 1px, transparent 1px), radial-gradient(circle at 70% 50%, white 1px, transparent 1px)',
+              backgroundSize: '50px 50px',
+            }}
+            aria-hidden="true"
+          />
+          <div className="relative z-10">
+            <h3
+              className="font-serif text-white font-normal leading-tight mb-4"
+              style={{ fontSize: 'clamp(1.4rem, 3vw, 1.8rem)' }}
+            >
+              Ainda avaliando o empreendimento?
+            </h3>
+            <p className="text-white/70 text-[.92rem] leading-relaxed max-w-[44ch] mx-auto mb-6">
+              Receba o material completo no WhatsApp com plantas, perspectivas e todos os diferenciais.
+            </p>
+            <a
+              href="#book"
+              className="inline-flex items-center gap-3 px-8 py-4 font-label text-[.78rem] tracking-[.18em] uppercase no-underline bg-gold hover:bg-gold-dk text-white transition-colors duration-200 rounded-xl shadow-cta"
+            >
+              Receber book no WhatsApp
+            </a>
+          </div>
+        </div>
+
         <SectionHeader
           label="Dúvidas Frequentes"
           id="faq-title"

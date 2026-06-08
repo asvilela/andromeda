@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { handlePhoneMask } from '@/utils/masks'
 import { createLead } from '@/lib/api'
+import { useTrackingParams } from '@/hooks/useTrackingParams'
 import { gtmEvent } from '@/lib/gtm'
 import { PROJECT, TIPOLOGIA_OPTIONS, OBJETIVO_OPTIONS, HORARIO_OPTIONS } from '@/lib/constants'
 import CustomSelect from './CustomSelect'
@@ -13,6 +14,7 @@ export default function Contato() {
   const [loading, setLoading] = useState(false)
   const [submitted, setSubmitted] = useState(false)
   const [error, setError] = useState(false)
+  const tracking = useTrackingParams()
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value, type } = e.target
@@ -44,7 +46,7 @@ export default function Contato() {
         email: form.email,
         phoneMobile: form.whatsapp,
         notes,
-      })
+      }, tracking)
       gtmEvent('lead_form_submit', { form_location: 'contact' })
       setSubmitted(true)
     } catch {
@@ -97,16 +99,16 @@ export default function Contato() {
             </div>
 
             <div className="flex flex-col gap-2">
-              <label htmlFor="nome" className="font-sans font-medium text-[.72rem] tracking-[.18em] uppercase text-text-2">Nome completo</label>
+              <label htmlFor="nome" className="font-sans font-medium text-[.82rem] text-text-2">Nome completo</label>
               <input type="text" id="nome" name="nome" autoComplete="name" placeholder="Maria Silva" value={form.nome} onChange={handleChange} required className={inputClass} />
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               <div className="flex flex-col gap-2">
-                <label htmlFor="whatsapp" className="font-sans font-medium text-[.72rem] tracking-[.18em] uppercase text-text-2">WhatsApp</label>
+                <label htmlFor="whatsapp" className="font-sans font-medium text-[.82rem] text-text-2">WhatsApp</label>
                 <input type="tel" id="whatsapp" name="whatsapp" autoComplete="tel" placeholder="(11) 99999-9999" value={form.whatsapp} onChange={handleChange} required className={inputClass} />
               </div>
               <div className="flex flex-col gap-2">
-                <label htmlFor="email" className="font-sans font-medium text-[.72rem] tracking-[.18em] uppercase text-text-2">E-mail</label>
+                <label htmlFor="email" className="font-sans font-medium text-[.82rem] text-text-2">E-mail</label>
                 <input type="email" id="email" name="email" autoComplete="email" placeholder="seu@email.com…" spellCheck={false} value={form.email} onChange={handleChange} className={inputClass} />
               </div>
             </div>
@@ -134,7 +136,7 @@ export default function Contato() {
               placeholder="Selecione"
             />
             <div className="flex flex-col gap-2">
-              <label htmlFor="mensagem" className="font-sans font-medium text-[.72rem] tracking-[.18em] uppercase text-text-2">Mensagem (opcional)</label>
+              <label htmlFor="mensagem" className="font-sans font-medium text-[.82rem] text-text-2">Mensagem (opcional)</label>
               <textarea
                 id="mensagem"
                 name="mensagem"

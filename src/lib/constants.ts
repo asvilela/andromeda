@@ -247,6 +247,20 @@ export const HORARIO_OPTIONS = [
   { value: 'Noite', label: 'Noite (18h–21h)' },
 ]
 
+// === VISITA ===
+export const VISITA_METRAGEM_OPTIONS = [
+  { value: '90 m²', label: '90 m²' },
+  { value: '123 m²', label: '123 m²' },
+  { value: 'Quero entender as opções', label: 'Quero entender as opções' },
+]
+
+export const VISITA_DIA_OPTIONS = [
+  { value: 'Durante a semana', label: 'Durante a semana' },
+  { value: 'Sábado', label: 'Sábado' },
+  { value: 'Domingo', label: 'Domingo' },
+  { value: 'Preciso de horário personalizado', label: 'Preciso de horário personalizado' },
+]
+
 // === INCORPORADORA ===
 export const DEVELOPER = {
   name: 'MPD Engenharia',
