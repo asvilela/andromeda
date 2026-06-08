@@ -1,9 +1,10 @@
 import { BROKER, PROJECT } from './constants'
+import type { TrackingParams } from '@/hooks/useTrackingParams'
 
 const API_URL = `https://habitus-lead.agreeablestone-fdee4559.brazilsouth.azurecontainerapps.io/api/leads/${BROKER.slug}`
 const TIMEOUT_MS = 8000
 
-interface CreateLeadPayload {
+interface CreateLeadPayload extends TrackingParams {
   fullName: string
   email?: string | null
   phoneMobile: string
@@ -13,13 +14,16 @@ interface CreateLeadPayload {
   slug: string
 }
 
-export async function createLead(data: {
-  fullName: string
-  email?: string
-  phoneMobile: string
-  origin?: string
-  notes?: string
-}): Promise<void> {
+export async function createLead(
+  data: {
+    fullName: string
+    email?: string
+    phoneMobile: string
+    origin?: string
+    notes?: string
+  },
+  tracking?: TrackingParams
+): Promise<void> {
   const payload: CreateLeadPayload = {
     fullName: data.fullName,
     email: data.email || null,
@@ -28,6 +32,13 @@ export async function createLead(data: {
     product: PROJECT.productName,
     notes: data.notes || null,
     slug: BROKER.slug,
+    clickId: tracking?.clickId ?? null,
+    utmSource: tracking?.utmSource ?? null,
+    utmMedium: tracking?.utmMedium ?? null,
+    utmCampaign: tracking?.utmCampaign ?? null,
+    utmContent: tracking?.utmContent ?? null,
+    utmTerm: tracking?.utmTerm ?? null,
+    device: tracking?.device ?? 'desktop',
   }
 
   const controller = new AbortController()

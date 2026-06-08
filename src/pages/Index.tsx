@@ -7,6 +7,7 @@ import WhatsAppFloat from '@/components/andromeda/WhatsAppFloat'
 import WhatsAppModal from '@/components/andromeda/WhatsAppModal'
 import BookModal from '@/components/andromeda/BookModal'
 import UnitFinder from '@/components/andromeda/UnitFinder'
+import VisitModal from '@/components/andromeda/VisitModal'
 
 const ValueComparison = lazy(() => import('@/components/andromeda/ValueComparison'))
 const VideoSection = lazy(() => import('@/components/andromeda/VideoSection'))
@@ -26,6 +27,7 @@ const Index = () => {
   const [waModalOpen, setWaModalOpen] = useState(false)
   const [bookModalOpen, setBookModalOpen] = useState(false)
   const [unitFinderOpen, setUnitFinderOpen] = useState(false)
+  const [visitModalOpen, setVisitModalOpen] = useState(false)
 
   const handleGlobalClick = (e: React.MouseEvent) => {
     const target = e.target as HTMLElement
@@ -40,6 +42,10 @@ const Index = () => {
       e.preventDefault()
       setBookModalOpen(true)
     }
+    if (href === '#visita') {
+      e.preventDefault()
+      setVisitModalOpen(true)
+    }
     if (href.includes('wa.me') || anchor.hasAttribute('data-wa-modal')) {
       e.preventDefault()
       setWaModalOpen(true)
@@ -49,7 +55,10 @@ const Index = () => {
   return (
     // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
     <div onClick={handleGlobalClick}>
-      <Navbar onOpenWaModal={() => setWaModalOpen(true)} />
+      <Navbar
+        onOpenWaModal={() => setWaModalOpen(true)}
+        onOpenVisitModal={() => setVisitModalOpen(true)}
+      />
       <main>
         <Hero />
         <Numbers />
@@ -75,6 +84,7 @@ const Index = () => {
       <WhatsAppModal open={waModalOpen} onClose={() => setWaModalOpen(false)} />
       <BookModal open={bookModalOpen} onClose={() => setBookModalOpen(false)} onOpenUnitFinder={() => setUnitFinderOpen(true)} />
       <UnitFinder open={unitFinderOpen} onClose={() => setUnitFinderOpen(false)} />
+      <VisitModal open={visitModalOpen} onClose={() => setVisitModalOpen(false)} />
     </div>
   )
 }
