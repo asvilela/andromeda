@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { handlePhoneMask } from '@/utils/masks'
+import { PHONE_ERROR_MESSAGE, handlePhoneMask, isValidBrazilianMobilePhone } from '@/utils/masks'
 import { createLead } from '@/lib/api'
 import { useTrackingParams } from '@/hooks/useTrackingParams'
 import { gtmEvent } from '@/lib/gtm'
@@ -15,6 +15,9 @@ export default function Contato() {
   const [submitted, setSubmitted] = useState(false)
   const [error, setError] = useState(false)
   const tracking = useTrackingParams()
+  const isPhoneValid = isValidBrazilianMobilePhone(form.whatsapp)
+  const showPhoneError = form.whatsapp.replace(/\D/g, '').length > 0 && !isPhoneValid
+  const isFormValid = form.nome.trim().length >= 3 && isPhoneValid && form.lgpd
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value, type } = e.target
@@ -29,7 +32,7 @@ export default function Contato() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (!form.nome || !form.whatsapp) return
+    if (!isFormValid) return
     setLoading(true)
     setError(false)
 
@@ -106,6 +109,7 @@ export default function Contato() {
               <div className="flex flex-col gap-2">
                 <label htmlFor="whatsapp" className="font-sans font-medium text-[.82rem] text-text-2">WhatsApp</label>
                 <input type="tel" id="whatsapp" name="whatsapp" autoComplete="tel" placeholder="(11) 99999-9999" value={form.whatsapp} onChange={handleChange} required className={inputClass} />
+                {showPhoneError && <p className="mt-2 text-[.78rem] text-red-700">{PHONE_ERROR_MESSAGE}</p>}
               </div>
               <div className="flex flex-col gap-2">
                 <label htmlFor="email" className="font-sans font-medium text-[.82rem] text-text-2">E-mail</label>
@@ -165,7 +169,7 @@ export default function Contato() {
             <button
               id="submit-contact"
               type="submit"
-              disabled={loading}
+              disabled={loading || !isFormValid}
               className="mt-3 py-[1.2rem] px-8 font-label text-[.82rem] tracking-[.18em] uppercase border-0 cursor-pointer transition-colors transition-transform transition-shadow duration-200 hover:-translate-y-0.5 disabled:opacity-50 disabled:translate-y-0 rounded-xl bg-gold hover:bg-gold-dk text-white shadow-cta hover:shadow-cta-hover"
             >
               {loading ? 'Enviando solicitação…' : 'Receber minha simulação personalizada'}

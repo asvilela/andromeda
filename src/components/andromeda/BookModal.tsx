@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { handlePhoneMask } from '@/utils/masks'
+import { PHONE_ERROR_MESSAGE, handlePhoneMask, isValidBrazilianMobilePhone } from '@/utils/masks'
 import { createLead } from '@/lib/api'
 import { useTrackingParams } from '@/hooks/useTrackingParams'
 import { gtmEvent } from '@/lib/gtm'
@@ -39,6 +39,10 @@ export default function BookModal({ open, onClose, onOpenUnitFinder }: Props) {
 
   if (!open) return null
 
+  const isPhoneValid = isValidBrazilianMobilePhone(form.phoneMobile)
+  const showPhoneError = form.phoneMobile.replace(/\D/g, '').length > 0 && !isPhoneValid
+  const isFormValid = form.fullName.trim().length >= 3 && isPhoneValid
+
   const handleClose = () => {
     setTimeout(() => {
       setForm({ fullName: '', phoneMobile: '' })
@@ -58,6 +62,7 @@ export default function BookModal({ open, onClose, onOpenUnitFinder }: Props) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    if (!isFormValid) return
     setLoading(true)
     setError(false)
 
@@ -162,6 +167,7 @@ export default function BookModal({ open, onClose, onOpenUnitFinder }: Props) {
                     onChange={handleChange}
                     className="w-full bg-white border border-charcoal/[.06] px-5 py-4 text-cream placeholder-cream/25 outline-none focus-visible:border-gold focus-visible:ring-1 focus-visible:ring-gold/20 transition-colors transition-shadow duration-200 text-[.95rem] rounded-xl"
                   />
+                  {showPhoneError && <p className="mt-2 text-[.78rem] text-red-700">{PHONE_ERROR_MESSAGE}</p>}
                 </div>
                 <div>
                   <label htmlFor="book-phoneMobile" className="font-sans font-medium text-[.82rem] text-text-2 mb-2 block">WhatsApp</label>
@@ -185,7 +191,7 @@ export default function BookModal({ open, onClose, onOpenUnitFinder }: Props) {
                   <button
                     id="submit-book"
                     type="submit"
-                    disabled={loading}
+                    disabled={loading || !isFormValid}
                     className="w-full py-5 bg-gold text-white font-label text-[.75rem] tracking-[.25em] uppercase transition-colors transition-transform transition-shadow duration-200 hover:bg-gold-dk hover:shadow-lg hover:-translate-y-0.5 disabled:opacity-50 disabled:translate-y-0 border-0 cursor-pointer rounded-lg shadow-cta"
                   >
                     {loading ? 'Liberando acesso…' : 'Liberar acesso ao book'}

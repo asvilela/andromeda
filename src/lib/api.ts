@@ -1,4 +1,5 @@
 import { BROKER, PROJECT } from './constants'
+import { isValidBrazilianMobilePhone, normalizeBrazilianPhoneDigits } from '@/utils/masks'
 import type { TrackingParams } from '@/hooks/useTrackingParams'
 
 const API_URL = `https://habitus-lead.agreeablestone-fdee4559.brazilsouth.azurecontainerapps.io/api/leads/${BROKER.slug}`
@@ -24,10 +25,15 @@ export async function createLead(
   },
   tracking?: TrackingParams
 ): Promise<void> {
+  const phoneMobile = normalizeBrazilianPhoneDigits(data.phoneMobile)
+  if (!isValidBrazilianMobilePhone(phoneMobile)) {
+    throw new Error('Invalid Brazilian mobile phone')
+  }
+
   const payload: CreateLeadPayload = {
     fullName: data.fullName,
     email: data.email || null,
-    phoneMobile: data.phoneMobile.replace(/\D/g, ''),
+    phoneMobile,
     origin: data.origin || 'Google Ads',
     product: PROJECT.productName,
     notes: data.notes || null,

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { handlePhoneMask } from '@/utils/masks'
+import { PHONE_ERROR_MESSAGE, handlePhoneMask, isValidBrazilianMobilePhone } from '@/utils/masks'
 import { createLead } from '@/lib/api'
 import { useTrackingParams } from '@/hooks/useTrackingParams'
 import { gtmEvent } from '@/lib/gtm'
@@ -35,6 +35,10 @@ export default function WhatsAppModal({ open, onClose }: Props) {
 
   if (!open) return null
 
+  const isPhoneValid = isValidBrazilianMobilePhone(form.phoneMobile)
+  const showPhoneError = form.phoneMobile.replace(/\D/g, '').length > 0 && !isPhoneValid
+  const isFormValid = form.fullName.trim().length >= 3 && isPhoneValid
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
     if (name === 'phoneMobile') {
@@ -46,6 +50,7 @@ export default function WhatsAppModal({ open, onClose }: Props) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    if (!isFormValid) return
     setLoading(true)
     setError(false)
 
@@ -98,6 +103,11 @@ export default function WhatsAppModal({ open, onClose }: Props) {
           </div>
 
           <form id="form-whatsapp" onSubmit={handleSubmit} className="flex flex-col gap-5">
+            {error && (
+              <div className="bg-red-50 border border-red-200 rounded-xl px-5 py-4 text-[.88rem] text-red-800 leading-relaxed">
+                Não foi possível registrar seus dados agora. Você ainda será direcionado para o atendimento.
+              </div>
+            )}
             <div>
               <label htmlFor="wa-fullName" className="font-sans font-medium text-[.82rem] text-text-2 mb-2 block">Nome completo</label>
               <input
@@ -111,6 +121,7 @@ export default function WhatsAppModal({ open, onClose }: Props) {
                 onChange={handleChange}
                 className="w-full bg-white border border-charcoal/[.06] px-5 py-4 text-cream placeholder-cream/25 outline-none focus-visible:border-gold focus-visible:ring-1 focus-visible:ring-gold/20 transition-colors transition-shadow duration-200 text-[.95rem] rounded-xl"
               />
+              {showPhoneError && <p className="mt-2 text-[.78rem] text-red-700">{PHONE_ERROR_MESSAGE}</p>}
             </div>
             <div>
               <label htmlFor="wa-phoneMobile" className="font-sans font-medium text-[.82rem] text-text-2 mb-2 block">WhatsApp</label>
@@ -162,7 +173,7 @@ export default function WhatsAppModal({ open, onClose }: Props) {
               <button
                 id="submit-whatsapp"
                 type="submit"
-                disabled={loading}
+                disabled={loading || !isFormValid}
                 className="w-full py-5 bg-gold text-white font-label text-[.75rem] tracking-[.25em] uppercase transition-colors transition-transform transition-shadow duration-200 hover:bg-gold-dk hover:shadow-lg hover:-translate-y-0.5 disabled:opacity-50 disabled:translate-y-0 border-0 cursor-pointer rounded-lg shadow-cta"
               >
                 {loading ? 'Abrindo WhatsApp…' : 'Falar com especialista no WhatsApp'}

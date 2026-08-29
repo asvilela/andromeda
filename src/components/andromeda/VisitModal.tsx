@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { handlePhoneMask } from '@/utils/masks'
+import { PHONE_ERROR_MESSAGE, handlePhoneMask, isValidBrazilianMobilePhone } from '@/utils/masks'
 import { createLead } from '@/lib/api'
 import { useTrackingParams } from '@/hooks/useTrackingParams'
 import { gtmEvent } from '@/lib/gtm'
@@ -41,6 +41,10 @@ export default function VisitModal({ open, onClose }: Props) {
 
   if (!open) return null
 
+  const isPhoneValid = isValidBrazilianMobilePhone(form.phoneMobile)
+  const showPhoneError = form.phoneMobile.replace(/\D/g, '').length > 0 && !isPhoneValid
+  const isFormValid = form.fullName.trim().length >= 3 && isPhoneValid
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
     if (name === 'phoneMobile') {
@@ -52,7 +56,7 @@ export default function VisitModal({ open, onClose }: Props) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (!form.fullName || !form.phoneMobile) return
+    if (!isFormValid) return
     setLoading(true)
 
     const notes = `Olá, sou *${form.fullName}*. Vim pelo site do ${PROJECT.productName} e gostaria de *agendar uma visita* ao Espaço ${PROJECT.name}.\n\nMetragem de interesse: *${form.metragem || 'não informada'}*\nMelhor dia: *${form.dia || 'não informado'}*\n\nAguardo confirmação!`
@@ -119,6 +123,7 @@ export default function VisitModal({ open, onClose }: Props) {
                 onChange={handleChange}
                 className={inputClass}
               />
+              {showPhoneError && <p className="mt-2 text-[.78rem] text-red-700">{PHONE_ERROR_MESSAGE}</p>}
             </div>
             <div>
               <label htmlFor="visit-phoneMobile" className="font-sans font-medium text-[.82rem] text-text-2 mb-2 block">WhatsApp</label>
@@ -170,7 +175,7 @@ export default function VisitModal({ open, onClose }: Props) {
               <button
                 id="submit-visit"
                 type="submit"
-                disabled={loading}
+                disabled={loading || !isFormValid}
                 className="w-full py-5 bg-gold text-white font-label text-[.75rem] tracking-[.25em] uppercase transition-colors transition-transform transition-shadow duration-200 hover:bg-gold-dk hover:shadow-lg hover:-translate-y-0.5 disabled:opacity-50 disabled:translate-y-0 border-0 cursor-pointer rounded-lg shadow-cta"
               >
                 {loading ? 'Abrindo WhatsApp...' : 'Confirmar visita pelo WhatsApp'}

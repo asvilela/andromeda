@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import { handlePhoneMask } from '@/utils/masks'
+import { PHONE_ERROR_MESSAGE, handlePhoneMask, isValidBrazilianMobilePhone } from '@/utils/masks'
 import { createLead } from '@/lib/api'
 import { useTrackingParams } from '@/hooks/useTrackingParams'
 import { gtmEvent } from '@/lib/gtm'
@@ -80,7 +80,9 @@ export default function UnitFinder({ open, onClose }: Props) {
   if (!open) return null
 
   const isFieldFilled = (key: keyof FormData) => form[key].trim().length > 0
-  const isFormValid = form.fullName.trim().length >= 3 && form.phoneMobile.replace(/\D/g, '').length >= 10
+  const isPhoneValid = isValidBrazilianMobilePhone(form.phoneMobile)
+  const showPhoneError = form.phoneMobile.replace(/\D/g, '').length > 0 && !isPhoneValid
+  const isFormValid = form.fullName.trim().length >= 3 && isPhoneValid
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
@@ -227,6 +229,9 @@ export default function UnitFinder({ open, onClose }: Props) {
                             onChange={handleInputChange}
                             className={inputClass}
                           />
+                        )}
+                        {field.key === 'phoneMobile' && showPhoneError && (
+                          <p className="mt-2 text-[.78rem] text-red-700">{PHONE_ERROR_MESSAGE}</p>
                         )}
                       </div>
                     </div>
