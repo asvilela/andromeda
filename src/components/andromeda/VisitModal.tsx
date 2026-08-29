@@ -123,7 +123,6 @@ export default function VisitModal({ open, onClose }: Props) {
                 onChange={handleChange}
                 className={inputClass}
               />
-              {showPhoneError && <p className="mt-2 text-[.78rem] text-red-700">{PHONE_ERROR_MESSAGE}</p>}
             </div>
             <div>
               <label htmlFor="visit-phoneMobile" className="font-sans font-medium text-[.82rem] text-text-2 mb-2 block">WhatsApp</label>
@@ -138,6 +137,7 @@ export default function VisitModal({ open, onClose }: Props) {
                 onChange={handleChange}
                 className={inputClass}
               />
+              {showPhoneError && <p className="mt-2 text-[.78rem] text-red-700">{PHONE_ERROR_MESSAGE}</p>}
             </div>
 
             <div>

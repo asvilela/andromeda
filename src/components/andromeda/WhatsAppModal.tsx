@@ -121,7 +121,6 @@ export default function WhatsAppModal({ open, onClose }: Props) {
                 onChange={handleChange}
                 className="w-full bg-white border border-charcoal/[.06] px-5 py-4 text-cream placeholder-cream/25 outline-none focus-visible:border-gold focus-visible:ring-1 focus-visible:ring-gold/20 transition-colors transition-shadow duration-200 text-[.95rem] rounded-xl"
               />
-              {showPhoneError && <p className="mt-2 text-[.78rem] text-red-700">{PHONE_ERROR_MESSAGE}</p>}
             </div>
             <div>
               <label htmlFor="wa-phoneMobile" className="font-sans font-medium text-[.82rem] text-text-2 mb-2 block">WhatsApp</label>
@@ -136,6 +135,7 @@ export default function WhatsAppModal({ open, onClose }: Props) {
                 onChange={handleChange}
                 className="w-full bg-white border border-charcoal/[.06] px-5 py-4 text-cream placeholder-cream/25 outline-none focus-visible:border-gold focus-visible:ring-1 focus-visible:ring-gold/20 transition-colors transition-shadow duration-200 text-[.95rem] rounded-xl"
               />
+              {showPhoneError && <p className="mt-2 text-[.78rem] text-red-700">{PHONE_ERROR_MESSAGE}</p>}
             </div>
 
             <div className="space-y-3 pt-4 border-t border-charcoal/[.06]">
