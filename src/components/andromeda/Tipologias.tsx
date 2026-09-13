@@ -43,7 +43,7 @@ function FloorPlanPanel({ tipo, isActive, onOpenLightbox }: FloorPlanPanelProps)
             <button
               key={v.id}
               className={[
-                'px-5 py-2 font-label text-[.62rem] tracking-[.18em] uppercase border bg-transparent transition-colors duration-200 cursor-pointer rounded-lg',
+                'px-5 py-2 min-h-11 inline-flex items-center font-label text-[.62rem] tracking-[.18em] uppercase border bg-transparent transition-colors duration-200 cursor-pointer rounded-lg',
                 activeVariant === v.id
                   ? 'text-gold border-gold bg-gold/[.06]'
                   : 'text-cream/30 border-charcoal/[.06] hover:text-cream/60 hover:border-charcoal/15',
@@ -88,14 +88,14 @@ function FloorPlanPanel({ tipo, isActive, onOpenLightbox }: FloorPlanPanelProps)
             <>
               <button
                 onClick={(e) => { e.stopPropagation(); handleVariantChange(tipo.variants[(variantIdx - 1 + tipo.variants.length) % tipo.variants.length].id) }}
-                className="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-9 sm:h-9 flex items-center justify-center bg-white/90 backdrop-blur-sm border-0 text-cream/50 hover:text-cream hover:bg-white transition-colors duration-200 cursor-pointer z-10 rounded-full shadow-sm"
+                className="absolute left-2 top-1/2 -translate-y-1/2 w-11 h-11 flex items-center justify-center bg-white/90 backdrop-blur-sm border-0 text-cream/50 hover:text-cream hover:bg-white transition-colors duration-200 cursor-pointer z-10 rounded-full shadow-sm"
                 aria-label="Planta anterior"
               >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
               </button>
               <button
                 onClick={(e) => { e.stopPropagation(); handleVariantChange(tipo.variants[(variantIdx + 1) % tipo.variants.length].id) }}
-                className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-9 sm:h-9 flex items-center justify-center bg-white/90 backdrop-blur-sm border-0 text-cream/50 hover:text-cream hover:bg-white transition-colors duration-200 cursor-pointer z-10 rounded-full shadow-sm"
+                className="absolute right-2 top-1/2 -translate-y-1/2 w-11 h-11 flex items-center justify-center bg-white/90 backdrop-blur-sm border-0 text-cream/50 hover:text-cream hover:bg-white transition-colors duration-200 cursor-pointer z-10 rounded-full shadow-sm"
                 aria-label="Próxima planta"
               >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>

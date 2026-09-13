@@ -18,7 +18,7 @@ export default function Footer() {
               <li key={href}>
                 <a
                   href={href}
-                  className="font-label text-[.65rem] tracking-[.15em] uppercase text-bg/50 no-underline hover:text-gold-lt transition-colors duration-200"
+                  className="inline-block py-3 font-label text-[.65rem] tracking-[.15em] uppercase text-bg/50 no-underline hover:text-gold-lt transition-colors duration-200"
                 >
                   {label}
                 </a>
