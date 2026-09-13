@@ -19,7 +19,16 @@ export default function IncorporadoraSection() {
 
           <div>
             <p className="text-[1.1rem] leading-[1.85] text-text-2 mb-8">
-              {DEVELOPER.description}
+              {DEVELOPER.description}{' '}
+              <a
+                href="https://www.mpd.com.br/"
+                target="_blank"
+                rel="noopener"
+                className="text-gold-dk underline underline-offset-2 hover:text-gold"
+              >
+                Conheça a MPD Engenharia
+              </a>
+              .
             </p>
 
             <ul className="list-none flex flex-col gap-4 mb-10">
