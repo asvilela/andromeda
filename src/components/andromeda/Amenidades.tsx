@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from 'react'
 import { AMENIDADES_MAIN, AMENIDADES_STRIP, AMENIDADES_ALL, type AmenidadeItem } from '@/lib/constants'
 import { gtmEvent } from '@/lib/gtm'
 
-function PhotoCard({ img, alt, label, desc, onClick, className = '', style = {} }: AmenidadeItem & { onClick?: () => void; className?: string; style?: React.CSSProperties }) {
+function PhotoCard({ img, thumb, alt, label, desc, onClick, className = '', style = {} }: AmenidadeItem & { onClick?: () => void; className?: string; style?: React.CSSProperties }) {
   return (
     <div
       className={`relative overflow-hidden group cursor-zoom-in rounded-xl ${className}`}
@@ -13,8 +13,12 @@ function PhotoCard({ img, alt, label, desc, onClick, className = '', style = {} 
       aria-label={`Ampliar imagem: ${label}`}
       onKeyDown={(e) => e.key === 'Enter' && onClick?.()}
     >
+      {/* Grid card is small (~160-480px) — a 640w thumbnail covers it at full
+          retina density; the 1600w original is reserved for the lightbox. */}
       <img
-        src={img}
+        src={thumb}
+        srcSet={`${thumb} 640w, ${img} 1600w`}
+        sizes="(max-width: 1024px) 50vw, 33vw"
         alt={alt}
         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.06]"
         loading="lazy" decoding="async"

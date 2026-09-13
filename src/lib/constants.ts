@@ -7,22 +7,32 @@
 import facadeImg from '@/assets/apartamento-alphaville-andromeda-by-mpd-fachada.webp'
 import facadeNightImg from '@/assets/apartamento-alphaville-andromeda-by-mpd-fachada-noturna.webp'
 import lobbyImg from '@/assets/apartamento-alphaville-andromeda-by-mpd-lobby.webp'
-import living78Img from '@/assets/apartamento-alphaville-andromeda-by-mpd-living-78.webp'
-import living120Img from '@/assets/apartamento-alphaville-andromeda-by-mpd-living-120.webp'
+import living78Img from '@/assets/apartamento-alphaville-andromeda-by-mpd-living-78-640w.webp'
+import living120Img from '@/assets/apartamento-alphaville-andromeda-by-mpd-living-120-640w.webp'
 import planta90_1suite from '@/assets/apartamento-alphaville-andromeda-by-mpd-planta90m-1-suite.webp'
 import planta90_2suites from '@/assets/apartamento-alphaville-andromeda-by-mpd-planta90m-2-suites.webp'
 import planta123_2suites from '@/assets/apartamento-alphaville-andromeda-by-mpd-planta123m-2-suites.webp'
 import planta123_3suites from '@/assets/apartamento-alphaville-andromeda-by-mpd-planta123m-3-suites.webp'
 import piscinaImg from '@/assets/apartamento-alphaville-andromeda-by-mpd-piscina-descoberta.webp'
+import piscinaImgThumb from '@/assets/apartamento-alphaville-andromeda-by-mpd-piscina-descoberta-640w.webp'
 import fitnessImg from '@/assets/apartamento-alphaville-andromeda-by-mpd-fitness.webp'
+import fitnessImgThumb from '@/assets/apartamento-alphaville-andromeda-by-mpd-fitness-640w.webp'
 import saunaImg from '@/assets/apartamento-alphaville-andromeda-by-mpd-sauna.webp'
+import saunaImgThumb from '@/assets/apartamento-alphaville-andromeda-by-mpd-sauna-640w.webp'
 import coworkingImg from '@/assets/apartamento-alphaville-andromeda-by-mpd-coworking.webp'
+import coworkingImgThumb from '@/assets/apartamento-alphaville-andromeda-by-mpd-coworking-640w.webp'
 import gourmetImg from '@/assets/apartamento-alphaville-andromeda-by-mpd-espaco-gourmet.webp'
+import gourmetImgThumb from '@/assets/apartamento-alphaville-andromeda-by-mpd-espaco-gourmet-640w.webp'
 import quadraBtImg from '@/assets/apartamento-alphaville-andromeda-by-mpd-quadra-bt.webp'
+import quadraBtImgThumb from '@/assets/apartamento-alphaville-andromeda-by-mpd-quadra-bt-640w.webp'
 import salaoImg from '@/assets/apartamento-alphaville-andromeda-by-mpd-salao-festas.webp'
+import salaoImgThumb from '@/assets/apartamento-alphaville-andromeda-by-mpd-salao-festas-640w.webp'
 import petImg from '@/assets/apartamento-alphaville-andromeda-by-mpd-espaco-pet.webp'
+import petImgThumb from '@/assets/apartamento-alphaville-andromeda-by-mpd-espaco-pet-640w.webp'
 import brinqImg from '@/assets/apartamento-alphaville-andromeda-by-mpd-brinquedoteca.webp'
+import brinqImgThumb from '@/assets/apartamento-alphaville-andromeda-by-mpd-brinquedoteca-640w.webp'
 import pickleballImg from '@/assets/apartamento-alphaville-andromeda-by-mpd-pickleball.webp'
+import pickleballImgThumb from '@/assets/apartamento-alphaville-andromeda-by-mpd-pickleball-640w.webp'
 
 // === WHATSAPP ===
 export const WHATSAPP_NUMBER = '5511964178766'
@@ -159,25 +169,28 @@ export const FLOOR_PLANS: FloorPlan[] = [
 // === AMENIDADES ===
 export interface AmenidadeItem {
   img: string
+  /** Versão 640px de largura para a grade/thumbnail — a original (img) só é
+   * necessária em tamanho grande na lightbox, exibida via srcset. */
+  thumb: string
   alt: string
   label: string
   desc?: string
 }
 
 export const AMENIDADES_MAIN: AmenidadeItem[] = [
-  { img: piscinaImg, alt: 'Piscina adulto raia 25m', label: 'Piscina Raia 25m', desc: 'Semiolímpica com previsão para climatização' },
-  { img: fitnessImg, alt: 'Fitness indoor', label: 'Fitness Indoor & Externo', desc: 'Aparelhos individuais e duais, sauna e espaço beauty' },
-  { img: saunaImg, alt: 'Sauna e área de descanso', label: 'Sauna & Descanso', desc: 'Sauna, sala de massagem e área de relaxamento' },
-  { img: coworkingImg, alt: 'Coworking', label: 'Coworking Profissional', desc: 'Sala de reunião privativa, web garden e lounge' },
-  { img: gourmetImg, alt: 'Espaço gourmet', label: 'Gourmet & Sport Bar', desc: 'Espaço gourmet, sport bar e churrasqueiras ao ar livre' },
+  { img: piscinaImg, thumb: piscinaImgThumb, alt: 'Piscina adulto raia 25m', label: 'Piscina Raia 25m', desc: 'Semiolímpica com previsão para climatização' },
+  { img: fitnessImg, thumb: fitnessImgThumb, alt: 'Fitness indoor', label: 'Fitness Indoor & Externo', desc: 'Aparelhos individuais e duais, sauna e espaço beauty' },
+  { img: saunaImg, thumb: saunaImgThumb, alt: 'Sauna e área de descanso', label: 'Sauna & Descanso', desc: 'Sauna, sala de massagem e área de relaxamento' },
+  { img: coworkingImg, thumb: coworkingImgThumb, alt: 'Coworking', label: 'Coworking Profissional', desc: 'Sala de reunião privativa, web garden e lounge' },
+  { img: gourmetImg, thumb: gourmetImgThumb, alt: 'Espaço gourmet', label: 'Gourmet & Sport Bar', desc: 'Espaço gourmet, sport bar e churrasqueiras ao ar livre' },
 ]
 
 export const AMENIDADES_STRIP: AmenidadeItem[] = [
-  { img: quadraBtImg, alt: 'Quadra de beach tennis', label: 'Beach Tennis' },
-  { img: salaoImg, alt: 'Salão de festas', label: 'Salão de Festas' },
-  { img: petImg, alt: 'Pet place', label: 'Pet Place & Pet Care' },
-  { img: brinqImg, alt: 'Brinquedoteca', label: 'Brinquedoteca' },
-  { img: pickleballImg, alt: 'Pickleball', label: 'Pickleball' },
+  { img: quadraBtImg, thumb: quadraBtImgThumb, alt: 'Quadra de beach tennis', label: 'Beach Tennis' },
+  { img: salaoImg, thumb: salaoImgThumb, alt: 'Salão de festas', label: 'Salão de Festas' },
+  { img: petImg, thumb: petImgThumb, alt: 'Pet place', label: 'Pet Place & Pet Care' },
+  { img: brinqImg, thumb: brinqImgThumb, alt: 'Brinquedoteca', label: 'Brinquedoteca' },
+  { img: pickleballImg, thumb: pickleballImgThumb, alt: 'Pickleball', label: 'Pickleball' },
 ]
 
 export const AMENIDADES_ALL: AmenidadeItem[] = [...AMENIDADES_MAIN, ...AMENIDADES_STRIP]
