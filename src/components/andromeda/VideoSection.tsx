@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { VIDEO, VIDEOS, PROJECT } from '@/lib/constants'
 
 interface VideoCardProps {
@@ -5,19 +6,48 @@ interface VideoCardProps {
   title: string
 }
 
+// Click-to-play facade: shows YouTube's own thumbnail and only injects the real
+// iframe (its player JS, ~1MB, plus tracking beacons) once a visitor actually
+// wants to watch, instead of loading it eagerly for every page view.
 function VideoCard({ videoId, title }: VideoCardProps) {
+  const [playing, setPlaying] = useState(false)
   if (!videoId) return null
 
   return (
-    <div className="relative aspect-video rounded-2xl overflow-hidden shadow-card-hover">
-      <iframe
-        src={`https://www.youtube.com/embed/${videoId}?rel=0`}
-        title={title}
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerPolicy="strict-origin-when-cross-origin"
-        allowFullScreen
-        className="absolute inset-0 w-full h-full border-0"
-      />
+    <div className="relative aspect-video rounded-2xl overflow-hidden shadow-card-hover bg-black">
+      {playing ? (
+        <iframe
+          src={`https://www.youtube.com/embed/${videoId}?rel=0&autoplay=1`}
+          title={title}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerPolicy="strict-origin-when-cross-origin"
+          allowFullScreen
+          className="absolute inset-0 w-full h-full border-0"
+        />
+      ) : (
+        <button
+          type="button"
+          onClick={() => setPlaying(true)}
+          className="absolute inset-0 w-full h-full border-0 cursor-pointer group bg-transparent p-0"
+          aria-label={`Assistir: ${title}`}
+        >
+          <img
+            src={`https://img.youtube.com/vi/${videoId}/hqdefault.jpg`}
+            alt={title}
+            loading="lazy"
+            decoding="async"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+          <span className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-200" />
+          <span className="absolute inset-0 flex items-center justify-center">
+            <span className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white/90 group-hover:bg-white flex items-center justify-center transition-colors duration-200 shadow-lg">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" className="text-charcoal ml-1">
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            </span>
+          </span>
+        </button>
+      )}
     </div>
   )
 }
