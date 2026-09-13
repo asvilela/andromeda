@@ -123,21 +123,20 @@ export default function Amenidades() {
         </div>
 
         <div className="reveal reveal-delay-1">
+          {/* Single grid for every breakpoint (not a duplicated mobile/desktop pair) — Tailwind's
+              responsive utilities alone change columns/row-height per breakpoint, so each amenity's
+              label/description exists once in the DOM instead of twice. */}
           <div
-            className="hidden lg:grid"
-            style={{ gridTemplateColumns: '1.35fr 1fr 1fr', gridTemplateRows: '290px 290px', gap: GAP }}
+            className="grid grid-cols-2 lg:grid-cols-[1.35fr_1fr_1fr] auto-rows-[185px] lg:auto-rows-[290px]"
+            style={{ gap: GAP }}
           >
             {AMENIDADES_MAIN.map((itm, i) => (
-              <PhotoCard key={itm.label} {...itm} onClick={() => handleOpen(i)} style={i === 0 ? { gridRow: '1 / 3' } : {}} />
-            ))}
-          </div>
-
-          <div
-            className="grid lg:hidden"
-            style={{ gridTemplateColumns: '1fr 1fr', gridAutoRows: '185px', gap: GAP }}
-          >
-            {AMENIDADES_MAIN.map((itm, i) => (
-              <PhotoCard key={itm.label} {...itm} onClick={() => handleOpen(i)} style={i === 0 ? { gridColumn: '1 / 3', height: '240px' } : {}} />
+              <PhotoCard
+                key={itm.label}
+                {...itm}
+                onClick={() => handleOpen(i)}
+                className={i === 0 ? 'col-span-2 h-[240px] lg:col-span-1 lg:row-span-2 lg:h-auto' : ''}
+              />
             ))}
           </div>
 
