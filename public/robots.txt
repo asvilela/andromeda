@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /assets/
 
-Sitemap: https://andromedahome.com.br/sitemap.xml
+Sitemap: https://andromedabympdalphaville.com.br/sitemap.xml

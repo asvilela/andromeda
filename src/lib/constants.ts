@@ -54,7 +54,7 @@ export const PROJECT = {
   },
   coordinates: { lat: -23.49, lng: -46.85 }, // TODO: coordenadas exatas
   phone: '(11) 2149-0015',
-  domain: 'https://andromedahome.com.br', // TODO: domínio definitivo
+  domain: 'https://andromedabympdalphaville.com.br',
 }
 
 // === NAVEGAÇÃO ===

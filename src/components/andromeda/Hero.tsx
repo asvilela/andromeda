@@ -35,7 +35,6 @@ export default function Hero() {
           className="font-serif text-white font-normal leading-[1.0] mb-6 max-w-[18ch]"
           style={{
             fontSize: 'clamp(3.4rem, 8vw, 7rem)',
-            animation: 'fade-up .9s .5s both',
             textShadow: '0 2px 40px rgba(0,0,0,0.3)',
             textWrap: 'balance',
           }}
