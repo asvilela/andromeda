@@ -104,6 +104,8 @@ function FloorPlanPanel({ tipo, isActive, onOpenLightbox }: FloorPlanPanelProps)
           )}
           <img
             src={variant.image}
+            srcSet={`${variant.thumb} 640w, ${variant.image} 1600w`}
+            sizes="(max-width: 1024px) 90vw, 45vw"
             alt={variant.alt}
             className="w-full h-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]"
             loading="lazy" decoding="async"
@@ -138,7 +140,7 @@ function FloorPlanPanel({ tipo, isActive, onOpenLightbox }: FloorPlanPanelProps)
         </ul>
         <a
           href="#unidades"
-          className="inline-flex items-center gap-3 px-10 py-[1.15rem] font-label text-[.78rem] tracking-[.18em] uppercase no-underline transition-colors transition-transform transition-shadow duration-300 hover:-translate-y-0.5 border-0 cursor-pointer rounded-xl bg-gold hover:bg-gold-dk text-white shadow-cta hover:shadow-cta-hover"
+          className="inline-flex items-center gap-3 px-10 py-[1.15rem] font-label text-[.78rem] tracking-[.18em] uppercase no-underline transition-colors transition-transform transition-shadow duration-300 hover:-translate-y-0.5 border-0 cursor-pointer rounded-xl bg-gold-cta hover:bg-gold-cta-dk text-white shadow-cta hover:shadow-cta-hover"
         >
           Simular unidade de {tipo.area} m²
         </a>

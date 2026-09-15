@@ -30,7 +30,7 @@ export default function FAQ() {
             </p>
             <a
               href="#book"
-              className="inline-flex items-center gap-3 px-8 py-4 font-label text-[.78rem] tracking-[.18em] uppercase no-underline bg-gold hover:bg-gold-dk text-white transition-colors duration-200 rounded-xl shadow-cta"
+              className="inline-flex items-center gap-3 px-8 py-4 font-label text-[.78rem] tracking-[.18em] uppercase no-underline bg-gold-cta hover:bg-gold-cta-dk text-white transition-colors duration-200 rounded-xl shadow-cta"
             >
               Receber book no WhatsApp
             </a>
@@ -48,22 +48,24 @@ export default function FAQ() {
           const isOpen = open === i
           return (
             <div key={i} className={`reveal reveal-delay-${i % 3} border-b border-charcoal/[.06]`}>
-              <button
-                className="w-full bg-transparent border-0 py-8 flex justify-between items-center cursor-pointer text-left gap-6"
-                onClick={() => setOpen(isOpen ? null : i)}
-                aria-expanded={isOpen}
-              >
-                <span className="font-serif text-cream text-[1.25rem] sm:text-[1.35rem] font-normal leading-snug">{item.q}</span>
-                <div
-                  className={[
-                    'w-10 h-10 sm:w-9 sm:h-9 rounded-full border flex items-center justify-center text-[1rem] shrink-0 transition-colors transition-transform duration-300',
-                    isOpen ? 'rotate-45 bg-gold border-gold text-white' : 'border-charcoal/[.12] text-gold-dk',
-                  ].join(' ')}
-                  aria-hidden="true"
+              <h3 className="m-0">
+                <button
+                  className="w-full bg-transparent border-0 py-8 flex justify-between items-center cursor-pointer text-left gap-6"
+                  onClick={() => setOpen(isOpen ? null : i)}
+                  aria-expanded={isOpen}
                 >
-                  +
-                </div>
-              </button>
+                  <span className="font-serif text-cream text-[1.25rem] sm:text-[1.35rem] font-normal leading-snug">{item.q}</span>
+                  <div
+                    className={[
+                      'w-10 h-10 sm:w-9 sm:h-9 rounded-full border flex items-center justify-center text-[1rem] shrink-0 transition-colors transition-transform duration-300',
+                      isOpen ? 'rotate-45 bg-gold-cta border-gold-cta text-white' : 'border-charcoal/[.12] text-gold-dk',
+                    ].join(' ')}
+                    aria-hidden="true"
+                  >
+                    +
+                  </div>
+                </button>
+              </h3>
               <div
                 className="grid overflow-hidden transition-[grid-template-rows] duration-[400ms] ease-in-out"
                 style={{ gridTemplateRows: isOpen ? '1fr' : '0fr' }}
@@ -79,7 +81,7 @@ export default function FAQ() {
         <div className="reveal mt-14 text-center">
           <a
             href="#unidades"
-            className="inline-flex items-center gap-3 px-10 py-[1.15rem] font-label text-[.78rem] tracking-[.18em] uppercase no-underline transition-colors transition-transform transition-shadow duration-200 hover:-translate-y-0.5 border-0 cursor-pointer rounded-xl bg-gold hover:bg-gold-dk text-white shadow-cta hover:shadow-cta-hover"
+            className="inline-flex items-center gap-3 px-10 py-[1.15rem] font-label text-[.78rem] tracking-[.18em] uppercase no-underline transition-colors transition-transform transition-shadow duration-200 hover:-translate-y-0.5 border-0 cursor-pointer rounded-xl bg-gold-cta hover:bg-gold-cta-dk text-white shadow-cta hover:shadow-cta-hover"
           >
             Simular valores e disponibilidade
           </a>

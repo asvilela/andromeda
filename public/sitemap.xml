@@ -3,13 +3,10 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://andromedabympdalphaville.com.br/</loc>
-    <lastmod>2026-05-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <lastmod>2026-09-15</lastmod>
     <image:image>
       <image:loc>https://andromedabympdalphaville.com.br/og-image.jpg</image:loc>
       <image:title>Andrômeda Home — Fachada</image:title>
-      <image:geo_location>Alphaville, Barueri, SP, Brasil</image:geo_location>
     </image:image>
   </url>
 </urlset>

@@ -174,7 +174,7 @@ export default function WhatsAppModal({ open, onClose }: Props) {
                 id="submit-whatsapp"
                 type="submit"
                 disabled={loading || !isFormValid}
-                className="w-full py-5 bg-gold text-white font-label text-[.75rem] tracking-[.25em] uppercase transition-colors transition-transform transition-shadow duration-200 hover:bg-gold-dk hover:shadow-lg hover:-translate-y-0.5 disabled:opacity-50 disabled:translate-y-0 border-0 cursor-pointer rounded-lg shadow-cta"
+                className="w-full py-5 bg-gold-cta text-white font-label text-[.75rem] tracking-[.25em] uppercase transition-colors transition-transform transition-shadow duration-200 hover:bg-gold-cta-dk hover:shadow-lg hover:-translate-y-0.5 disabled:opacity-50 disabled:translate-y-0 border-0 cursor-pointer rounded-lg shadow-cta"
               >
                 {loading ? 'Abrindo WhatsApp…' : 'Falar com especialista no WhatsApp'}
               </button>

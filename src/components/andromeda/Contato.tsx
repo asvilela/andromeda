@@ -59,7 +59,7 @@ export default function Contato() {
     setLoading(false)
   }
 
-  const inputClass = 'bg-bg2 border border-charcoal/[.06] text-cream placeholder-text-2/50 px-5 py-[1.05rem] font-sans text-[1rem] outline-none focus-visible:ring-2 focus-visible:ring-gold/20 focus-visible:border-gold transition-colors transition-shadow duration-200 w-full appearance-none rounded-xl'
+  const inputClass = 'bg-bg2 border border-charcoal/[.06] text-cream placeholder-text-2/80 px-5 py-[1.05rem] font-sans text-[1rem] outline-none focus-visible:ring-2 focus-visible:ring-gold/20 focus-visible:border-gold transition-colors transition-shadow duration-200 w-full appearance-none rounded-xl'
 
   return (
     <section id="contato" className="relative bg-white overflow-hidden py-20 sm:py-28 px-[8vw]" aria-labelledby="contato-title">
@@ -69,11 +69,11 @@ export default function Contato() {
             Receba uma <em className="not-italic text-gold-dk">simulação personalizada</em>
           </SectionHeader>
           <p className="text-[1.05rem] leading-[1.85] text-text-2 mb-6">
-            Informe seu perfil para avaliarmos disponibilidade, planta, andar, vista e fluxo de pagamento mais adequado ao seu momento.
+            Compartilhe planta, momento de compra e faixa de investimento desejada — cruzamos com o que está disponível agora e retornamos com opções reais, não genéricas.
           </p>
           <div className="bg-bg2 rounded-2xl p-7">
             <p className="text-[.95rem] leading-[1.8] text-text-2/90">
-              Os valores variam por planta, andar, vista e disponibilidade. Solicite uma simulação para receber as melhores opções para o seu perfil.
+              Cada unidade tem uma combinação própria de andar, vista e posição solar, o que muda o valor final. Por isso a simulação é sempre individual — nunca uma tabela genérica.
             </p>
           </div>
         </div>
@@ -170,7 +170,7 @@ export default function Contato() {
               id="submit-contact"
               type="submit"
               disabled={loading || !isFormValid}
-              className="mt-3 py-[1.2rem] px-8 font-label text-[.82rem] tracking-[.18em] uppercase border-0 cursor-pointer transition-colors transition-transform transition-shadow duration-200 hover:-translate-y-0.5 disabled:opacity-50 disabled:translate-y-0 rounded-xl bg-gold hover:bg-gold-dk text-white shadow-cta hover:shadow-cta-hover"
+              className="mt-3 py-[1.2rem] px-8 font-label text-[.82rem] tracking-[.18em] uppercase border-0 cursor-pointer transition-colors transition-transform transition-shadow duration-200 hover:-translate-y-0.5 disabled:opacity-50 disabled:translate-y-0 rounded-xl bg-gold-cta hover:bg-gold-cta-dk text-white shadow-cta hover:shadow-cta-hover"
             >
               {loading ? 'Enviando solicitação…' : 'Receber minha simulação personalizada'}
             </button>

@@ -52,7 +52,7 @@ export default function Hero() {
         <div className="flex gap-4 flex-wrap items-center" style={{ animation: 'fade-up .8s .95s both' }}>
           <a
             href="#unidades"
-            className="inline-flex items-center gap-3 px-8 py-4 sm:px-12 sm:py-5 font-label text-[.78rem] sm:text-[.85rem] tracking-[.18em] uppercase no-underline transition-colors transition-transform transition-shadow duration-300 hover:-translate-y-0.5 border-0 cursor-pointer rounded-xl bg-gold hover:bg-gold-dk text-white shadow-cta hover:shadow-cta-hover"
+            className="inline-flex items-center gap-3 px-8 py-4 sm:px-12 sm:py-5 font-label text-[.78rem] sm:text-[.85rem] tracking-[.18em] uppercase no-underline transition-colors transition-transform transition-shadow duration-300 hover:-translate-y-0.5 border-0 cursor-pointer rounded-xl bg-gold-cta hover:bg-gold-cta-dk text-white shadow-cta hover:shadow-cta-hover"
             aria-label="Descobrir minha unidade ideal"
           >
             Descobrir minha unidade ideal

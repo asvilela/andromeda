@@ -6,13 +6,19 @@
 // === IMAGENS (imports estáticos para Vite) ===
 import facadeImg from '@/assets/apartamento-alphaville-andromeda-by-mpd-fachada.webp'
 import facadeNightImg from '@/assets/apartamento-alphaville-andromeda-by-mpd-fachada-noturna.webp'
+import facadeNightImgThumb from '@/assets/apartamento-alphaville-andromeda-by-mpd-fachada-noturna-640w.webp'
 import lobbyImg from '@/assets/apartamento-alphaville-andromeda-by-mpd-lobby.webp'
+import lobbyImgThumb from '@/assets/apartamento-alphaville-andromeda-by-mpd-lobby-640w.webp'
 import living78Img from '@/assets/apartamento-alphaville-andromeda-by-mpd-living-78-640w.webp'
 import living120Img from '@/assets/apartamento-alphaville-andromeda-by-mpd-living-120-640w.webp'
 import planta90_1suite from '@/assets/apartamento-alphaville-andromeda-by-mpd-planta90m-1-suite.webp'
+import planta90_1suiteThumb from '@/assets/apartamento-alphaville-andromeda-by-mpd-planta90m-1-suite-640w.webp'
 import planta90_2suites from '@/assets/apartamento-alphaville-andromeda-by-mpd-planta90m-2-suites.webp'
+import planta90_2suitesThumb from '@/assets/apartamento-alphaville-andromeda-by-mpd-planta90m-2-suites-640w.webp'
 import planta123_2suites from '@/assets/apartamento-alphaville-andromeda-by-mpd-planta123m-2-suites.webp'
+import planta123_2suitesThumb from '@/assets/apartamento-alphaville-andromeda-by-mpd-planta123m-2-suites-640w.webp'
 import planta123_3suites from '@/assets/apartamento-alphaville-andromeda-by-mpd-planta123m-3-suites.webp'
+import planta123_3suitesThumb from '@/assets/apartamento-alphaville-andromeda-by-mpd-planta123m-3-suites-640w.webp'
 import piscinaImg from '@/assets/apartamento-alphaville-andromeda-by-mpd-piscina-descoberta.webp'
 import piscinaImgThumb from '@/assets/apartamento-alphaville-andromeda-by-mpd-piscina-descoberta-640w.webp'
 import fitnessImg from '@/assets/apartamento-alphaville-andromeda-by-mpd-fitness.webp'
@@ -64,7 +70,15 @@ export const PROJECT = {
   },
   coordinates: { lat: -23.49, lng: -46.85 }, // TODO: coordenadas exatas
   phone: '(11) 2149-0015',
+  phoneHref: 'tel:+551121490015',
   domain: 'https://andromedabympdalphaville.com.br',
+}
+
+// === HORÁRIO DE ATENDIMENTO (stand de vendas) ===
+// Mantido em sincronia com o RealEstateAgent.openingHoursSpecification no index.html
+export const HOURS = {
+  weekday: 'Seg. a sex., 9h às 18h',
+  weekend: 'Sáb. e dom., 10h às 17h',
 }
 
 // === NAVEGAÇÃO ===
@@ -95,7 +109,9 @@ export const SPECS = [
 // === IMAGENS DO PROJETO ===
 export const PROJECT_IMAGES = {
   facadeNight: facadeNightImg,
+  facadeNightThumb: facadeNightImgThumb,
   lobby: lobbyImg,
+  lobbyThumb: lobbyImgThumb,
 }
 
 // === PLANTAS ===
@@ -103,6 +119,9 @@ export interface FloorPlanVariant {
   id: string
   label: string
   image: string
+  /** Versão 640px de largura, usada no card via srcset — a original (image) só
+   * é necessária em tamanho grande na lightbox. */
+  thumb: string
   alt: string
 }
 
@@ -136,8 +155,8 @@ export const FLOOR_PLANS: FloorPlan[] = [
     ],
     livingImg: living78Img,
     variants: [
-      { id: '90-1', label: '1 Suíte', image: planta90_1suite, alt: 'Planta do apartamento de 90m² com 1 suíte' },
-      { id: '90-2', label: '2 Suítes', image: planta90_2suites, alt: 'Planta do apartamento de 90m² com 2 suítes' },
+      { id: '90-1', label: '1 Suíte', image: planta90_1suite, thumb: planta90_1suiteThumb, alt: 'Planta do apartamento de 90m² com 1 suíte' },
+      { id: '90-2', label: '2 Suítes', image: planta90_2suites, thumb: planta90_2suitesThumb, alt: 'Planta do apartamento de 90m² com 2 suítes' },
     ],
   },
   {
@@ -160,8 +179,8 @@ export const FLOOR_PLANS: FloorPlan[] = [
     ],
     livingImg: living120Img,
     variants: [
-      { id: '123-2', label: '2 Suítes', image: planta123_2suites, alt: 'Planta do apartamento de 123m² com 2 suítes' },
-      { id: '123-3', label: '3 Suítes', image: planta123_3suites, alt: 'Planta do apartamento de 123m² com 3 suítes' },
+      { id: '123-2', label: '2 Suítes', image: planta123_2suites, thumb: planta123_2suitesThumb, alt: 'Planta do apartamento de 123m² com 2 suítes' },
+      { id: '123-3', label: '3 Suítes', image: planta123_3suites, thumb: planta123_3suitesThumb, alt: 'Planta do apartamento de 123m² com 3 suítes' },
     ],
   },
 ]
@@ -211,8 +230,8 @@ export const DISTANCES = [
 
 // === FAQ ===
 export const FAQ_ITEMS = [
-  { q: 'Qual é o valor dos apartamentos?', a: 'Os valores variam conforme metragem, andar, vista, final da unidade e disponibilidade. Por isso, fazemos uma simulação personalizada para indicar as melhores opções para seu perfil e planejamento financeiro.' },
-  { q: 'Vocês enviam tabela de preços?', a: 'Como a disponibilidade muda e cada unidade possui condições específicas, o ideal é montar uma simulação atualizada com base no seu objetivo. Solicite a sua e receba as opções mais alinhadas ao seu perfil.' },
+  { q: 'Qual é o valor dos apartamentos?', a: 'Os valores variam conforme a metragem, o andar, a vista e a disponibilidade de cada unidade no momento da consulta. Por isso, preferimos montar uma simulação personalizada com as opções que fazem sentido para o seu orçamento.' },
+  { q: 'Vocês enviam tabela de preços?', a: 'Uma tabela fixa perderia a validade rápido, já que a disponibilidade e as condições comerciais mudam com frequência. É por isso que trabalhamos com simulação: ela reflete o que está disponível agora para o perfil que você busca.' },
   { q: 'Quais plantas estão disponíveis?', a: 'O Andrômeda oferece apartamentos de 90m² (1 ou 2 suítes) e 123m² (2 ou 3 suítes). A disponibilidade por andar, vista e final depende do momento da consulta. Podemos verificar as opções disponíveis para você.' },
   { q: 'É possível financiar?', a: 'Sim. O empreendimento opera com diferentes modalidades, incluindo parcelamento durante a obra e financiamento bancário. Podemos avaliar um fluxo de pagamento considerando entrada, parcelas e condições disponíveis para o seu perfil.' },
   { q: 'O empreendimento é bom para morar ou investir?', a: 'Pode atender aos dois objetivos. A melhor indicação depende do seu perfil, prazo, objetivo e faixa de investimento. Solicite uma análise personalizada para avaliarmos juntos.' },

@@ -1,4 +1,4 @@
-import { DISTANCES, PROJECT } from '@/lib/constants'
+import { DISTANCES, HOURS, PROJECT } from '@/lib/constants'
 import SectionHeader from './SectionHeader'
 
 export default function Localizacao() {
@@ -47,7 +47,9 @@ export default function Localizacao() {
             <p className="text-[.9rem] text-text-2 leading-[1.6]">
               <strong className="text-cream font-medium">{PROJECT.name}</strong><br />
               {PROJECT.address.street} · {PROJECT.address.neighborhood}<br />
-              {PROJECT.address.city} · {PROJECT.address.state}
+              {PROJECT.address.city} · {PROJECT.address.state}<br />
+              <a href={PROJECT.phoneHref} className="pointer-events-auto hover:text-gold-dk transition-colors duration-200">{PROJECT.phone}</a>
+              <span className="block text-[.8rem] text-text-2/70 mt-1">{HOURS.weekday} · {HOURS.weekend}</span>
             </p>
           </address>
         </div>
@@ -56,7 +58,7 @@ export default function Localizacao() {
       <div className="reveal mt-14 text-center max-w-[1200px] mx-auto">
         <a
           href="#unidades"
-          className="inline-flex items-center gap-3 px-10 py-[1.15rem] font-label text-[.78rem] tracking-[.18em] uppercase no-underline transition-colors transition-transform transition-shadow duration-300 hover:-translate-y-0.5 border-0 cursor-pointer rounded-xl bg-gold hover:bg-gold-dk text-white shadow-cta hover:shadow-cta-hover"
+          className="inline-flex items-center gap-3 px-10 py-[1.15rem] font-label text-[.78rem] tracking-[.18em] uppercase no-underline transition-colors transition-transform transition-shadow duration-300 hover:-translate-y-0.5 border-0 cursor-pointer rounded-xl bg-gold-cta hover:bg-gold-cta-dk text-white shadow-cta hover:shadow-cta-hover"
         >
           Consultar unidades disponíveis
         </a>

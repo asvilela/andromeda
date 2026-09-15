@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useScrolled } from '@/hooks/useScrolled'
 import { NAV_LINKS } from '@/lib/constants'
 
@@ -10,6 +10,19 @@ interface Props {
 export default function Navbar({ onOpenWaModal, onOpenVisitModal }: Props) {
   const scrolled = useScrolled(60)
   const [menuOpen, setMenuOpen] = useState(false)
+  const menuButtonRef = useRef<HTMLButtonElement>(null)
+
+  useEffect(() => {
+    if (!menuOpen) return
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setMenuOpen(false)
+        menuButtonRef.current?.focus()
+      }
+    }
+    document.addEventListener('keydown', handleKeyDown)
+    return () => document.removeEventListener('keydown', handleKeyDown)
+  }, [menuOpen])
 
   return (
     <>
@@ -57,6 +70,7 @@ export default function Navbar({ onOpenWaModal, onOpenVisitModal }: Props) {
           </div>
 
           <button
+            ref={menuButtonRef}
             className="lg:hidden flex flex-col items-center justify-center gap-[5px] bg-transparent border-0 w-11 h-11 cursor-pointer rounded-full"
             aria-label="Abrir menu"
             onClick={() => setMenuOpen(true)}

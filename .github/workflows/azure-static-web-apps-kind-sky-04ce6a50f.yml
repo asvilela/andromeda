@@ -32,6 +32,11 @@ jobs:
           api_location: "" # Api source code path - optional
           output_location: "dist" # Built app content directory - optional
           ###### End of Repository/Build Configurations ######
+      - name: Ping IndexNow (Bing/Yandex/Naver)
+        if: github.event_name == 'push'
+        run: |
+          curl -s -o /dev/null -w "IndexNow ping: %{http_code}\n" \
+            "https://api.indexnow.org/indexnow?url=https%3A%2F%2Fandromedabympdalphaville.com.br%2F&key=0243d4647eae4cf881f0aa144f54c22b" || true
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'

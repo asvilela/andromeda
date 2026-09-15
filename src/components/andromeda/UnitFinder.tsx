@@ -119,7 +119,7 @@ export default function UnitFinder({ open, onClose }: Props) {
     setStatus('success')
   }
 
-  const inputClass = 'w-full bg-white border border-charcoal/[.08] px-5 py-[14px] text-cream placeholder-text-2/50 outline-none focus-visible:border-gold focus-visible:ring-2 focus-visible:ring-gold/15 transition-colors transition-shadow duration-200 text-[.95rem] rounded-xl font-sans'
+  const inputClass = 'w-full bg-white border border-charcoal/[.08] px-5 py-[14px] text-cream placeholder-text-2/80 outline-none focus-visible:border-gold focus-visible:ring-2 focus-visible:ring-gold/15 transition-colors transition-shadow duration-200 text-[.95rem] rounded-xl font-sans'
 
   return (
     <div className="fixed inset-0 z-[9999]" role="dialog" aria-modal="true" aria-labelledby="uf-modal-title">
@@ -186,7 +186,7 @@ export default function UnitFinder({ open, onClose }: Props) {
                         <div
                           className={`w-7 h-7 rounded-full flex items-center justify-center text-[.65rem] font-sans font-medium transition-colors duration-300 ${
                             filled
-                              ? 'bg-gold text-white'
+                              ? 'bg-gold-cta text-white'
                               : 'bg-charcoal/[.08] text-text-2/50'
                           }`}
                         >
@@ -244,7 +244,7 @@ export default function UnitFinder({ open, onClose }: Props) {
                     id="submit-unit-finder"
                     type="submit"
                     disabled={loading || !isFormValid}
-                    className="w-full py-[16px] bg-gold text-white font-label text-[.8rem] tracking-[.2em] uppercase transition-colors transition-transform transition-shadow duration-200 hover:bg-gold-dk hover:-translate-y-0.5 disabled:opacity-40 disabled:translate-y-0 disabled:cursor-not-allowed border-0 cursor-pointer rounded-xl shadow-cta hover:shadow-cta-hover"
+                    className="w-full py-[16px] bg-gold-cta text-white font-label text-[.8rem] tracking-[.2em] uppercase transition-colors transition-transform transition-shadow duration-200 hover:bg-gold-cta-dk hover:-translate-y-0.5 disabled:opacity-40 disabled:translate-y-0 disabled:cursor-not-allowed border-0 cursor-pointer rounded-xl shadow-cta hover:shadow-cta-hover"
                   >
                     {loading ? 'Abrindo WhatsApp…' : 'Receber análise personalizada'}
                   </button>

@@ -125,7 +125,7 @@ export default function BookModal({ open, onClose, onOpenUnitFinder }: Props) {
               </p>
               <button
                 onClick={handleDownload}
-                className="w-full py-4 bg-gold text-white font-label text-[.75rem] tracking-[.25em] uppercase transition-colors transition-transform transition-shadow duration-200 hover:bg-gold-dk hover:shadow-lg hover:-translate-y-0.5 border-0 cursor-pointer rounded-lg shadow-cta mb-3"
+                className="w-full py-4 bg-gold-cta text-white font-label text-[.75rem] tracking-[.25em] uppercase transition-colors transition-transform transition-shadow duration-200 hover:bg-gold-cta-dk hover:shadow-lg hover:-translate-y-0.5 border-0 cursor-pointer rounded-lg shadow-cta mb-3"
               >
                 Baixar book em PDF
               </button>
@@ -192,7 +192,7 @@ export default function BookModal({ open, onClose, onOpenUnitFinder }: Props) {
                     id="submit-book"
                     type="submit"
                     disabled={loading || !isFormValid}
-                    className="w-full py-5 bg-gold text-white font-label text-[.75rem] tracking-[.25em] uppercase transition-colors transition-transform transition-shadow duration-200 hover:bg-gold-dk hover:shadow-lg hover:-translate-y-0.5 disabled:opacity-50 disabled:translate-y-0 border-0 cursor-pointer rounded-lg shadow-cta"
+                    className="w-full py-5 bg-gold-cta text-white font-label text-[.75rem] tracking-[.25em] uppercase transition-colors transition-transform transition-shadow duration-200 hover:bg-gold-cta-dk hover:shadow-lg hover:-translate-y-0.5 disabled:opacity-50 disabled:translate-y-0 border-0 cursor-pointer rounded-lg shadow-cta"
                   >
                     {loading ? 'Liberando acesso…' : 'Liberar acesso ao book'}
                   </button>

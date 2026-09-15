@@ -20,11 +20,11 @@ export default function CtaBanner() {
           Receba uma curadoria personalizada de unidades
         </h2>
         <p className="text-white/50 text-[1.05rem] leading-[1.8] mb-12 max-w-[50ch] mx-auto">
-          As condições variam conforme andar, vista, final da planta e disponibilidade. Informe seu perfil e receba as opções mais alinhadas ao seu planejamento.
+          Nenhuma unidade é igual à outra — andar, vista e final de planta mudam o valor. Diga o que você procura e receba uma curadoria com as opções que fazem sentido para você.
         </p>
         <a
           href="#unidades"
-          className="inline-flex items-center gap-3 px-14 py-5 font-label text-[.85rem] tracking-[.18em] uppercase no-underline transition-colors transition-transform transition-shadow duration-300 hover:-translate-y-0.5 border-0 cursor-pointer rounded-xl bg-gold hover:bg-gold-dk text-white shadow-cta hover:shadow-cta-hover"
+          className="inline-flex items-center gap-3 px-14 py-5 font-label text-[.85rem] tracking-[.18em] uppercase no-underline transition-colors transition-transform transition-shadow duration-300 hover:-translate-y-0.5 border-0 cursor-pointer rounded-xl bg-gold-cta hover:bg-gold-cta-dk text-white shadow-cta hover:shadow-cta-hover"
         >
           Montar minha simulação
         </a>

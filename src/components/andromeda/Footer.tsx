@@ -32,7 +32,8 @@ export default function Footer() {
             {DISCLAIMER}
           </p>
           <p className="text-center text-[.82rem] text-bg/40">
-            &copy; {new Date().getFullYear()} {PROJECT.name} · {PROJECT.address.street}, {PROJECT.address.neighborhood}, {PROJECT.address.city}, {PROJECT.address.state} · {PROJECT.phone}
+            &copy; {new Date().getFullYear()} {PROJECT.name} · {PROJECT.address.street}, {PROJECT.address.neighborhood}, {PROJECT.address.city}, {PROJECT.address.state} ·{' '}
+            <a href={PROJECT.phoneHref} className="text-bg/40 hover:text-gold-lt transition-colors duration-200">{PROJECT.phone}</a>
           </p>
         </div>
       </div>

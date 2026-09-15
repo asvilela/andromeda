@@ -20,6 +20,8 @@ export default function Projeto() {
         <div className="reveal relative aspect-[3/4] lg:aspect-[4/5] bg-bg2 overflow-hidden rounded-2xl shadow-lg">
           <img
             src={PROJECT_IMAGES.facadeNight}
+            srcSet={`${PROJECT_IMAGES.facadeNightThumb} 640w, ${PROJECT_IMAGES.facadeNight} 1600w`}
+            sizes="(max-width: 1024px) 90vw, 45vw"
             alt="Fachada noturna do Andrômeda Home"
             className="absolute inset-0 w-full h-full object-cover"
             loading="lazy" decoding="async"
@@ -41,7 +43,12 @@ export default function Projeto() {
             className="absolute bottom-16 right-5 w-[100px] rounded-lg overflow-hidden shadow-xl"
             aria-hidden="true"
           >
-            <img src={PROJECT_IMAGES.lobby} alt="Lobby do Andrômeda Home com acabamento premium" className="w-full h-[70px] object-cover" loading="lazy" decoding="async" />
+            <img
+              src={PROJECT_IMAGES.lobbyThumb}
+              alt="Lobby do Andrômeda Home com acabamento premium"
+              className="w-full h-[70px] object-cover"
+              loading="lazy" decoding="async"
+            />
             <div className="py-[5px] px-2 font-label text-[.48rem] tracking-[.15em] text-cream/50 uppercase bg-white/90">
               Lobby
             </div>

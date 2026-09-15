@@ -55,6 +55,11 @@ export default {
           DEFAULT: "#B8925A",
           lt: "#D8C3A5",
           dk: "#96743E",
+          // Darker bronze reserved for white-text CTA buttons — #B8925A/#96743E
+          // measure 2.88:1 / 4.32:1 with white text, both under the 4.5:1 WCAG AA
+          // minimum. cta/cta-dk measure ~5.7:1 / ~7.8:1.
+          cta: "#82602F",
+          "cta-dk": "#6B4E27",
         },
         cream: "#171717",
         "text-2": "#5A4632",
