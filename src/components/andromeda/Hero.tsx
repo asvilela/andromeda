@@ -52,6 +52,7 @@ export default function Hero() {
         <div className="flex gap-4 flex-wrap items-center" style={{ animation: 'fade-up .8s .95s both' }}>
           <a
             href="#unidades"
+            data-cta-id="hero_descobrir_unidade"
             className="inline-flex items-center gap-3 px-8 py-4 sm:px-12 sm:py-5 font-label text-[.78rem] sm:text-[.85rem] tracking-[.18em] uppercase no-underline transition-colors transition-transform transition-shadow duration-300 hover:-translate-y-0.5 border-0 cursor-pointer rounded-xl bg-gold-cta hover:bg-gold-cta-dk text-white shadow-cta hover:shadow-cta-hover"
             aria-label="Descobrir minha unidade ideal"
           >
@@ -59,6 +60,7 @@ export default function Hero() {
           </a>
           <a
             href="#visita"
+            data-cta-id="hero_agendar_visita"
             className="inline-flex items-center gap-3 px-8 py-4 sm:px-12 sm:py-5 font-label text-[.78rem] sm:text-[.85rem] tracking-[.18em] uppercase no-underline border border-white/30 text-white hover:bg-white/10 hover:border-white/60 hover:-translate-y-0.5 transition-colors transition-transform duration-200 rounded-xl backdrop-blur-sm"
           >
             Agendar visita

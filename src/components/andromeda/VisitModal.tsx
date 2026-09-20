@@ -15,9 +15,10 @@ import {
 interface Props {
   open: boolean
   onClose: () => void
+  ctaId?: string | null
 }
 
-export default function VisitModal({ open, onClose }: Props) {
+export default function VisitModal({ open, onClose, ctaId }: Props) {
   const [form, setForm] = useState({ fullName: '', phoneMobile: '', metragem: '', dia: '' })
   const [loading, setLoading] = useState(false)
   const tracking = useTrackingParams()
@@ -62,7 +63,7 @@ export default function VisitModal({ open, onClose }: Props) {
     const notes = `Olá, sou *${form.fullName}*. Vim pelo site do ${PROJECT.productName} e gostaria de *agendar uma visita* ao Espaço ${PROJECT.name}.\n\nMetragem de interesse: *${form.metragem || 'não informada'}*\nMelhor dia: *${form.dia || 'não informado'}*\n\nAguardo confirmação!`
 
     try {
-      await createLead({ fullName: form.fullName, phoneMobile: form.phoneMobile, notes }, tracking)
+      await createLead({ fullName: form.fullName, phoneMobile: form.phoneMobile, notes, ctaId: ctaId ?? 'visit_modal' }, tracking)
     } catch {
       // falha silenciosa
     }

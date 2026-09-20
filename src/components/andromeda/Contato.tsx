@@ -49,6 +49,7 @@ export default function Contato() {
         email: form.email,
         phoneMobile: form.whatsapp,
         notes,
+        ctaId: 'contact',
       }, tracking)
       gtmEvent('lead_form_submit', { form_location: 'contact' })
       setSubmitted(true)

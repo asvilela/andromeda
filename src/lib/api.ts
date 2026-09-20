@@ -13,6 +13,7 @@ interface CreateLeadPayload extends TrackingParams {
   product: string
   notes?: string | null
   slug: string
+  ctaId?: string | null
 }
 
 export async function createLead(
@@ -22,6 +23,7 @@ export async function createLead(
     phoneMobile: string
     origin?: string
     notes?: string
+    ctaId?: string | null
   },
   tracking?: TrackingParams
 ): Promise<void> {
@@ -38,6 +40,7 @@ export async function createLead(
     product: PROJECT.productName,
     notes: data.notes || null,
     slug: BROKER.slug,
+    ctaId: data.ctaId ?? null,
     clickId: tracking?.clickId ?? null,
     utmSource: tracking?.utmSource ?? null,
     utmMedium: tracking?.utmMedium ?? null,

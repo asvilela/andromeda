@@ -9,9 +9,10 @@ interface Props {
   open: boolean
   onClose: () => void
   onOpenUnitFinder: () => void
+  ctaId?: string | null
 }
 
-export default function BookModal({ open, onClose, onOpenUnitFinder }: Props) {
+export default function BookModal({ open, onClose, onOpenUnitFinder, ctaId }: Props) {
   const [form, setForm] = useState({ fullName: '', phoneMobile: '' })
   const [loading, setLoading] = useState(false)
   const [status, setStatus] = useState<'form' | 'success'>('form')
@@ -69,7 +70,7 @@ export default function BookModal({ open, onClose, onOpenUnitFinder }: Props) {
     const notes = `Solicitou download do book completo do ${PROJECT.productName}.`
 
     try {
-      await createLead({ fullName: form.fullName, phoneMobile: form.phoneMobile, notes }, tracking)
+      await createLead({ fullName: form.fullName, phoneMobile: form.phoneMobile, notes, ctaId: ctaId ?? 'book_modal' }, tracking)
       gtmEvent('lead_form_submit', { form_location: 'book_modal' })
       setStatus('success')
     } catch {

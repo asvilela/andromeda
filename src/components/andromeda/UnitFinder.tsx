@@ -16,6 +16,7 @@ import CustomSelect from './CustomSelect'
 interface Props {
   open: boolean
   onClose: () => void
+  ctaId?: string | null
 }
 
 type FormData = {
@@ -43,7 +44,7 @@ const SELECT_OPTIONS: Record<string, { value: string; label: string }[]> = {
   faixa: FAIXA_INVESTIMENTO_OPTIONS,
 }
 
-export default function UnitFinder({ open, onClose }: Props) {
+export default function UnitFinder({ open, onClose, ctaId }: Props) {
   const [form, setForm] = useState<FormData>({
     fullName: '', phoneMobile: '', tipologia: '', objetivo: '', preferencia: '', faixa: '',
   })
@@ -105,7 +106,7 @@ export default function UnitFinder({ open, onClose }: Props) {
     const notes = `Olá, sou *${form.fullName}*. Vim pelo site do ${PROJECT.productName} e gostaria de descobrir qual unidade faz mais sentido para o meu perfil.\n\nTipologia de interesse: *${form.tipologia || 'não informada'}*\nObjetivo: *${form.objetivo || 'não informado'}*\nPreferência: *${form.preferencia || 'não informada'}*\nFaixa de investimento: *${form.faixa || 'não informada'}*\n\nPode me ajudar com uma análise personalizada?`
 
     try {
-      await createLead({ fullName: form.fullName, phoneMobile: form.phoneMobile, notes }, tracking)
+      await createLead({ fullName: form.fullName, phoneMobile: form.phoneMobile, notes, ctaId: ctaId ?? 'unit_finder' }, tracking)
     } catch {
       // falha silenciosa
     }

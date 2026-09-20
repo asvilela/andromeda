@@ -30,6 +30,7 @@ export default function FAQ() {
             </p>
             <a
               href="#book"
+              data-cta-id="faq_book"
               className="inline-flex items-center gap-3 px-8 py-4 font-label text-[.78rem] tracking-[.18em] uppercase no-underline bg-gold-cta hover:bg-gold-cta-dk text-white transition-colors duration-200 rounded-xl shadow-cta"
             >
               Receber book no WhatsApp
@@ -81,6 +82,7 @@ export default function FAQ() {
         <div className="reveal mt-14 text-center">
           <a
             href="#unidades"
+            data-cta-id="faq_unidades"
             className="inline-flex items-center gap-3 px-10 py-[1.15rem] font-label text-[.78rem] tracking-[.18em] uppercase no-underline transition-colors transition-transform transition-shadow duration-200 hover:-translate-y-0.5 border-0 cursor-pointer rounded-xl bg-gold-cta hover:bg-gold-cta-dk text-white shadow-cta hover:shadow-cta-hover"
           >
             Simular valores e disponibilidade

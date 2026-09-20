@@ -95,6 +95,7 @@ export default function VideoSection() {
           </p>
           <a
             href="#book"
+            data-cta-id="video_section_book"
             className="inline-flex items-center gap-3 px-8 py-4 font-label text-[.78rem] tracking-[.18em] uppercase no-underline border border-gold/40 text-gold-lt hover:bg-gold/10 hover:border-gold/60 transition-colors duration-200 rounded-xl"
           >
             Baixar book completo

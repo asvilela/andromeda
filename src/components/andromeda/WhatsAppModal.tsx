@@ -8,9 +8,10 @@ import { WHATSAPP_NUMBER, PROJECT, INTERESSE_WA_OPTIONS } from '@/lib/constants'
 interface Props {
   open: boolean
   onClose: () => void
+  ctaId?: string | null
 }
 
-export default function WhatsAppModal({ open, onClose }: Props) {
+export default function WhatsAppModal({ open, onClose, ctaId }: Props) {
   const [form, setForm] = useState({ fullName: '', phoneMobile: '', interest: '' })
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(false)
@@ -57,7 +58,7 @@ export default function WhatsAppModal({ open, onClose }: Props) {
     const notes = `Olá, sou *${form.fullName}*. Vim pelo site do ${PROJECT.productName} e gostaria de falar sobre *${form.interest}*.\nGostaria de receber orientação sobre as opções disponíveis.`
 
     try {
-      await createLead({ fullName: form.fullName, phoneMobile: form.phoneMobile, notes }, tracking)
+      await createLead({ fullName: form.fullName, phoneMobile: form.phoneMobile, notes, ctaId: ctaId ?? 'whatsapp_modal' }, tracking)
     } catch {
       setError(true)
     }

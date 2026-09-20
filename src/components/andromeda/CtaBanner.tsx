@@ -24,6 +24,7 @@ export default function CtaBanner() {
         </p>
         <a
           href="#unidades"
+          data-cta-id="cta_banner_unidades"
           className="inline-flex items-center gap-3 px-14 py-5 font-label text-[.85rem] tracking-[.18em] uppercase no-underline transition-colors transition-transform transition-shadow duration-300 hover:-translate-y-0.5 border-0 cursor-pointer rounded-xl bg-gold-cta hover:bg-gold-cta-dk text-white shadow-cta hover:shadow-cta-hover"
         >
           Montar minha simulação

@@ -24,31 +24,32 @@ const Footer = lazy(() => import('@/components/andromeda/Footer'))
 const Index = () => {
   useReveal()
 
-  const [waModalOpen, setWaModalOpen] = useState(false)
-  const [bookModalOpen, setBookModalOpen] = useState(false)
-  const [unitFinderOpen, setUnitFinderOpen] = useState(false)
-  const [visitModalOpen, setVisitModalOpen] = useState(false)
+  const [waModalOpen, setWaModalOpen] = useState<string | null>(null)
+  const [bookModalOpen, setBookModalOpen] = useState<string | null>(null)
+  const [unitFinderOpen, setUnitFinderOpen] = useState<string | null>(null)
+  const [visitModalOpen, setVisitModalOpen] = useState<string | null>(null)
 
   const handleGlobalClick = (e: React.MouseEvent) => {
     const target = e.target as HTMLElement
     const anchor = target.closest('a')
     if (!anchor) return
     const href = anchor.getAttribute('href') ?? ''
+    const ctaId = anchor.dataset.ctaId ?? null
     if (href === '#unidades') {
       e.preventDefault()
-      setUnitFinderOpen(true)
+      setUnitFinderOpen(ctaId ?? 'unidades_link')
     }
     if (href === '#book') {
       e.preventDefault()
-      setBookModalOpen(true)
+      setBookModalOpen(ctaId ?? 'book_link')
     }
     if (href === '#visita') {
       e.preventDefault()
-      setVisitModalOpen(true)
+      setVisitModalOpen(ctaId ?? 'visita_link')
     }
     if (href.includes('wa.me') || anchor.hasAttribute('data-wa-modal')) {
       e.preventDefault()
-      setWaModalOpen(true)
+      setWaModalOpen(ctaId ?? 'whatsapp_link')
     }
   }
 
@@ -56,8 +57,8 @@ const Index = () => {
     // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
     <div onClick={handleGlobalClick}>
       <Navbar
-        onOpenWaModal={() => setWaModalOpen(true)}
-        onOpenVisitModal={() => setVisitModalOpen(true)}
+        onOpenWaModal={() => setWaModalOpen('navbar_whatsapp')}
+        onOpenVisitModal={() => setVisitModalOpen('navbar_agendar_visita')}
       />
       <main>
         <Hero />
@@ -79,12 +80,17 @@ const Index = () => {
         <Footer />
       </Suspense>
 
-      <WhatsAppFloat onOpen={() => setWaModalOpen(true)} />
+      <WhatsAppFloat onOpen={() => setWaModalOpen('whatsapp_float')} />
 
-      <WhatsAppModal open={waModalOpen} onClose={() => setWaModalOpen(false)} />
-      <BookModal open={bookModalOpen} onClose={() => setBookModalOpen(false)} onOpenUnitFinder={() => setUnitFinderOpen(true)} />
-      <UnitFinder open={unitFinderOpen} onClose={() => setUnitFinderOpen(false)} />
-      <VisitModal open={visitModalOpen} onClose={() => setVisitModalOpen(false)} />
+      <WhatsAppModal open={!!waModalOpen} ctaId={waModalOpen} onClose={() => setWaModalOpen(null)} />
+      <BookModal
+        open={!!bookModalOpen}
+        ctaId={bookModalOpen}
+        onClose={() => setBookModalOpen(null)}
+        onOpenUnitFinder={() => setUnitFinderOpen('book_modal_unit_finder')}
+      />
+      <UnitFinder open={!!unitFinderOpen} ctaId={unitFinderOpen} onClose={() => setUnitFinderOpen(null)} />
+      <VisitModal open={!!visitModalOpen} ctaId={visitModalOpen} onClose={() => setVisitModalOpen(null)} />
     </div>
   )
 }
