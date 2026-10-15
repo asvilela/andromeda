@@ -18,6 +18,18 @@ describe('createLead', () => {
     expect(body.phoneMobile).toBe('11999999999')
   })
 
+  it('sends productId null and no product (spec 014)', async () => {
+    const fetchMock = vi
+      .spyOn(globalThis, 'fetch')
+      .mockResolvedValue(new Response(null, { status: 200 }))
+
+    await createLead({ fullName: 'Maria Silva', phoneMobile: '+55 (11) 99999-9999' })
+
+    const body = JSON.parse(fetchMock.mock.calls[0][1]?.body as string)
+    expect(body.productId).toBeNull()
+    expect(body).not.toHaveProperty('product')
+  })
+
   it('blocks invalid mobile phone before posting the lead', async () => {
     const fetchMock = vi.spyOn(globalThis, 'fetch')
 
