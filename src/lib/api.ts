@@ -10,7 +10,8 @@ interface CreateLeadPayload extends TrackingParams {
   email?: string | null
   phoneMobile: string
   origin: string
-  product: string
+  /** Produto do cadastro do Closer. A landing page não vincula produto (spec 014). */
+  productId: string | null
   notes?: string | null
   slug: string
   ctaId?: string | null
@@ -37,7 +38,7 @@ export async function createLead(
     email: data.email || null,
     phoneMobile,
     origin: data.origin || 'Google Ads',
-    product: PROJECT.productName,
+    productId: null,
     notes: data.notes || null,
     slug: BROKER.slug,
     ctaId: data.ctaId ?? null,
